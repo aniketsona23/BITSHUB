@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function DoubtCard({ doubt, user }) {
+function DoubtCard({ doubt, user, id }) {
+    const navigate = useNavigate();
+
+    const openDoubt = () => {
+        navigate(`/doubt/${id}`);
+    };
     return (
         <div className="flex flex-col gap-6 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             <header className="flex justify-between items-center">
@@ -12,15 +18,22 @@ function DoubtCard({ doubt, user }) {
                     />
                     <span className="">{user.username}</span>
                 </div>
-                <span className="border-white/25 px-[40px] py-[15px] border border-solid rounded-full font-['Inter'] text-lg">{user.bitsid}</span>
+                <span className="border-white/25 px-[40px] py-[15px] border border-solid rounded-full font-['Inter'] text-lg">
+                    {user.bitsid}
+                </span>
             </header>
             <h1 className="text-4xl">{doubt.title}</h1>
             <main className="py-[20px]  overflow-hidden overflow-ellipses whitespace-nowrap max-h-[10rem]">
-                <p className="text-2xl text-gray-400 text-wrap break-word">{doubt.doubt}</p>
+                <p className="text-2xl text-gray-400 text-wrap break-word">
+                    {doubt.doubt}
+                </p>
             </main>
             <footer className="flex gap-[15px]">
-                <button className="bg-orange-600 px-4 py-3 rounded-lg w-[10%] font-['Poppins'] font-semibold text-lg text-white">
-                    Reply
+                <button
+                    onClick={openDoubt}
+                    className="bg-orange-600 px-4 py-3 rounded-lg w-[10%] font-['Poppins'] font-semibold text-lg text-white"
+                >
+                    Answer
                 </button>
                 <button className="bg-orange-600 px-4 py-3 rounded-lg w-[10%] font-['Poppins'] font-semibold text-lg text-white">
                     ++

@@ -1,9 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function CourseCard({ courseName }) {
+function CourseCard({ courseName, image }) {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        console.log("hee");
+
+        navigate("/forum");
+    };
     return (
-        <div className="bg-white rounded-xl w-[400px] h-[300px] font-['Poppins'] font-medium cursor-pointer overflow-hidden">
-            <section className="bg-slate-700 w-[100%] h-[80%]"></section>
+        <div
+            onClick={handleClick}
+            className="bg-slate-700 rounded-xl w-[400px] h-[300px] font-['Poppins'] font-medium text-white cursor-pointer overflow-hidden"
+        >
+            <section className="w-[100%] h-[80%]">
+                <img className="w-full h-full" src={image} alt="" />
+            </section>
             <footer className="flex justify-center items-center h-[20%]">
                 <p className="text-xl"> {courseName}</p>
             </footer>
