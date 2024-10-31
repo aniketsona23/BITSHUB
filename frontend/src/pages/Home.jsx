@@ -8,7 +8,7 @@ import ie from "../assets/internation_economics.webp";
 
 function Home() {
     return (
-        <main className="flex flex-wrap justify-center items-center gap-[50px] px-[10%] py-[5%]">
+        <main className="flex flex-wrap justify-center items-center gap-[50px] px-[5%] py-[5%]">
             <CourseCard
                 image={oops}
                 courseName={"Object Oriented Programming"}

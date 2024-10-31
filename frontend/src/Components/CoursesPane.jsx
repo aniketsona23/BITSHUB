@@ -3,7 +3,7 @@ import CourseBtn from "./CourseBtn";
 
 function CoursesPane() {
     return (
-        <div className="top-0 left-0 sticky flex flex-col flex-grow items-center gap-[2%] border-white/25 px-[1%] py-[2%] border-r border-solid w-[30%]">
+        <div className="top-0 left-0 sticky flex flex-col items-center gap-[2%] border-white/25 px-[1%] py-[2%] border-r border-solid w-[25%]">
             <div className="flex flex-col items-center gap-3 w-[100%]">
                 <button className="bg-orange-600 px-4 py-3 rounded-lg w-[100%] font-['Poppins'] font-semibold text-sm text-white">
                     My Doubts
