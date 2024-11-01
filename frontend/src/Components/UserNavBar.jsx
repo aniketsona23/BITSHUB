@@ -18,7 +18,7 @@ function UserNavbar() {
                     <Link to="/">Profile</Link>
                 </li>
                 <li>
-                    <Link to="/forum">Forum</Link>
+                    <Link to="/forum/Object Oriented Programming">Forum</Link>
                 </li>
                 <li>
                     <Link to="/">Sign</Link> Out

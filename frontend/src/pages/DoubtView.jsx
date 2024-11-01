@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import DoubtCard from "../Components/DoubtCard";
-import avatar from "../assets/avatar.jpg";
 import Comment from "../Components/Comment";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Doubts, addcomment } from "../utils/doubts";
+import avatar from "../assets/avatar.jpg";
 
 function DoubtView() {
-    const { id } = useParams();
+    const { doubtId } = useParams();
     const textareaRef = useRef(null);
 
     const [value, setValue] = useState("");
@@ -15,21 +15,48 @@ function DoubtView() {
     const [currDoubt, updateCurrDoubt] = useState(null);
 
     useEffect(() => {
-        const doubt = Doubts.find((doubt) => doubt.id == id);
+        const doubt = Doubts.find((doubt) => doubt.id == doubtId);
+        console.log(doubt);
         if (doubt) {
             updateCurrDoubt(doubt);
             updateComments(doubt.comments);
         }
-    }, [id]);
+    }, [doubtId]);
 
     const handleComment = () => {
         const date = new Date();
-        addcomment(id, {
-            user: "CurrentUserr",
-            time: `${date.getDate} ${date.getMonth}, ${
-                date.getFullYear
-            } ${date.getTime()}`,
-        });
+
+        const day = date.getDate().toString().padStart(2, "0"); // "10"
+        const month = date.toLocaleString("default", { month: "short" }); // "Oct"
+        const year = date.getFullYear(); // "2024"
+        const hours = date.getHours().toString().padStart(2, "0"); // "11"
+        const minutes = date.getMinutes().toString().padStart(2, "0"); // "00"
+
+        const formattedDate = `${day} ${month}, ${year} ${hours}:${minutes}`;
+        console.log(formattedDate); // "10 Oct, 2024 11:00"
+
+        // addcomment(doubtId, {
+        //     user: {
+        //         username: "Nigga is nigga",
+        //         img: avatar,
+        //         bitsid: "2022B3A60000G",
+        //     },
+        //     comment: value,
+        //     time: formattedDate,
+        // });
+        updateComments([
+            ...comments,
+            {
+                commentId: currDoubt.id + "0" + comments.length + 1,
+                user: {
+                    username: "Random",
+                    img: avatar,
+                    bitsid: "2022B3A70000G",
+                },
+                comment: value,
+                time: formattedDate,
+            },
+        ]);
 
         setValue("");
     };
@@ -45,7 +72,7 @@ function DoubtView() {
             <div className="w-[100%] max-h-screen overflow-y-scroll">
                 <div className="flex flex-col items-center gap-10 py-8 max-h-screen">
                     <DoubtCard
-                        id={id}
+                        id={doubtId}
                         user={currDoubt.user}
                         doubt={currDoubt.doubt}
                         showCommentBtn={false}
@@ -72,7 +99,7 @@ function DoubtView() {
                                     user={comment.user}
                                     time={comment.time}
                                     comment={comment.comment}
-                                    key={comment.id}
+                                    key={comment.commentId}
                                 />
                             );
                         })}

@@ -1,10 +1,6 @@
 import React from "react";
-import UserNavbar from "../Components/UserNavBar";
-import CoursesPane from "../Components/CoursesPane";
-import PostCard from "../Components/PostCard";
 import DoubtCard from "../Components/DoubtCard";
-import avatar from "../assets/avatar.jpg";
-import { Doubts, addcomment } from "../utils/doubts";
+import { Doubts } from "../utils/doubts";
 function Forum() {
     return (
         <div className="w-[100%] max-h-screen overflow-y-scroll">

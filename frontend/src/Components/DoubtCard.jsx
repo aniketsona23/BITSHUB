@@ -1,17 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function DoubtCard({ doubt, user, id, showCommentBtn = true }) {
     const navigate = useNavigate();
+    const { subject } = useParams();
 
     const openDoubt = () => {
-        navigate(`/doubt/${id}`);
+        console.log(subject); // Ensure this outputs the expected subject
+
+        navigate(`/forum/${subject}/${id}`);
     };
     return (
         <div className="flex flex-col gap-6 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
                 <button
-                    onClick={() => navigate("/forum")}
+                    onClick={() => navigate(`/forum/${subject}`)}
                     className=" bg-orange-800 px-3 py-2 rounded-lg min-w-fit max-w-fit font-['Poppins'] font-semibold text-xs text-white"
                 >
                     Back
