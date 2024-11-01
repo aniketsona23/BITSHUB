@@ -4,78 +4,23 @@ import CoursesPane from "../Components/CoursesPane";
 import PostCard from "../Components/PostCard";
 import DoubtCard from "../Components/DoubtCard";
 import avatar from "../assets/avatar.jpg";
-
+import { Doubts, addcomment } from "../utils/doubts";
 function Forum() {
     return (
-        <div className="max-h-screen overflow-y-scroll">
-            <div className="flex flex-col justify-start items-center gap-8 py-[5%]">
+        <div className="w-[100%] max-h-screen overflow-y-scroll">
+            <div className="flex flex-col justify-start items-center gap-8 pt-[2%] pb-[6%]">
                 {/* <PostCard  courseName={"Object Oriented Programming"}/> */}
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sitssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
-                <DoubtCard
-                    user={{
-                        username: "Aniket Sonawane",
-                        bitsid: "2022B3A70031G",
-                        img: avatar,
-                    }}
-                    doubt={{
-                        doubt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sapiente!",
-                        title: "Aniket  Nigger",
-                    }}
-                />
+                {Doubts.map((doubt) => {
+                    return (
+                        <DoubtCard
+                            key={doubt.id}
+                            user={doubt.user}
+                            doubt={doubt.doubt}
+                            id={doubt.id}
+                            showCommentBtn={true}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

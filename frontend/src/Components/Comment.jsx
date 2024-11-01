@@ -12,7 +12,7 @@ function Comment({ user, comment, time }) {
                 <span className="font-[12px] text-white">{user.username}</span>
                 <span className="font-[12px text-zinc-400">{time} </span>
             </header>
-            <p className="font-[12px] text-white">{comment.msg}</p>
+            <p className="font-[12px] text-white">{comment}</p>
         </div>
     );
 }

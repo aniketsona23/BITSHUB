@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 function CourseCard({ courseName, image }) {
     const navigate = useNavigate();
     const handleClick = () => {
-        console.log("hee");
-
         navigate("/forum");
     };
     return (
