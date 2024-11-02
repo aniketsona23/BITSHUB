@@ -547,5 +547,23 @@ const addcomment = (id, comment) => {
         }
     }
 };
+const adddoubt = (doubt, user) => {
+    const date = new Date();
 
-export { Doubts, addcomment };
+    const day = date.getDate().toString().padStart(2, "0"); // "10"
+    const month = date.toLocaleString("default", { month: "short" }); // "Oct"
+    const year = date.getFullYear(); // "2024"
+    const hours = date.getHours().toString().padStart(2, "0"); // "11"
+    const minutes = date.getMinutes().toString().padStart(2, "0"); // "00"
+
+    const formattedDate = `${day} ${month}, ${year} ${hours}:${minutes}`;
+    Doubts.push({
+        id: Doubts.length + 1,
+        doubt: doubt,
+        user: user,
+        comments: [],
+        time: formattedDate,
+    });
+};
+
+export { Doubts, addcomment, adddoubt };
