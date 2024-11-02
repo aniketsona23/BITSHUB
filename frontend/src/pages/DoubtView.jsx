@@ -16,7 +16,6 @@ function DoubtView() {
 
     useEffect(() => {
         const doubt = Doubts.find((doubt) => doubt.id == doubtId);
-        console.log(doubt);
         if (doubt) {
             updateCurrDoubt(doubt);
             updateComments(doubt.comments);
@@ -75,6 +74,7 @@ function DoubtView() {
                         id={doubtId}
                         user={currDoubt.user}
                         doubt={currDoubt.doubt}
+                        votes={currDoubt.votes}
                         showCommentBtn={false}
                     />
                     <div className="flex justify-center items-start gap-5 w-[80%] resize-none">
@@ -100,6 +100,7 @@ function DoubtView() {
                                     time={comment.time}
                                     comment={comment.comment}
                                     key={comment.commentId}
+                                    votes={comment.votes}
                                 />
                             );
                         })}

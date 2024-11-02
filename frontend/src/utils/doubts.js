@@ -4,6 +4,8 @@ import avatar from "../assets/avatar.jpg";
 const Doubts = [
     {
         id: 1,
+        courseId: 1,
+        votes: 5,
         user: {
             username: "Aniket Sonawane",
             img: avatar,
@@ -16,6 +18,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 101,
+                votes: 3,
                 user: {
                     username: "Kunal Mishra",
                     img: avatar,
@@ -27,6 +30,7 @@ const Doubts = [
             },
             {
                 commentId: 102,
+                votes: 4,
                 user: {
                     username: "Soham",
                     img: avatar,
@@ -40,6 +44,8 @@ const Doubts = [
     },
     {
         id: 2,
+        courseId: 2,
+        votes: 8,
         user: {
             username: "Krish Patel",
             img: avatar,
@@ -52,6 +58,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 201,
+                votes: 5,
                 user: {
                     username: "Gyan",
                     img: avatar,
@@ -62,6 +69,7 @@ const Doubts = [
             },
             {
                 commentId: 202,
+                votes: 2,
                 user: {
                     username: "Pranav M R",
                     img: avatar,
@@ -75,6 +83,8 @@ const Doubts = [
     },
     {
         id: 3,
+        courseId: 3,
+        votes: 6,
         user: {
             username: "Gyan",
             img: avatar,
@@ -87,6 +97,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 301,
+                votes: 4,
                 user: {
                     username: "Soham",
                     img: avatar,
@@ -98,6 +109,7 @@ const Doubts = [
             },
             {
                 commentId: 302,
+                votes: 3,
                 user: {
                     username: "Aniket Sonawane",
                     img: avatar,
@@ -111,6 +123,8 @@ const Doubts = [
     },
     {
         id: 4,
+        courseId: 4,
+        votes: 9,
         user: {
             username: "Nachiket Naik",
             img: avatar,
@@ -123,6 +137,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 401,
+                votes: 6,
                 user: {
                     username: "Pranav M R",
                     img: avatar,
@@ -134,6 +149,7 @@ const Doubts = [
             },
             {
                 commentId: 402,
+                votes: 7,
                 user: {
                     username: "Gyan",
                     img: avatar,
@@ -147,6 +163,8 @@ const Doubts = [
     },
     {
         id: 5,
+        courseId: 5,
+        votes: 10,
         user: {
             username: "Soham",
             img: avatar,
@@ -159,6 +177,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 501,
+                votes: 6,
                 user: {
                     username: "Aniket Sonawane",
                     img: avatar,
@@ -170,6 +189,7 @@ const Doubts = [
             },
             {
                 commentId: 502,
+                votes: 8,
                 user: {
                     username: "Krish Patel",
                     img: avatar,
@@ -180,8 +200,11 @@ const Doubts = [
             },
         ],
     },
+    // Remaining doubts (6 to 15)
     {
         id: 6,
+        courseId: 1,
+        votes: 4,
         user: {
             username: "Pranav M R",
             img: avatar,
@@ -194,6 +217,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 601,
+                votes: 3,
                 user: {
                     username: "Soham",
                     img: avatar,
@@ -205,6 +229,7 @@ const Doubts = [
             },
             {
                 commentId: 602,
+                votes: 5,
                 user: {
                     username: "Gyan",
                     img: avatar,
@@ -217,6 +242,8 @@ const Doubts = [
     },
     {
         id: 7,
+        courseId: 2,
+        votes: 3,
         user: {
             username: "Nachiket Naik",
             img: avatar,
@@ -229,6 +256,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 701,
+                votes: 6,
                 user: {
                     username: "Aniket Sonawane",
                     img: avatar,
@@ -240,6 +268,7 @@ const Doubts = [
             },
             {
                 commentId: 702,
+                votes: 7,
                 user: {
                     username: "Pranav M R",
                     img: avatar,
@@ -253,6 +282,8 @@ const Doubts = [
     },
     {
         id: 8,
+        courseId: 3,
+        votes: 6,
         user: {
             username: "Gyan",
             img: avatar,
@@ -265,6 +296,7 @@ const Doubts = [
         comments: [
             {
                 commentId: 801,
+                votes: 8,
                 user: {
                     username: "Kunal Mishra",
                     img: avatar,
@@ -276,264 +308,245 @@ const Doubts = [
             },
             {
                 commentId: 802,
+                votes: 5,
                 user: {
                     username: "Soham",
                     img: avatar,
                     bitsid: "2022B3A70036G",
                 },
                 comment:
-                    "Familiarize yourself with common algorithms like linear regression.",
-                time: "17 Oct, 2024 15:00",
+                    "Familiarize yourself with libraries like TensorFlow and scikit-learn.",
+                time: "17 Oct, 2024 14:30",
             },
         ],
     },
     {
         id: 9,
-        user: {
-            username: "Pranav M R",
-            img: avatar,
-            bitsid: "2022B3A70034G",
-        },
-        doubt: {
-            title: "Mobile App Development",
-            doubt: "What should I know before starting mobile app development?",
-        },
-        comments: [
-            {
-                commentId: 901,
-                user: {
-                    username: "Nachiket Naik",
-                    img: avatar,
-                    bitsid: "2022B3A70045G",
-                },
-                comment:
-                    "Choose between native or hybrid app development based on your needs.",
-                time: "18 Oct, 2024 10:15",
-            },
-            {
-                commentId: 902,
-                user: {
-                    username: "Gyan",
-                    img: avatar,
-                    bitsid: "2022B3A70039G",
-                },
-                comment:
-                    "Learn about user experience design principles for mobile apps.",
-                time: "18 Oct, 2024 10:45",
-            },
-        ],
-    },
-    {
-        id: 10,
-        user: {
-            username: "Kunal Mishra",
-            img: avatar,
-            bitsid: "2022B3A70032G",
-        },
-        doubt: {
-            title: "Cybersecurity Fundamentals",
-            doubt: "What are the basic principles of cybersecurity?",
-        },
-        comments: [
-            {
-                commentId: 1001,
-                user: {
-                    username: "Pranav M R",
-                    img: avatar,
-                    bitsid: "2022B3A70034G",
-                },
-                comment:
-                    "Understand the importance of securing sensitive information.",
-                time: "19 Oct, 2024 09:30",
-            },
-            {
-                commentId: 1002,
-                user: {
-                    username: "Soham",
-                    img: avatar,
-                    bitsid: "2022B3A70036G",
-                },
-                comment:
-                    "Always keep software up to date to protect against vulnerabilities.",
-                time: "19 Oct, 2024 10:00",
-            },
-        ],
-    },
-    {
-        id: 11,
+        courseId: 4,
+        votes: 7,
         user: {
             username: "Nachiket Naik",
             img: avatar,
             bitsid: "2022B3A70045G",
         },
         doubt: {
-            title: "Learning SQL",
-            doubt: "What should I focus on when learning SQL?",
+            title: "Getting Started with Mobile App Development",
+            doubt: "Any advice on starting with mobile app development?",
         },
         comments: [
             {
-                commentId: 1101,
+                commentId: 901,
+                votes: 4,
                 user: {
                     username: "Gyan",
                     img: avatar,
                     bitsid: "2022B3A70039G",
                 },
                 comment:
-                    "Understand the basic CRUD operations: Create, Read, Update, Delete.",
-                time: "20 Oct, 2024 11:00",
+                    "Learn the basics of Android or iOS development depending on your platform of choice.",
+                time: "18 Oct, 2024 11:00",
             },
             {
-                commentId: 1102,
-                user: {
-                    username: "Pranav M R",
-                    img: avatar,
-                    bitsid: "2022B3A70034G",
-                },
-                comment:
-                    "Learn about joins and how to connect tables in your queries.",
-                time: "20 Oct, 2024 11:30",
-            },
-        ],
-    },
-    {
-        id: 12,
-        user: {
-            username: "Aniket Sonawane",
-            img: avatar,
-            bitsid: "2022B3A70031G",
-        },
-        doubt: {
-            title: "Career Paths in Tech",
-            doubt: "What are some common career paths in technology?",
-        },
-        comments: [
-            {
-                commentId: 1201,
-                user: {
-                    username: "Soham",
-                    img: avatar,
-                    bitsid: "2022B3A70036G",
-                },
-                comment:
-                    "Software development, data science, and cybersecurity are great options.",
-                time: "21 Oct, 2024 12:00",
-            },
-            {
-                commentId: 1202,
+                commentId: 902,
+                votes: 6,
                 user: {
                     username: "Krish Patel",
                     img: avatar,
                     bitsid: "2022B3A70041G",
                 },
                 comment:
-                    "Consider what excites you the most, whether it's coding, analyzing data, or securing systems.",
-                time: "21 Oct, 2024 12:30",
+                    "Try out some starter projects to get a feel of the development environment.",
+                time: "18 Oct, 2024 11:30",
             },
         ],
     },
     {
-        id: 13,
+        id: 10,
+        courseId: 5,
+        votes: 8,
         user: {
-            username: "Gyan",
+            username: "Soham",
             img: avatar,
-            bitsid: "2022B3A70039G",
+            bitsid: "2022B3A70046G",
         },
         doubt: {
-            title: "Time Management for Students",
-            doubt: "What are some effective time management strategies for students?",
+            title: "Advanced JavaScript Concepts",
+            doubt: "What are some advanced JavaScript concepts I should learn?",
         },
         comments: [
             {
-                commentId: 1301,
+                commentId: 1001,
+                votes: 9,
                 user: {
-                    username: "Nachiket Naik",
+                    username: "Gyan",
                     img: avatar,
-                    bitsid: "2022B3A70045G",
+                    bitsid: "2022B3A70039G",
                 },
-                comment: "Prioritize tasks using a planner or a to-do list.",
-                time: "22 Oct, 2024 09:00",
+                comment: "Look into closures and higher-order functions.",
+                time: "19 Oct, 2024 10:15",
             },
             {
-                commentId: 1302,
+                commentId: 1002,
+                votes: 7,
                 user: {
                     username: "Kunal Mishra",
                     img: avatar,
                     bitsid: "2022B3A70032G",
                 },
-                comment: "Set specific time blocks for studying and breaks.",
-                time: "22 Oct, 2024 10:15",
+                comment:
+                    "Asynchronous programming with async/await is essential for modern JavaScript.",
+                time: "19 Oct, 2024 11:00",
             },
         ],
     },
     {
-        id: 14,
+        id: 11,
+        courseId: 3,
+        votes: 2,
         user: {
-            username: "Soham",
+            username: "Gyan",
             img: avatar,
-            bitsid: "2022B3A70036G",
+            bitsid: "2022B3A70025G",
         },
         doubt: {
-            title: "Best Programming Languages to Learn",
-            doubt: "What are the best programming languages to learn in 2024?",
+            title: "Data Structures in Java",
+            doubt: "Which data structures should I focus on for interviews?",
         },
         comments: [
             {
-                commentId: 1401,
+                commentId: 301,
+                votes: 1,
                 user: {
                     username: "Pranav M R",
                     img: avatar,
-                    bitsid: "2022B3A70034G",
+                    bitsid: "2022B3A70027G",
                 },
                 comment:
-                    "Python, JavaScript, and Go are currently in high demand.",
-                time: "23 Oct, 2024 11:30",
+                    "Make sure to understand arrays, linked lists, and trees.",
+                time: "10 Oct, 2024 12:00",
             },
+        ],
+    },
+    {
+        id: 12,
+        courseId: 4,
+        votes: 4,
+        user: {
+            username: "Nachiket Naik",
+            img: avatar,
+            bitsid: "2022B3A70034G",
+        },
+        doubt: {
+            title: "Web Development Frameworks",
+            doubt: "What framework should I learn first for web development?",
+        },
+        comments: [
             {
-                commentId: 1402,
+                commentId: 401,
+                votes: 2,
                 user: {
                     username: "Aniket Sonawane",
                     img: avatar,
                     bitsid: "2022B3A70031G",
                 },
+                comment: "I recommend starting with React as it's widely used.",
+                time: "10 Oct, 2024 13:00",
+            },
+            {
+                commentId: 402,
+                votes: 3,
+                user: {
+                    username: "Krish Patel",
+                    img: avatar,
+                    bitsid: "2022B3A70041G",
+                },
                 comment:
-                    "Consider your interests; some languages are better suited for specific fields.",
-                time: "23 Oct, 2024 12:00",
+                    "Don't forget to explore Node.js for backend development!",
+                time: "10 Oct, 2024 14:00",
             },
         ],
     },
     {
-        id: 15,
+        id: 13,
+        courseId: 5,
+        votes: 6,
         user: {
             username: "Kunal Mishra",
             img: avatar,
             bitsid: "2022B3A70032G",
         },
         doubt: {
-            title: "Building a Personal Portfolio",
-            doubt: "How can I build an effective personal portfolio?",
+            title: "Understanding Machine Learning",
+            doubt: "What are the prerequisites for learning machine learning?",
         },
         comments: [
             {
-                commentId: 1501,
+                commentId: 501,
+                votes: 2,
+                user: {
+                    username: "Soham",
+                    img: avatar,
+                    bitsid: "2022B3A70036G",
+                },
+                comment:
+                    "A solid understanding of statistics and linear algebra is crucial.",
+                time: "10 Oct, 2024 15:00",
+            },
+        ],
+    },
+    {
+        id: 14,
+        courseId: 6,
+        votes: 3,
+        user: {
+            username: "Pranav M R",
+            img: avatar,
+            bitsid: "2022B3A70027G",
+        },
+        doubt: {
+            title: "Effective Communication Skills",
+            doubt: "How can I improve my communication skills for presentations?",
+        },
+        comments: [
+            {
+                commentId: 601,
+                votes: 4,
                 user: {
                     username: "Gyan",
                     img: avatar,
-                    bitsid: "2022B3A70039G",
+                    bitsid: "2022B3A70025G",
                 },
                 comment:
-                    "Showcase your best projects and highlight your skills.",
-                time: "24 Oct, 2024 14:00",
+                    "Practice in front of a mirror and get feedback from peers.",
+                time: "10 Oct, 2024 16:00",
             },
+        ],
+    },
+    {
+        id: 15,
+        courseId: 7,
+        votes: 5,
+        user: {
+            username: "Soham",
+            img: avatar,
+            bitsid: "2022B3A70036G",
+        },
+        doubt: {
+            title: "Career Opportunities in AI",
+            doubt: "What career paths can I pursue in the field of artificial intelligence?",
+        },
+        comments: [
             {
-                commentId: 1502,
+                commentId: 701,
+                votes: 3,
                 user: {
                     username: "Nachiket Naik",
                     img: avatar,
-                    bitsid: "2022B3A70045G",
+                    bitsid: "2022B3A70034G",
                 },
                 comment:
-                    "Make sure it's easy to navigate and visually appealing.",
-                time: "24 Oct, 2024 15:00",
+                    "You can explore roles in data science, research, and machine learning engineering.",
+                time: "10 Oct, 2024 17:00",
             },
         ],
     },

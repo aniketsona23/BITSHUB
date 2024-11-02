@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function DoubtCard({ doubt, user, id, showCommentBtn = true }) {
+function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
     const navigate = useNavigate();
     const { subject } = useParams();
+    const [doubtVotes, setDoubtVotes] = useState(votes);
 
     const openDoubt = () => {
         console.log(subject); // Ensure this outputs the expected subject
@@ -39,18 +40,34 @@ function DoubtCard({ doubt, user, id, showCommentBtn = true }) {
                     {doubt.doubt}
                 </p>
             </main>
-            <footer className="flex gap-[15px]">
+            <footer className="flex items-center gap-[15px]">
                 {showCommentBtn && (
                     <button
                         onClick={openDoubt}
-                        className="bg-orange-600 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                        className="bg-orange-600 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] font-semibold text-sm text-white"
                     >
                         Answer
                     </button>
                 )}
-                <button className="bg-orange-600 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white">
-                    ++
-                </button>
+                <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 rounded-[10px] justify-between">
+                    <button
+                        onClick={() => setDoubtVotes(doubtVotes + 1)}
+                        className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                    >
+                        <span className="material-symbols-outlined text-[18px]  ">
+                            shift
+                        </span>
+                    </button>
+                    <span className="text-lg">{doubtVotes}</span>
+                    <button
+                        onClick={() => setDoubtVotes(doubtVotes - 1)}
+                        className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                    >
+                        <span className="material-symbols-outlined text-[18px]  rotate-180">
+                            shift
+                        </span>
+                    </button>
+                </div>
             </footer>
         </div>
     );

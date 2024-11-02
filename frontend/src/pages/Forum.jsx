@@ -12,6 +12,7 @@ function Forum() {
                             key={doubt.id}
                             user={doubt.user}
                             doubt={doubt.doubt}
+                            votes={doubt.votes}
                             id={doubt.id}
                             showCommentBtn={true}
                         />
