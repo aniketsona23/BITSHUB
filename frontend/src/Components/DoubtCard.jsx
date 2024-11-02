@@ -12,7 +12,7 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
         navigate(`/forum/${subject}/${id}`);
     };
     return (
-        <div className="flex flex-col gap-6 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
+        <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
                 <button
                     onClick={() => navigate(`/forum/${subject}`)}
@@ -25,11 +25,11 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
                 <div className="flex  justify-end items-center gap-[15px] max-w-max">
                     <img
                         src={user.img}
-                        className="rounded-[50%] w-[60px] h-[60px]"
+                        className="rounded-[50%] w-[50px] h-[50px]"
                         alt=""
                     />
-                    <span className="">{user.username}</span>
-                    <span className="border-white/25 px-[40px] py-[15px] border border-solid rounded-full font-['Inter'] text-lg">
+                    <span className="text-lg">{user.username}</span>
+                    <span className="border-white/25 px-5 py-3 border border-solid rounded-full font-['Inter'] ">
                         {user.bitsid}
                     </span>
                 </div>
