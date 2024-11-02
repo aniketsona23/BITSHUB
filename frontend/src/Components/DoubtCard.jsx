@@ -44,7 +44,7 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
                 {showCommentBtn && (
                     <button
                         onClick={openDoubt}
-                        className="bg-orange-600 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] font-semibold text-sm text-white"
+                        className="bg-slate-700 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] border-2 border-slate-500 text-sm text-white hover:border-2 hover:border-orange-500 hover:border-2 duration-200"
                     >
                         Answer
                     </button>
