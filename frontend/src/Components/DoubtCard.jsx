@@ -1,11 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
+function DoubtCard({
+    doubt,
+    isupVoted = false,
+    isDownVoted = false,
+    user,
+    votes,
+    id,
+    showCommentBtn = true,
+}) {
     const navigate = useNavigate();
     const { subject } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
 
+    const handleUpVote = () => {
+        if (isupVoted) {
+            isupVoted = false;
+            setDoubtVotes(doubtVotes - 1);
+            return;
+        }
+        isupVoted = true;
+        setDoubtVotes(doubtVotes + 1);
+    };
+    const handleDownVote = () => {
+        if (isDownVoted) {
+            isDownVoted = false;
+            setDoubtVotes(doubtVotes + 1);
+            return;
+        }
+        isDownVoted = true;
+        setDoubtVotes(doubtVotes - 1);
+    };
     const openDoubt = () => {
         console.log(subject); // Ensure this outputs the expected subject
 
@@ -51,19 +77,27 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
                 )}
                 <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 rounded-[10px] justify-between">
                     <button
-                        onClick={() => setDoubtVotes(doubtVotes + 1)}
-                        className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                        onClick={() => handleUpVote}
+                        className={`px-2 py-2 flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
+                            !isupVoted ? "bg-gray-500 " : "bg-orange-600"
+                        }`}
                     >
-                        <span className="material-symbols-outlined text-[18px]  ">
+                        <span
+                            className={`material-symbols-outlined text-[18px] `}
+                        >
                             shift
                         </span>
                     </button>
                     <span className="text-lg">{doubtVotes}</span>
                     <button
-                        onClick={() => setDoubtVotes(doubtVotes - 1)}
+                        onClick={() => handleDownVote}
                         className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
                     >
-                        <span className="material-symbols-outlined text-[18px]  rotate-180">
+                        <span
+                            className={`material-symbols-outlined text-[18px]  rotate-180 ${
+                                !isDownVoted ? "bg-gray-500 " : "bg-orange-600"
+                            }`}
+                        >
                             shift
                         </span>
                     </button>

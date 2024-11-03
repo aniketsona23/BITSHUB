@@ -8,6 +8,7 @@ function Login() {
     useEffect(() => {
         if (localStorage.getItem("currentUser")) {
             navigate("/user/");
+            return;
         }
         async function fetching() {
             const response = await fetch("../src/utils/Users.json");
