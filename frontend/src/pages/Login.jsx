@@ -22,7 +22,7 @@ function Login() {
     const [passw, setPassw] = useState("");
     const handleLogin = () => {
         for (let user of users) {
-            if (user.username == userName && passw == user.name) {
+            if (user.username == userName && passw == user.passw) {
                 navigate("/user/");
                 localStorage.setItem("currentUser", user.username);
                 return;
