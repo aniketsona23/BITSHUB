@@ -1,35 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function DoubtCard({
     doubt,
-    isupVoted = false,
-    isDownVoted = false,
+    isupVoted,
+    isDownVoted,
     user,
     votes,
     id,
     showCommentBtn = true,
 }) {
-    const navigate = useNavigate();
+    const [upVoted, setUpVoted] = useState();
+    const [downVoted, setDownVoted] = useState();
     const { subject } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
 
+    useEffect(() => {
+        setUpVoted(isupVoted);
+        setDownVoted(isDownVoted);
+        console.log(upVoted, isupVoted);
+    }, [isupVoted, isDownVoted]);
     const handleUpVote = () => {
-        if (isupVoted) {
-            isupVoted = false;
+        if (downVoted) {
+            setDownVoted(false);
+            setUpVoted(true);
+            setDoubtVotes(doubtVotes + 2);
+            return;
+        }
+        if (upVoted) {
+            setUpVoted(false);
             setDoubtVotes(doubtVotes - 1);
             return;
         }
-        isupVoted = true;
+        setUpVoted(true);
         setDoubtVotes(doubtVotes + 1);
     };
     const handleDownVote = () => {
-        if (isDownVoted) {
-            isDownVoted = false;
+        if (upVoted) {
+            setDownVoted(true);
+            setUpVoted(false);
+            setDoubtVotes(doubtVotes - 2);
+            return;
+        }
+        if (downVoted) {
+            setDownVoted(false);
             setDoubtVotes(doubtVotes + 1);
             return;
         }
-        isDownVoted = true;
+        setDownVoted(true);
         setDoubtVotes(doubtVotes - 1);
     };
     const openDoubt = () => {
@@ -77,9 +95,9 @@ function DoubtCard({
                 )}
                 <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 rounded-[10px] justify-between">
                     <button
-                        onClick={() => handleUpVote}
+                        onClick={handleUpVote}
                         className={`px-2 py-2 flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
-                            !isupVoted ? "bg-gray-500 " : "bg-orange-600"
+                            !upVoted ? "bg-gray-500 " : "bg-orange-600"
                         }`}
                     >
                         <span
@@ -90,13 +108,13 @@ function DoubtCard({
                     </button>
                     <span className="text-lg">{doubtVotes}</span>
                     <button
-                        onClick={() => handleDownVote}
-                        className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                        onClick={handleDownVote}
+                        className={` px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
+                            !downVoted ? "bg-gray-500 " : "bg-orange-600"
+                        }`}
                     >
                         <span
-                            className={`material-symbols-outlined text-[18px]  rotate-180 ${
-                                !isDownVoted ? "bg-gray-500 " : "bg-orange-600"
-                            }`}
+                            className={`material-symbols-outlined text-[18px]  rotate-180 $`}
                         >
                             shift
                         </span>

@@ -29,7 +29,6 @@ function Forum() {
                             break;
                         }
                     }
-
                     return (
                         <DoubtCard
                             key={doubt.id}
