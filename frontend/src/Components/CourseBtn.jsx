@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function CourseBtn({ courseName, isCurrentView = false }) {
     const navigate = useNavigate();
     const handleCourseClick = (event) => {
-        navigate(`/forum/${courseName}`);
+        navigate(`/user/forum/${courseName}`);
     };
     return (
         <button

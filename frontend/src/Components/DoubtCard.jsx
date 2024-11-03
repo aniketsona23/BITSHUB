@@ -9,13 +9,13 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
     const openDoubt = () => {
         console.log(subject); // Ensure this outputs the expected subject
 
-        navigate(`/forum/${subject}/${id}`);
+        navigate(`/user/forum/${subject}/${id}`);
     };
     return (
         <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
                 <button
-                    onClick={() => navigate(`/forum/${subject}`)}
+                    onClick={() => navigate(`/user/forum/${subject}`)}
                     className=" bg-orange-800 px-3 py-2 rounded-lg min-w-fit max-w-fit font-['Poppins'] font-semibold text-xs text-white"
                 >
                     Back
@@ -44,7 +44,7 @@ function DoubtCard({ doubt, user, votes, id, showCommentBtn = true }) {
                 {showCommentBtn && (
                     <button
                         onClick={openDoubt}
-                        className="bg-slate-700 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] border-2 border-slate-500 text-sm text-white hover:border-2 hover:border-orange-500 hover:border-2 duration-200"
+                        className="bg-slate-700 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] border-2 border-slate-500 text-sm text-white  hover:border-orange-500 hover:border-2 duration-200"
                     >
                         Answer
                     </button>

@@ -15,7 +15,7 @@ function CoursesPane() {
                 <button
                     onClick={() =>
                         navigate(
-                            `/forum/${
+                            `/user/forum/${
                                 subject != null
                                     ? subject
                                     : "Object Oriented Programming"

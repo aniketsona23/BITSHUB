@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 function UserNavbar() {
+    const handleSignOut = () => {
+        localStorage.removeItem("currentUser");
+    };
     return (
         <nav className="top-0 z-10 sticky flex justify-between border-white/25 bg-slate-950 px-[80px] py-[20px] border-b border-solid h-[7%] font-['Inter'] font-semibold text-xl">
             <div className="flex justify-center items-center space-x-7 text-white">
@@ -18,10 +21,14 @@ function UserNavbar() {
                     <Link to="/">Profile</Link>
                 </li>
                 <li>
-                    <Link to="/forum/Object Oriented Programming">Forum</Link>
+                    <Link to="/fuser/orum/Object Oriented Programming">
+                        Forum
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Sign</Link> Out
+                    <Link to="/login" onClick={handleSignOut}>
+                        Sign Out
+                    </Link>
                 </li>
             </ul>
         </nav>

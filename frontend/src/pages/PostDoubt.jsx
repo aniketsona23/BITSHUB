@@ -19,7 +19,7 @@ function PostDoubt() {
             bitsid: "2022B3A60000G",
         };
         adddoubt(doubt, user);
-        navigate(`/forum/${subject}`);
+        navigate(`/user/forum/${subject}`);
     };
     const handleInput = (event) => {
         const textarea = textareaRef.current;

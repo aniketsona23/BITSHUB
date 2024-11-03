@@ -1,0 +1,109 @@
+[
+    {
+        "username": "f20220031@goa.bits-pilani.ac.in",
+        "name": "Aniket Sonawane",
+        "img": "avatar.jpg",
+        "bitsid": "2022B3A70031G",
+        "courses": [
+            {
+                "courseId": 1,
+                "title": "Data Structures",
+                "role": "Student"
+            },
+            {
+                "courseId": 2,
+                "title": "Algorithms",
+                "role": "TA"
+            }
+        ],
+        "postsIds": [
+            101,
+            102
+        ],
+        "upvotes": [
+            101,
+            102
+        ],
+        "downvotes": []
+    },
+    {
+        "username": "f20220032@goa.bits-pilani.ac.in",
+        "name": "Kunal Mishra",
+        "img": "avatar.jpg",
+        "bitsid": "2022B3A70032G",
+        "courses": [
+            {
+                "courseId": 1,
+                "title": "Data Structures",
+                "role": "TA"
+            },
+            {
+                "courseId": 3,
+                "title": "Operating Systems",
+                "role": "Student"
+            }
+        ],
+        "postsIds": [
+            103
+        ],
+        "upvotes": [
+            103
+        ],
+        "downvotes": []
+    },
+    {
+        "username": "f20220036@goa.bits-pilani.ac.in",
+        "name": "Soham",
+        "img": "avatar.jpg",
+        "bitsid": "2022B3A70036G",
+        "courses": [
+            {
+                "courseId": 1,
+                "title": "Data Structures",
+                "role": "Student"
+            },
+            {
+                "courseId": 4,
+                "title": "Machine Learning",
+                "role": "TA"
+            }
+        ],
+        "postsIds": [
+            104,
+            105,
+            106
+        ],
+        "upvotes": [
+            104,
+            105
+        ],
+        "downvotes": [
+            106
+        ]
+    },
+    {
+        "username": "f20220041@goa.bits-pilani.ac.in",
+        "name": "Krish Patel",
+        "img": "avatar.jpg",
+        "bitsid": "2022B3A70041G",
+        "courses": [
+            {
+                "courseId": 2,
+                "title": "Algorithms",
+                "role": "Student"
+            },
+            {
+                "courseId": 4,
+                "title": "Machine Learning",
+                "role": "Student"
+            }
+        ],
+        "postsIds": [
+            107
+        ],
+        "upvotes": [
+            107
+        ],
+        "downvotes": []
+    }
+]

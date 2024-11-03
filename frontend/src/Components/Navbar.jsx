@@ -9,7 +9,6 @@ function Navbar() {
                 <li>BITS Pilani, K.K. Birla Goa Campus</li>
                 <li>Features</li>
                 <li>Contact</li>
-                <li>Sign Out</li>
             </ul>
         </nav>
     );
