@@ -1,6 +1,7 @@
 [
     {
         "username": "f20220031@goa.bits-pilani.ac.in",
+        "passw": "f20220031",
         "name": "Aniket Sonawane",
         "img": "avatar.jpg",
         "bitsid": "2022B3A70031G",
@@ -29,6 +30,7 @@
     },
     {
         "username": "f20220032@goa.bits-pilani.ac.in",
+        "passw": "f20220032",
         "name": "Kunal Mishra",
         "img": "avatar.jpg",
         "bitsid": "2022B3A70032G",
@@ -56,6 +58,7 @@
     },
     {
         "username": "f20220036@goa.bits-pilani.ac.in",
+        "passw": "f20220036",
         "name": "Soham",
         "img": "avatar.jpg",
         "bitsid": "2022B3A70036G",
@@ -86,6 +89,7 @@
     },
     {
         "username": "f20220041@goa.bits-pilani.ac.in",
+        "passw": "f20220041",
         "name": "Krish Patel",
         "img": "avatar.jpg",
         "bitsid": "2022B3A70041G",
