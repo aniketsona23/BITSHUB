@@ -40,7 +40,7 @@ function Login() {
                     Welcome to BITSHUB
                 </h1>
                 <div className="w-[40%] h-[93%] flex flex-col gap-5 items-center py-[5%] border border-white rounded-3xl mt-10">
-                    <div className=" flex gap-5 items-center justify-between]">
+                    <div className=" flex gap-5 items-center justify-between w-[60%]">
                         <label
                             htmlFor="username"
                             className="text-3xl text-white"
@@ -54,17 +54,18 @@ function Login() {
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             type="email"
-                            className="outline-none text-lg px-4 py-2 rounded-xl text-white bg-slate-600 focus:border focus:border-white "
+                            className="border-2 border-solid border-slate-400  outline-none text-lg px-4 py-2 rounded-xl text-white bg-slate-600 focus:border-2 focus:border-solid focus:border-white "
                         />
                     </div>
-                    <div className="flex gap-5 items-center justify-between  text-3xl text-white">
+                    <div className=" flex gap-5 items-center justify-between  text-3xl text-white w-[60%]">
                         <label htmlFor="password">Password</label>
                         <input
+                            placeholder="Enter password ..."
                             name="password"
                             value={passw}
                             onChange={(e) => setPassw(e.target.value)}
                             type="password"
-                            className="outline-none text-lg px-4 py-2 rounded-xl text-white bg-slate-600 focus:border focus:border-white "
+                            className="border-2 border-solid border-slate-400 outline-none text-lg px-4 py-2 rounded-xl text-white bg-slate-600 focus:border-2 focus:border-solid focus:border-white "
                         />
                     </div>
                     <div className="flex gap-10">

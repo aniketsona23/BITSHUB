@@ -12,16 +12,16 @@ function UserNavbar() {
             </div>
             <ul className="flex items-center space-x-[55px] text-white">
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/user/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/">Courses</Link>
+                    <Link to="/user/">Courses</Link>
                 </li>
                 <li>
-                    <Link to="/">Profile</Link>
+                    <Link to="/user/">Profile</Link>
                 </li>
                 <li>
-                    <Link to="/fuser/orum/Object Oriented Programming">
+                    <Link to="/user/forum/Object Oriented Programming">
                         Forum
                     </Link>
                 </li>

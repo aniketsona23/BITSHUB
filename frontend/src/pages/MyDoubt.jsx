@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { useDoubts } from "../contexts/DoubtContext";
 import DoubtCard from "../Components/DoubtCard";
-import { Doubts } from "../utils/doubts";
-import { useParams } from "react-router-dom";
-function Forum() {
-    const { subjectId } = useParams("");
+
+function MyDoubt() {
+    const { doubts } = useDoubts();
     const [users, setUsers] = useState([]);
+    const [currUser, setCurrUser] = useState();
     useEffect(() => {
         async function fetching() {
             const response = await fetch("/Users.json");
             const json = await response.json();
             setUsers(json);
+            for (let user of users) {
+                if (user.username == localStorage.getItem("currentUser"))
+                    setCurrUser(user);
+            }
         }
         fetching();
-    }, []);
+    }, [users]);
     return (
         <div className="w-[100%] max-h-screen overflow-y-scroll">
             <div className="flex flex-col justify-start items-center gap-8 pt-[2%] pb-[6%]">
                 {users.length > 0 &&
-                    Doubts.map((doubt) => {
-                        if (doubt.courseId == subjectId) {
+                    currUser &&
+                    doubts.map((doubt) => {
+                        console.log(currUser.postsIds, doubt.id);
+                        if (currUser.postsIds.includes(doubt.id)) {
                             let Upvoted = false;
                             let DownVoted = false;
-                            let curruser;
-                            for (let user of users) {
-                                if (
-                                    user.username ==
-                                    localStorage.getItem("currentUser")
-                                ) {
-                                    curruser = user;
-                                    break;
-                                }
-                            }
-                            if (curruser.upvotes.includes(doubt.id)) {
-                                console.log(doubt.id, curruser.upvotes);
+
+                            if (currUser.upvotes.includes(doubt.id)) {
                                 Upvoted = true;
-                            } else if (curruser.downvotes.includes(doubt.id)) {
+                            } else if (currUser.downvotes.includes(doubt.id)) {
                                 DownVoted = true;
                             }
                             return (
@@ -56,4 +53,4 @@ function Forum() {
     );
 }
 
-export default Forum;
+export default MyDoubt;

@@ -1,5 +1,4 @@
 // util.js
-import avatar from "../assets/avatar.jpg";
 
 const Doubts = [
     {
@@ -8,7 +7,7 @@ const Doubts = [
         votes: 5,
         user: {
             username: "Aniket Sonawane",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70031G",
         },
         doubt: {
@@ -21,7 +20,7 @@ const Doubts = [
                 votes: 3,
                 user: {
                     username: "Kunal Mishra",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
                 comment:
@@ -33,7 +32,7 @@ const Doubts = [
                 votes: 4,
                 user: {
                     username: "Soham",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -44,11 +43,11 @@ const Doubts = [
     },
     {
         id: 2,
-        courseId: 2,
+        courseId: 1,
         votes: 8,
         user: {
             username: "Krish Patel",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70041G",
         },
         doubt: {
@@ -61,7 +60,7 @@ const Doubts = [
                 votes: 5,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Check out Codecademy for interactive Python courses.",
@@ -72,7 +71,7 @@ const Doubts = [
                 votes: 2,
                 user: {
                     username: "Pranav M R",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -87,7 +86,7 @@ const Doubts = [
         votes: 6,
         user: {
             username: "Gyan",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70039G",
         },
         doubt: {
@@ -100,7 +99,7 @@ const Doubts = [
                 votes: 4,
                 user: {
                     username: "Soham",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -112,7 +111,7 @@ const Doubts = [
                 votes: 3,
                 user: {
                     username: "Aniket Sonawane",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70031G",
                 },
                 comment:
@@ -127,7 +126,7 @@ const Doubts = [
         votes: 9,
         user: {
             username: "Nachiket Naik",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70045G",
         },
         doubt: {
@@ -140,7 +139,7 @@ const Doubts = [
                 votes: 6,
                 user: {
                     username: "Pranav M R",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -152,7 +151,7 @@ const Doubts = [
                 votes: 7,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
                 comment:
@@ -167,7 +166,7 @@ const Doubts = [
         votes: 10,
         user: {
             username: "Soham",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70046G",
         },
         doubt: {
@@ -180,7 +179,7 @@ const Doubts = [
                 votes: 6,
                 user: {
                     username: "Aniket Sonawane",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70031G",
                 },
                 comment:
@@ -192,7 +191,7 @@ const Doubts = [
                 votes: 8,
                 user: {
                     username: "Krish Patel",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
                 comment: "GitHub has great resources for beginners.",
@@ -200,14 +199,13 @@ const Doubts = [
             },
         ],
     },
-    // Remaining doubts (6 to 15)
     {
         id: 6,
         courseId: 1,
         votes: 4,
         user: {
             username: "Pranav M R",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70034G",
         },
         doubt: {
@@ -220,7 +218,7 @@ const Doubts = [
                 votes: 3,
                 user: {
                     username: "Soham",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -232,7 +230,7 @@ const Doubts = [
                 votes: 5,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Postman is a great tool for testing APIs.",
@@ -242,11 +240,11 @@ const Doubts = [
     },
     {
         id: 7,
-        courseId: 2,
+        courseId: 5,
         votes: 3,
         user: {
             username: "Nachiket Naik",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70045G",
         },
         doubt: {
@@ -259,11 +257,11 @@ const Doubts = [
                 votes: 6,
                 user: {
                     username: "Aniket Sonawane",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70031G",
                 },
                 comment:
-                    "Always write clean, readable code and use comments where necessary.",
+                    "Always write clean, readable code and use 'comments' where necessary.",
                 time: "16 Oct, 2024 10:30",
             },
             {
@@ -271,22 +269,22 @@ const Doubts = [
                 votes: 7,
                 user: {
                     username: "Pranav M R",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
                 comment:
-                    "Testing your code regularly can save a lot of debugging time later.",
+                    "Testing your code regularly can save a lot of debugging 'time' later.",
                 time: "16 Oct, 2024 11:00",
             },
         ],
     },
     {
         id: 8,
-        courseId: 3,
+        courseId: 4,
         votes: 6,
         user: {
             username: "Gyan",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70039G",
         },
         doubt: {
@@ -299,7 +297,7 @@ const Doubts = [
                 votes: 8,
                 user: {
                     username: "Kunal Mishra",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
                 comment:
@@ -311,7 +309,7 @@ const Doubts = [
                 votes: 5,
                 user: {
                     username: "Soham",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -326,7 +324,7 @@ const Doubts = [
         votes: 7,
         user: {
             username: "Nachiket Naik",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70045G",
         },
         doubt: {
@@ -339,7 +337,7 @@ const Doubts = [
                 votes: 4,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
                 comment:
@@ -351,7 +349,7 @@ const Doubts = [
                 votes: 6,
                 user: {
                     username: "Krish Patel",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
                 comment:
@@ -366,7 +364,7 @@ const Doubts = [
         votes: 8,
         user: {
             username: "Soham",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70046G",
         },
         doubt: {
@@ -379,7 +377,7 @@ const Doubts = [
                 votes: 9,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Look into closures and higher-order functions.",
@@ -390,7 +388,7 @@ const Doubts = [
                 votes: 7,
                 user: {
                     username: "Kunal Mishra",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
                 comment:
@@ -405,7 +403,7 @@ const Doubts = [
         votes: 2,
         user: {
             username: "Gyan",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70025G",
         },
         doubt: {
@@ -418,7 +416,7 @@ const Doubts = [
                 votes: 1,
                 user: {
                     username: "Pranav M R",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70027G",
                 },
                 comment:
@@ -433,7 +431,7 @@ const Doubts = [
         votes: 4,
         user: {
             username: "Nachiket Naik",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70034G",
         },
         doubt: {
@@ -446,7 +444,7 @@ const Doubts = [
                 votes: 2,
                 user: {
                     username: "Aniket Sonawane",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70031G",
                 },
                 comment: "I recommend starting with React as it's widely used.",
@@ -457,7 +455,7 @@ const Doubts = [
                 votes: 3,
                 user: {
                     username: "Krish Patel",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
                 comment:
@@ -468,11 +466,11 @@ const Doubts = [
     },
     {
         id: 13,
-        courseId: 5,
+        courseId: 2,
         votes: 6,
         user: {
             username: "Kunal Mishra",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70032G",
         },
         doubt: {
@@ -485,7 +483,7 @@ const Doubts = [
                 votes: 2,
                 user: {
                     username: "Soham",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -496,11 +494,11 @@ const Doubts = [
     },
     {
         id: 14,
-        courseId: 6,
+        courseId: 1,
         votes: 3,
         user: {
             username: "Pranav M R",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70027G",
         },
         doubt: {
@@ -513,7 +511,7 @@ const Doubts = [
                 votes: 4,
                 user: {
                     username: "Gyan",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70025G",
                 },
                 comment:
@@ -524,11 +522,11 @@ const Doubts = [
     },
     {
         id: 15,
-        courseId: 7,
+        courseId: 3,
         votes: 5,
         user: {
             username: "Soham",
-            img: avatar,
+            img: "../assets/avatar.jpg",
             bitsid: "2022B3A70036G",
         },
         doubt: {
@@ -541,7 +539,7 @@ const Doubts = [
                 votes: 3,
                 user: {
                     username: "Nachiket Naik",
-                    img: avatar,
+                    img: "../assets/avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -551,7 +549,6 @@ const Doubts = [
         ],
     },
 ];
-
 const addcomment = (id, comment) => {
     let doubt;
     for (doubt of Doubts) {
@@ -560,7 +557,7 @@ const addcomment = (id, comment) => {
         }
     }
 };
-const adddoubt = (doubt, user) => {
+const adddoubt = (doubt, user, courseId) => {
     const date = new Date();
 
     const day = date.getDate().toString().padStart(2, "0"); // "10"
@@ -576,6 +573,7 @@ const adddoubt = (doubt, user) => {
         user: user,
         comments: [],
         time: formattedDate,
+        courseId,
     });
 };
 

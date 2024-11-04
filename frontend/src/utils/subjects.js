@@ -36,13 +36,4 @@ const Subjects = [
     },
 ];
 
-const addSubject = (title, facId, image) => {
-    Subjects.push({
-        title,
-        courseId: Subjects.length + 1,
-        facId,
-        image,
-    });
-};
-
-export { addSubject, Subjects };
+export { Subjects };

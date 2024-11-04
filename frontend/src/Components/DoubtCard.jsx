@@ -14,11 +14,11 @@ function DoubtCard({
     const [downVoted, setDownVoted] = useState();
     const { subject } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setUpVoted(isupVoted);
         setDownVoted(isDownVoted);
-        console.log(upVoted, isupVoted);
     }, [isupVoted, isDownVoted]);
     const handleUpVote = () => {
         if (downVoted) {
@@ -88,7 +88,7 @@ function DoubtCard({
                 {showCommentBtn && (
                     <button
                         onClick={openDoubt}
-                        className="bg-slate-700 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] border-2 border-slate-500 text-sm text-white  hover:border-orange-500 hover:border-2 duration-200"
+                        className="bg-slate-800 hover:bg-slate-600 px-4 py-3 rounded-lg min-w-fit font-['Poppins'] border-2 border-slate-500 text-sm text-white  hover:border-orange-500 hover:border-2 duration-200"
                     >
                         Answer
                     </button>

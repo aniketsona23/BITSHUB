@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef, useState } from "react";
 import { adddoubt } from "../utils/doubts";
 import avatar from "../assets/avatar.jpg";
@@ -9,7 +9,21 @@ function PostDoubt() {
     const navigate = useNavigate();
     const [doubtValue, setDoubtValue] = useState("");
     const [doubtTitle, setDoubtTitle] = useState("");
-    const { subject } = useParams();
+    const { subjectId } = useParams();
+    const [subject, setSubject] = useState("");
+    useEffect(() => {
+        async function fetcher() {
+            const response = await fetch("/Subjects.json");
+            const json = await response.json();
+            for (let sub of json) {
+                if (sub.courseId.toString() == subjectId) {
+                    setSubject(sub.title);
+                    break;
+                }
+            }
+        }
+        fetcher();
+    }, []);
 
     const handlePostDoubt = (event) => {
         const doubt = { title: doubtTitle, doubt: doubtValue };
@@ -18,8 +32,8 @@ function PostDoubt() {
             img: avatar,
             bitsid: "2022B3A60000G",
         };
-        adddoubt(doubt, user);
-        navigate(`/user/forum/${subject}`);
+        adddoubt(doubt, user, subjectId);
+        navigate(`/user/forum/${subjectId}`);
     };
     const handleInput = (event) => {
         const textarea = textareaRef.current;
