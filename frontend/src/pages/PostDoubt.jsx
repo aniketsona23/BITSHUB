@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useRef, useState } from "react";
 import { adddoubt } from "../utils/doubts";
-import avatar from "../assets/avatar.jpg";
+import avatar from "../../public/assets/avatar.jpg";
+
 import { useNavigate, useParams } from "react-router-dom";
 
 function PostDoubt() {

@@ -4,7 +4,7 @@ import Comment from "../Components/Comment";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Doubts, addcomment } from "../utils/doubts";
-import avatar from "../assets/avatar.jpg";
+import avatar from "../../public/assets/avatar.jpg";
 
 function DoubtView() {
     const { doubtId } = useParams();

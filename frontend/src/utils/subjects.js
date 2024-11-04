@@ -1,8 +1,8 @@
-import oops from "../assets/OOPs.webp";
-import lcs from "../assets/lcs.jpg";
-import disco from "../assets/disco.webp";
-import dd from "../assets/dd.webp";
-import ie from "../assets/internation_economics.webp";
+import oops from "/assets/OOPs.webp";
+import lcs from "/assets/lcs.jpg";
+import disco from "/assets/disco.webp";
+import dd from "/assets/dd.webp";
+import ie from "/assets/internation_economics.webp";
 const Subjects = [
     {
         title: "Object Oriented Programming",

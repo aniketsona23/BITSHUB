@@ -55,7 +55,7 @@ function DoubtCard({
     const openDoubt = () => {
         navigate(`/user/forum/${subjectId}/${id}`);
     };
-    const img_url = new URL("../src/assets/" + user.img, import.meta.url).href;
+    const img_url = new URL("/assets/" + user.img, import.meta.url).href;
     console.log(img_url);
     return (
         <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
