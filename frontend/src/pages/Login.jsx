@@ -11,7 +11,7 @@ function Login() {
             return;
         }
         async function fetching() {
-            const response = await fetch("../src/utils/Users.json");
+            const response = await fetch("/Users.json");
             const json = await response.json();
             setUsers(json);
         }
@@ -21,6 +21,7 @@ function Login() {
     const [userName, setUserName] = useState("");
     const [passw, setPassw] = useState("");
     const handleLogin = () => {
+        console.log(users);
         for (let user of users) {
             if (user.username == userName && passw == user.passw) {
                 navigate("/user/");

@@ -19,17 +19,14 @@
         ],
         "postsIds": [
             1,
-            15,
-            13
+            2
         ],
         "upvotes": [
-            5,
-            13
-        ],
-        "downvotes": [
+            3,
             1,
-            15
-        ]
+            4
+        ],
+        "downvotes": []
     },
     {
         "username": "f20220032@goa.bits-pilani.ac.in",
@@ -50,16 +47,13 @@
             }
         ],
         "postsIds": [
-            3,
-            10
-        ],
-        "upvotes": [
-            14,
             3
         ],
+        "upvotes": [],
         "downvotes": [
             2,
-            4
+            4,
+            5
         ]
     },
     {
@@ -81,13 +75,13 @@
             }
         ],
         "postsIds": [
-            4,
-            5,
-            6
+            104,
+            105,
+            106
         ],
         "upvotes": [
-            5,
-            10
+            104,
+            105
         ],
         "downvotes": [
             106
@@ -112,11 +106,10 @@
             }
         ],
         "postsIds": [
-            7
+            107
         ],
         "upvotes": [
-            7,
-            15
+            107
         ],
         "downvotes": []
     }
