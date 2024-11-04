@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function CourseCard({ courseName, image }) {
+function CourseCard({ courseId, courseName, image }) {
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate("/user/forum/" + courseName);
+        navigate("/user/forum/" + courseId);
     };
     return (
         <div

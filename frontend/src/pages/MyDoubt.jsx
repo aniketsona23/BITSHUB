@@ -11,12 +11,14 @@ function MyDoubt() {
             const response = await fetch("/Users.json");
             const json = await response.json();
             setUsers(json);
-            for (let user of users) {
-                if (user.username == localStorage.getItem("currentUser"))
-                    setCurrUser(user);
-            }
         }
         fetching();
+    }, []);
+    useEffect(() => {
+        const currentUser = users.find(
+            (user) => user.username === localStorage.getItem("currentUser")
+        );
+        setCurrUser(currentUser);
     }, [users]);
     return (
         <div className="w-[100%] max-h-screen overflow-y-scroll">

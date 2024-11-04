@@ -12,6 +12,7 @@ function Home() {
                         image={sub.image}
                         key={sub.facId}
                         courseName={sub.title}
+                        courseId={sub.courseId}
                     />
                 );
             })}

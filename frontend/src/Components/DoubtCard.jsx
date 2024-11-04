@@ -20,11 +20,14 @@ function DoubtCard({
         setUpVoted(isupVoted);
         setDownVoted(isDownVoted);
     }, [isupVoted, isDownVoted]);
+
     const handleUpVote = () => {
         if (downVoted) {
             setDownVoted(false);
             setUpVoted(true);
             setDoubtVotes(doubtVotes + 2);
+            
+
             return;
         }
         if (upVoted) {
@@ -51,8 +54,6 @@ function DoubtCard({
         setDoubtVotes(doubtVotes - 1);
     };
     const openDoubt = () => {
-        console.log(subject); // Ensure this outputs the expected subject
-
         navigate(`/user/forum/${subject}/${id}`);
     };
     return (
