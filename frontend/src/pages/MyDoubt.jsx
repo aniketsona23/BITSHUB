@@ -26,7 +26,6 @@ function MyDoubt() {
                 {users.length > 0 &&
                     currUser &&
                     doubts.map((doubt) => {
-                        console.log(currUser.postsIds, doubt.id);
                         if (currUser.postsIds.includes(doubt.id)) {
                             let Upvoted = false;
                             let DownVoted = false;

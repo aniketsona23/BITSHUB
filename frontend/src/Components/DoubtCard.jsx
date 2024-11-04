@@ -12,7 +12,7 @@ function DoubtCard({
 }) {
     const [upVoted, setUpVoted] = useState();
     const [downVoted, setDownVoted] = useState();
-    const { subject } = useParams();
+    const { subjectId } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
     const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ function DoubtCard({
             setDownVoted(false);
             setUpVoted(true);
             setDoubtVotes(doubtVotes + 2);
-            
 
             return;
         }
@@ -54,13 +53,15 @@ function DoubtCard({
         setDoubtVotes(doubtVotes - 1);
     };
     const openDoubt = () => {
-        navigate(`/user/forum/${subject}/${id}`);
+        navigate(`/user/forum/${subjectId}/${id}`);
     };
+    const img_url = new URL("../assets/" + user.img, import.meta.url).href;
+    console.log(img_url);
     return (
         <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
                 <button
-                    onClick={() => navigate(`/user/forum/${subject}`)}
+                    onClick={() => navigate(`/user/forum/${subjectId}`)}
                     className=" bg-orange-800 px-3 py-2 rounded-lg min-w-fit max-w-fit font-['Poppins'] font-semibold text-xs text-white"
                 >
                     Back
@@ -69,7 +70,7 @@ function DoubtCard({
             <header className="flex justify-between  items-center">
                 <div className="flex  justify-end items-center gap-[15px] max-w-max">
                     <img
-                        src={user.img}
+                        src={img_url}
                         className="rounded-[50%] w-[50px] h-[50px]"
                         alt=""
                     />

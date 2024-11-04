@@ -157,7 +157,7 @@
         "votes": 10,
         "user": {
             "username": "Soham",
-            "img": "../assets/avatar/.pg",
+            "img": "/assets/avatar/.pg",
             "bitsid": "2022B3A70046G"
         },
         "doubt": {

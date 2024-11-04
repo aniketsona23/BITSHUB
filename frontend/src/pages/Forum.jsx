@@ -29,9 +29,7 @@ function Forum() {
                         if (doubt.courseId == subjectId) {
                             let Upvoted = false;
                             let DownVoted = false;
-                            console.log(currUser);
                             if (currUser.upvotes.includes(doubt.id)) {
-                                console.log(doubt.id, currUser.upvotes);
                                 Upvoted = true;
                             } else if (currUser.downvotes.includes(doubt.id)) {
                                 DownVoted = true;

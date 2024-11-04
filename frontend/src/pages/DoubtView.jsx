@@ -32,7 +32,6 @@ function DoubtView() {
         const minutes = date.getMinutes().toString().padStart(2, "0"); // "00"
 
         const formattedDate = `${day} ${month}, ${year} ${hours}:${minutes}`;
-        console.log(formattedDate); // "10 Oct, 2024 11:00"
 
         // addcomment(doubtId, {
         //     user: {
