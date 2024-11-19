@@ -30,7 +30,7 @@ function PostDoubt() {
         const doubt = { title: doubtTitle, doubt: doubtValue };
         const user = {
             username: "Aniket Sonawane",
-            img: avatar,
+            img: "avatar.jpg",
             bitsid: "2022B3A70031G",
         };
         adddoubt(doubt, user, subjectId);
