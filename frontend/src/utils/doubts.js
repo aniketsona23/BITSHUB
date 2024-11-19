@@ -165,9 +165,9 @@ const Doubts = [
         courseId: 5,
         votes: 10,
         user: {
-            username: "Mayukh Saha",
+            username: "Vineet",
             img: "avatar.jpg",
-            bitsid: "2022B3A70046G",
+            bitsid: "2022B3A70036G",
         },
         doubt: {
             title: "Learning Git",
@@ -365,7 +365,7 @@ const Doubts = [
         user: {
             username: "Vineet",
             img: "avatar.jpg",
-            bitsid: "2022B3A70046G",
+            bitsid: "2022B3A70036G",
         },
         doubt: {
             title: "Advanced JavaScript Concepts",
