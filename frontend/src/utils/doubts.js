@@ -19,7 +19,7 @@ const Doubts = [
                 commentId: 101,
                 votes: 3,
                 user: {
-                    username: "Kunal Mishra",
+                    username: "Divyam Gupta",
                     img: "/assets/avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
@@ -31,7 +31,7 @@ const Doubts = [
                 commentId: 102,
                 votes: 4,
                 user: {
-                    username: "Soham",
+                    username: "Vineet",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
@@ -46,7 +46,7 @@ const Doubts = [
         courseId: 1,
         votes: 8,
         user: {
-            username: "Krish Patel",
+            username: "Vanshaj",
             img: "avatar.jpg",
             bitsid: "2022B3A70041G",
         },
@@ -59,7 +59,7 @@ const Doubts = [
                 commentId: 201,
                 votes: 5,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
@@ -70,7 +70,7 @@ const Doubts = [
                 commentId: 202,
                 votes: 2,
                 user: {
-                    username: "Pranav M R",
+                    username: "Harsh Deshwal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
@@ -85,7 +85,7 @@ const Doubts = [
         courseId: 3,
         votes: 6,
         user: {
-            username: "Gyan",
+            username: "Amish Singhal",
             img: "avatar.jpg",
             bitsid: "2022B3A70039G",
         },
@@ -98,7 +98,7 @@ const Doubts = [
                 commentId: 301,
                 votes: 4,
                 user: {
-                    username: "Soham",
+                    username: "Vineet",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
@@ -125,7 +125,7 @@ const Doubts = [
         courseId: 4,
         votes: 9,
         user: {
-            username: "Nachiket Naik",
+            username: "Vedant Kamath",
             img: "avatar.jpg",
             bitsid: "2022B3A70045G",
         },
@@ -138,7 +138,7 @@ const Doubts = [
                 commentId: 401,
                 votes: 6,
                 user: {
-                    username: "Pranav M R",
+                    username: "Harsh Deshwal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
@@ -150,7 +150,7 @@ const Doubts = [
                 commentId: 402,
                 votes: 7,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
@@ -165,7 +165,7 @@ const Doubts = [
         courseId: 5,
         votes: 10,
         user: {
-            username: "Soham",
+            username: "Mayukh Saha",
             img: "avatar.jpg",
             bitsid: "2022B3A70046G",
         },
@@ -190,7 +190,7 @@ const Doubts = [
                 commentId: 502,
                 votes: 8,
                 user: {
-                    username: "Krish Patel",
+                    username: "Vanshaj",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
@@ -204,7 +204,7 @@ const Doubts = [
         courseId: 1,
         votes: 4,
         user: {
-            username: "Pranav M R",
+            username: "Harsh Deshwal",
             img: "avatar.jpg",
             bitsid: "2022B3A70034G",
         },
@@ -217,7 +217,7 @@ const Doubts = [
                 commentId: 601,
                 votes: 3,
                 user: {
-                    username: "Soham",
+                    username: "Vineet",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
@@ -229,7 +229,7 @@ const Doubts = [
                 commentId: 602,
                 votes: 5,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
@@ -243,7 +243,7 @@ const Doubts = [
         courseId: 5,
         votes: 3,
         user: {
-            username: "Nachiket Naik",
+            username: "Vedant Kamath",
             img: "avatar.jpg",
             bitsid: "2022B3A70045G",
         },
@@ -268,7 +268,7 @@ const Doubts = [
                 commentId: 702,
                 votes: 7,
                 user: {
-                    username: "Pranav M R",
+                    username: "Harsh Deshwal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
@@ -283,7 +283,7 @@ const Doubts = [
         courseId: 4,
         votes: 6,
         user: {
-            username: "Gyan",
+            username: "Amish Singhal",
             img: "avatar.jpg",
             bitsid: "2022B3A70039G",
         },
@@ -296,7 +296,7 @@ const Doubts = [
                 commentId: 801,
                 votes: 8,
                 user: {
-                    username: "Kunal Mishra",
+                    username: "Divyam Gupta",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
@@ -308,7 +308,7 @@ const Doubts = [
                 commentId: 802,
                 votes: 5,
                 user: {
-                    username: "Soham",
+                    username: "Vineet",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
@@ -323,7 +323,7 @@ const Doubts = [
         courseId: 4,
         votes: 7,
         user: {
-            username: "Nachiket Naik",
+            username: "Vedant Kamath",
             img: "avatar.jpg",
             bitsid: "2022B3A70045G",
         },
@@ -336,7 +336,7 @@ const Doubts = [
                 commentId: 901,
                 votes: 4,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
@@ -348,7 +348,7 @@ const Doubts = [
                 commentId: 902,
                 votes: 6,
                 user: {
-                    username: "Krish Patel",
+                    username: "Vanshaj",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
@@ -363,7 +363,7 @@ const Doubts = [
         courseId: 5,
         votes: 8,
         user: {
-            username: "Soham",
+            username: "Vineet",
             img: "avatar.jpg",
             bitsid: "2022B3A70046G",
         },
@@ -376,7 +376,7 @@ const Doubts = [
                 commentId: 1001,
                 votes: 9,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70039G",
                 },
@@ -387,7 +387,7 @@ const Doubts = [
                 commentId: 1002,
                 votes: 7,
                 user: {
-                    username: "Kunal Mishra",
+                    username: "Divyam Gupta",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70032G",
                 },
@@ -402,7 +402,7 @@ const Doubts = [
         courseId: 3,
         votes: 2,
         user: {
-            username: "Gyan",
+            username: "Amish Singhal",
             img: "avatar.jpg",
             bitsid: "2022B3A70025G",
         },
@@ -415,7 +415,7 @@ const Doubts = [
                 commentId: 301,
                 votes: 1,
                 user: {
-                    username: "Pranav M R",
+                    username: "Harsh Deshwal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70027G",
                 },
@@ -430,7 +430,7 @@ const Doubts = [
         courseId: 4,
         votes: 4,
         user: {
-            username: "Nachiket Naik",
+            username: "Vedant Kamath",
             img: "avatar.jpg",
             bitsid: "2022B3A70034G",
         },
@@ -454,7 +454,7 @@ const Doubts = [
                 commentId: 402,
                 votes: 3,
                 user: {
-                    username: "Krish Patel",
+                    username: "Vanshaj",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70041G",
                 },
@@ -469,7 +469,7 @@ const Doubts = [
         courseId: 2,
         votes: 6,
         user: {
-            username: "Kunal Mishra",
+            username: "Divyam Gupta",
             img: "avatar.jpg",
             bitsid: "2022B3A70032G",
         },
@@ -482,7 +482,7 @@ const Doubts = [
                 commentId: 501,
                 votes: 2,
                 user: {
-                    username: "Soham",
+                    username: "Vineet",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70036G",
                 },
@@ -497,7 +497,7 @@ const Doubts = [
         courseId: 1,
         votes: 3,
         user: {
-            username: "Pranav M R",
+            username: "Harsh Deshwal",
             img: "avatar.jpg",
             bitsid: "2022B3A70027G",
         },
@@ -510,7 +510,7 @@ const Doubts = [
                 commentId: 601,
                 votes: 4,
                 user: {
-                    username: "Gyan",
+                    username: "Amish Singhal",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70025G",
                 },
@@ -525,7 +525,7 @@ const Doubts = [
         courseId: 3,
         votes: 5,
         user: {
-            username: "Soham",
+            username: "Vineet",
             img: "avatar.jpg",
             bitsid: "2022B3A70036G",
         },
@@ -538,7 +538,7 @@ const Doubts = [
                 commentId: 701,
                 votes: 3,
                 user: {
-                    username: "Nachiket Naik",
+                    username: "Vedant Kamath",
                     img: "avatar.jpg",
                     bitsid: "2022B3A70034G",
                 },
