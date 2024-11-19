@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 
 function Comment({ user, votes, comment, time }) {
     const [commentVotes, setCommentVotes] = useState(votes);
