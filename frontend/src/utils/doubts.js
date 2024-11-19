@@ -46,9 +46,9 @@ const Doubts = [
         courseId: 1,
         votes: 8,
         user: {
-            username: "Vanshaj",
+            username: "Aniket Sonawane",
             img: "avatar.jpg",
-            bitsid: "2022B3A70041G",
+            bitsid: "2022B3A70031G",
         },
         doubt: {
             title: "Getting Started with Python",
