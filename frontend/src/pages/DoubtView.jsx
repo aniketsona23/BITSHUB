@@ -47,10 +47,12 @@ function DoubtView() {
             {
                 commentId: currDoubt.id + "0" + comments.length + 1,
                 user: {
-                    username: "Random",
+                    username: "Aniket Sonawane",
                     img: avatar,
-                    bitsid: "2022B3A70000G",
+                    bitsid: "2022B3A70031G",
                 },
+                votes:0
+                ,
                 comment: value,
                 time: formattedDate,
             },
