@@ -570,6 +570,7 @@ const adddoubt = (doubt, user, courseId) => {
     Doubts.push({
         id: Doubts.length + 1,
         doubt: doubt,
+        votes:0,
         user: user,
         comments: [],
         time: formattedDate,
