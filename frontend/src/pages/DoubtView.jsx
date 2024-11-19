@@ -18,7 +18,8 @@ function DoubtView() {
         const doubt = Doubts.find((doubt) => doubt.id == doubtId);
         if (doubt) {
             updateCurrDoubt(doubt);
-            updateComments(doubt.comments);
+            const coms = doubt.comments.sort((a,b)=>(a.votes>b.votes?1:-1));
+            updateComments(coms);
         }
     }, [doubtId]);
 
