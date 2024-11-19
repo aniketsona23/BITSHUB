@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 function Comment({ user, votes, comment, time }) {
     const [commentVotes, setCommentVotes] = useState(votes);
+        const img_url = new URL("/assets/" + user.img, import.meta.url).href;
+
     return (
         <div className="flex flex-col gap-5 bg-slate-800 p-8 rounded-xl w-[100%]">
             <header className="flex justify-start items-center gap-5">
                 <img
-                    src={user.img}
+                    src={img_url}
                     alt=""
                     className="rounded-[50%] w-[50px] h-[50px]"
                 />
