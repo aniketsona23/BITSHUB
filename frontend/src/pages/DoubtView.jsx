@@ -4,7 +4,6 @@ import Comment from "../Components/Comment";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Doubts, addcomment } from "../utils/doubts";
-import avatar from "../../public/assets/avatar.jpg";
 
 function DoubtView() {
     const { doubtId } = useParams();
@@ -31,7 +30,7 @@ function DoubtView() {
         const year = date.getFullYear(); // "2024"
         const hours = date.getHours().toString().padStart(2, "0"); // "11"
         const minutes = date.getMinutes().toString().padStart(2, "0"); // "00"
-
+        const img_url = new URL("/assets/" + user.img, import.meta.url).href;
         const formattedDate = `${day} ${month}, ${year} ${hours}:${minutes}`;
 
         // addcomment(doubtId, {
@@ -48,9 +47,15 @@ function DoubtView() {
             {
                 commentId: currDoubt.id + "0" + comments.length + 1,
                 user: {
+<<<<<<< HEAD
                     username: "Aniket Sonawane",
                     img: avatar,
                     bitsid: "2022B3A70031G",
+=======
+                    username: "Random",
+                    img: img_url,
+                    bitsid: "2022B3A70000G",
+>>>>>>> ae5b008 (hi)
                 },
                 votes:0
                 ,
