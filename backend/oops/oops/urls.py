@@ -21,43 +21,43 @@ from first_app.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("/api/post-doubt/", add_doubt_endpoint, name="add_doubt_endpoint"),
+    path("api/post-doubt/", add_doubt_endpoint, name="add_doubt_endpoint"),
     path(
-        "/api/student/<int:student_id>/doubts/",
+        "api/student/<int:student_id>/doubts/",
         all_doubts_by_student_endpoint,
         name="all_doubts_by_student_endpoint",
     ),
     path(
-        "/api/course/<str:course_id>/doubts/",
+        "api/course/<str:course_id>/doubts/",
         all_doubts_of_course_endpoint,
         name="all_doubts_of_course_endpoint",
     ),
     path(
-        "/api/add-comment/",
+        "api/add-comment/",
         add_comment_by_student_endpoint,
         name="add_comment_by_student_endpoint",
     ),
     path(
-        "/api/student/<int:student_id>/courses",
+        "api/student/<int:student_id>/courses",
         all_courses_of_student_endpoint,
         name="all_courses_of_student_endpoint",
     ),
-    path("/api/upvote-doubt/", upvote_doubt_endpoint, name="upvote_doubt_endpoint"),
+    path("api/upvote-doubt/", upvote_doubt_endpoint, name="upvote_doubt_endpoint"),
     path(
-        "/api/upvote-comment/", upvote_comment_endpoint, name="upvote_comment_endpoint"
+        "api/upvote-comment/", upvote_comment_endpoint, name="upvote_comment_endpoint"
     ),
     path(
-        "/api/course/<str:course_id>/students/",
+        "api/course/<str:course_id>/students/",
         get_students_in_course_endpoint,
         name="get_students_in_course_endpoint",
     ),
     path(
-        "/api/course/<str:course_id>/TAs/",
+        "api/course/<str:course_id>/TAs/",
         get_TAs_in_course_endpoint,
         name="get_TAs_in_course_endpoint",
     ),
     path(
-        "/api/course/<str:course_id>/faculty/",
+        "api/course/<str:course_id>/faculty/",
         fac_of_course_endpoint,
         name="fac_of_course_endpoint",
     ),
