@@ -31,13 +31,8 @@ const Doubts = [
                 commentId: 102,
                 votes: 4,
                 user: {
-<<<<<<< HEAD
                     username: "Vineet",
                     img: "avatar.jpg",
-=======
-                    username: "Soham",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -64,13 +59,8 @@ const Doubts = [
                 commentId: 201,
                 votes: 5,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Check out Codecademy for interactive Python courses.",
@@ -80,13 +70,8 @@ const Doubts = [
                 commentId: 202,
                 votes: 2,
                 user: {
-<<<<<<< HEAD
                     username: "Harsh Deshwal",
                     img: "avatar.jpg",
-=======
-                    username: "Pranav M R",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -113,13 +98,8 @@ const Doubts = [
                 commentId: 301,
                 votes: 4,
                 user: {
-<<<<<<< HEAD
                     username: "Vineet",
                     img: "avatar.jpg",
-=======
-                    username: "Soham",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -158,13 +138,8 @@ const Doubts = [
                 commentId: 401,
                 votes: 6,
                 user: {
-<<<<<<< HEAD
                     username: "Harsh Deshwal",
                     img: "avatar.jpg",
-=======
-                    username: "Pranav M R",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -175,13 +150,8 @@ const Doubts = [
                 commentId: 402,
                 votes: 7,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70039G",
                 },
                 comment:
@@ -220,13 +190,8 @@ const Doubts = [
                 commentId: 502,
                 votes: 8,
                 user: {
-<<<<<<< HEAD
                     username: "Vanshaj",
                     img: "avatar.jpg",
-=======
-                    username: "Krish Patel",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70041G",
                 },
                 comment: "GitHub has great resources for beginners.",
@@ -252,13 +217,8 @@ const Doubts = [
                 commentId: 601,
                 votes: 3,
                 user: {
-<<<<<<< HEAD
                     username: "Vineet",
                     img: "avatar.jpg",
-=======
-                    username: "Soham",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -269,13 +229,8 @@ const Doubts = [
                 commentId: 602,
                 votes: 5,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Postman is a great tool for testing APIs.",
@@ -313,13 +268,8 @@ const Doubts = [
                 commentId: 702,
                 votes: 7,
                 user: {
-<<<<<<< HEAD
                     username: "Harsh Deshwal",
                     img: "avatar.jpg",
-=======
-                    username: "Pranav M R",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -346,13 +296,8 @@ const Doubts = [
                 commentId: 801,
                 votes: 8,
                 user: {
-<<<<<<< HEAD
                     username: "Divyam Gupta",
                     img: "avatar.jpg",
-=======
-                    username: "Kunal Mishra",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70032G",
                 },
                 comment:
@@ -363,13 +308,8 @@ const Doubts = [
                 commentId: 802,
                 votes: 5,
                 user: {
-<<<<<<< HEAD
                     username: "Vineet",
                     img: "avatar.jpg",
-=======
-                    username: "Soham",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -396,13 +336,8 @@ const Doubts = [
                 commentId: 901,
                 votes: 4,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70039G",
                 },
                 comment:
@@ -413,13 +348,8 @@ const Doubts = [
                 commentId: 902,
                 votes: 6,
                 user: {
-<<<<<<< HEAD
                     username: "Vanshaj",
                     img: "avatar.jpg",
-=======
-                    username: "Krish Patel",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70041G",
                 },
                 comment:
@@ -446,13 +376,8 @@ const Doubts = [
                 commentId: 1001,
                 votes: 9,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70039G",
                 },
                 comment: "Look into closures and higher-order functions.",
@@ -462,13 +387,8 @@ const Doubts = [
                 commentId: 1002,
                 votes: 7,
                 user: {
-<<<<<<< HEAD
                     username: "Divyam Gupta",
                     img: "avatar.jpg",
-=======
-                    username: "Kunal Mishra",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70032G",
                 },
                 comment:
@@ -495,13 +415,8 @@ const Doubts = [
                 commentId: 301,
                 votes: 1,
                 user: {
-<<<<<<< HEAD
                     username: "Harsh Deshwal",
                     img: "avatar.jpg",
-=======
-                    username: "Pranav M R",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70027G",
                 },
                 comment:
@@ -539,13 +454,8 @@ const Doubts = [
                 commentId: 402,
                 votes: 3,
                 user: {
-<<<<<<< HEAD
                     username: "Vanshaj",
                     img: "avatar.jpg",
-=======
-                    username: "Krish Patel",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70041G",
                 },
                 comment:
@@ -572,13 +482,8 @@ const Doubts = [
                 commentId: 501,
                 votes: 2,
                 user: {
-<<<<<<< HEAD
                     username: "Vineet",
                     img: "avatar.jpg",
-=======
-                    username: "Soham",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70036G",
                 },
                 comment:
@@ -605,13 +510,8 @@ const Doubts = [
                 commentId: 601,
                 votes: 4,
                 user: {
-<<<<<<< HEAD
                     username: "Amish Singhal",
                     img: "avatar.jpg",
-=======
-                    username: "Gyan",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70025G",
                 },
                 comment:
@@ -638,13 +538,8 @@ const Doubts = [
                 commentId: 701,
                 votes: 3,
                 user: {
-<<<<<<< HEAD
                     username: "Vedant Kamath",
                     img: "avatar.jpg",
-=======
-                    username: "Nachiket Naik",
-                    img: "/assets/avatar.jpg",
->>>>>>> ae5b008 (hi)
                     bitsid: "2022B3A70034G",
                 },
                 comment:
@@ -675,7 +570,7 @@ const adddoubt = (doubt, user, courseId) => {
     Doubts.push({
         id: Doubts.length + 1,
         doubt: doubt,
-        votes:0,
+        votes: 0,
         user: user,
         comments: [],
         time: formattedDate,

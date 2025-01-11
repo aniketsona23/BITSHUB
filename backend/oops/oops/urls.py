@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+# Endpoint to get list of all course objects for a queryID
 from django.contrib import admin
 from django.urls import path
 from first_app.views import *
@@ -38,9 +39,14 @@ urlpatterns = [
         name="add_comment_by_student_endpoint",
     ),
     path(
-        "api/student/<int:student_id>/courses",
+        "api/student/<str:student_id>/courses",
         all_courses_of_student_endpoint,
         name="all_courses_of_student_endpoint",
+    ),
+    path(
+        "api/student/votes-data",
+        get_votes_data_endpoint,
+        name="get_votes_data_endpoint",
     ),
     path("api/upvote-doubt/", upvote_doubt_endpoint, name="upvote_doubt_endpoint"),
     path(
@@ -65,5 +71,10 @@ urlpatterns = [
         "api/user/login",
         user_login_endpoint,
         name="user_login_endpoint",
+    ),
+    path(
+        "api/doubt/<str:doubt_id>/comments/",
+        all_comments_on_doubt_endpoint,
+        name="all_comments_on_doubt_endpoint",
     ),
 ]

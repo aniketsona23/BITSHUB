@@ -3,21 +3,30 @@ import DoubtCard from "../Components/DoubtCard";
 import Comment from "../Components/Comment";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
-import { Doubts, addcomment } from "../utils/doubts";
+import { useDoubts } from "../contexts/DoubtContext";
 
 function DoubtView() {
     const { doubtId } = useParams();
     const textareaRef = useRef(null);
-
+    const { doubts } = useDoubts();
     const [value, setValue] = useState("");
     const [comments, updateComments] = useState([]);
     const [currDoubt, updateCurrDoubt] = useState(null);
 
     useEffect(() => {
-        const doubt = Doubts.find((doubt) => doubt.id == doubtId);
+        async function fetcher() {
+            const response = await fetch(
+                `http://127.0.0.1:8000/api/doubt/${doubtId}/comments`
+            );
+            const json = await response.json();
+            updateComments(json.comments);
+        }
+        const doubt = doubts.find((doubt) => doubt.id == doubtId);
         if (doubt) {
             updateCurrDoubt(doubt);
-            const coms = doubt.comments.sort((a,b)=>(a.votes>b.votes?1:-1));
+            const coms = comments.sort((a, b) =>
+                a.upvotes - a.downvotes > b.upvotes - b.downvotes ? 1 : -1
+            );
             updateComments(coms);
         }
     }, [doubtId]);
@@ -45,20 +54,13 @@ function DoubtView() {
         updateComments([
             ...comments,
             {
-                commentId: currDoubt.id + "0" + comments.length + 1,
+                comment_id: currDoubt.id + "0" + comments.length + 1,
                 user: {
-<<<<<<< HEAD
                     username: "Aniket Sonawane",
                     img: avatar,
                     bitsid: "2022B3A70031G",
-=======
-                    username: "Random",
-                    img: img_url,
-                    bitsid: "2022B3A70000G",
->>>>>>> ae5b008 (hi)
                 },
-                votes:0
-                ,
+                votes: 0,
                 comment: value,
                 time: formattedDate,
             },

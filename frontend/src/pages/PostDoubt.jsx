@@ -28,15 +28,12 @@ function PostDoubt() {
     const handlePostDoubt = (event) => {
         const doubt = { title: doubtTitle, doubt: doubtValue };
         const user = {
-<<<<<<< HEAD
             username: "Aniket Sonawane",
             img: "avatar.jpg",
             bitsid: "2022B3A70031G",
-=======
             username: "DefaultUser",
             img: "avatar.jpg",
             bitsid: "2022B3A60000G",
->>>>>>> ae5b008 (hi)
         };
         adddoubt(doubt, user, subjectId);
         navigate(`/user/forum/${subjectId}`);

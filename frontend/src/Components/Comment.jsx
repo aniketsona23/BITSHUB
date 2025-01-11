@@ -2,12 +2,8 @@ import React, { useState } from "react";
 
 function Comment({ user, votes, comment, time }) {
     const [commentVotes, setCommentVotes] = useState(votes);
-<<<<<<< HEAD
-        const img_url = new URL("" + user.img, import.meta.url).href;
+    const img_url = new URL("" + user.img, import.meta.url).href;
 
-=======
-    console.log(user.img);
->>>>>>> ae5b008 (hi)
     return (
         <div className="flex flex-col gap-5 bg-slate-800 p-8 rounded-xl w-[100%]">
             <header className="flex justify-start items-center gap-5">

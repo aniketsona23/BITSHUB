@@ -1,10 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function  navigator() {
-    if()
-  return (
-    <div> </div>
-  )
+function navigator() {
+    return <div> </div>;
 }
 
-export default  navigator
+export default navigator;

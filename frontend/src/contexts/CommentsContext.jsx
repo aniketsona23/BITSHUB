@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const DoubtsContext = createContext();
+const CommentsContext = createContext();
 
-export const DoubtContext = ({ children }) => {
-    const [doubts, setDoubts] = useState([]);
-    const [myDoubts, setmyDoubts] = useState([]);
+export const CommentContext = ({ children }) => {
+    const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { subjectId } = useParams();
     useEffect(() => {
         async function fetcher() {
             try {
@@ -32,10 +30,10 @@ export const DoubtContext = ({ children }) => {
         fetcher();
     }, []);
     return (
-        <DoubtsContext.Provider value={{ doubts, myDoubts, loading }}>
+        <CommentsContext.Provider value={{ doubts, myDoubts, loading }}>
             {children}
-        </DoubtsContext.Provider>
+        </CommentsContext.Provider>
     );
 };
 
-export const useDoubts = () => useContext(DoubtsContext);
+export const useComments = () => useContext(CommentsContext);

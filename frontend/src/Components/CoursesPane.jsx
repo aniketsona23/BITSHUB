@@ -1,7 +1,7 @@
 import React from "react";
 import CourseBtn from "./CourseBtn";
 import { useNavigate, useParams } from "react-router-dom";
-import { Subjects } from "../utils/subjects";
+import { subjects } from "../utils/subjects";
 
 function CoursesPane() {
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ function CoursesPane() {
             <div className="flex flex-col items-center gap-y-[15px] bg-gray-900 px-[5%] py-[9%] rounded-xl">
                 <h1 className="text-white text-xl">Your Courses</h1>
                 <div className="flex flex-col items-center gap-y-[15px] bg-gray-900">
-                    {Subjects.map((sub) => {
+                    {subjects.map((sub) => {
                         return (
                             <CourseBtn
                                 key={sub.courseId}

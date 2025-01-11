@@ -45,29 +45,33 @@ def add_user(email, name, role):
         return {"status": "success", "message": "User added successfully."}
     except Exception as e:
         return {"status": "error", "message": str(e)}
-    
 
-def user_login(email,password):
-    if not UserTable.objects.filter(email = email,password = password).exists():
+
+def user_login(email, password):
+    if not UserTable.objects.filter(email=email, password=password).exists():
         print("Either email or password is wrong, please try again.")
         return {
             "status": "error",
             "message": "Either email or password is wrong, please try again.",
-            "code" : 401,
+            "code": 401,
         }
     try:
-        student_id = StudentTable.objects.filter(email = email).values_list("student_id",flat=True).first()
+        student_id = (
+            StudentTable.objects.filter(email=email)
+            .values_list("student_id", flat=True)
+            .first()
+        )
         print(f"Student id is {student_id}")
         return {
             "status": "success",
             "message": "Login Successful.",
-            "student_id" : student_id,
-            "code" : 200,
+            "student_id": student_id,
+            "code": 200,
         }
 
     except Exception as e:
         return {"status": "error", "message": str(e)}
-    
+
 
 def add_student_by_faculty(
     faculty_email, student_id, student_email, course_id, student_name
@@ -207,7 +211,9 @@ def get_TAs_in_course(course_id):
 
 def all_courses_of_student(student_id):
     # Assuming StudentTable has a foreign key to the CourseTable via course_id
-    courses = StudentTable.objects.filter(student_id=student_id).select_related('course_id')
+    courses = StudentTable.objects.filter(student_id=student_id).select_related(
+        "course_id"
+    )
 
     # Create a list of JSON objects with course_id and course_name
     course_list = [
@@ -249,7 +255,14 @@ def all_doubts_asked_by_student(student_id):
 def all_comments_on_doubt(query_id):
     comments = CommentTable.objects.filter(query_id=query_id)
     comments_list = [
-        {"Comment": comment.comment, "User_email": comment.email}
+        {
+            "comment_id": comment.comment_id,
+            "time": comment.timestamp,
+            "comment": comment.comment,
+            "user_id": comment.email,
+            "upvotes": comment.upvotes,
+            "downvotes": comment.downvotes,
+        }
         for comment in comments
     ]
 
@@ -340,9 +353,6 @@ def upvote_comment(comment_id, email):
                 "message": "Comment already upvoted by the student.",
             }
 
-        if student.upvoted_comments is None:
-            student.upvoted_comments = []
-
         comment = CommentTable.objects.filter(comment_id=comment_id).update(
             upvotes=(models.F("upvotes") or 0) + 1
         )
@@ -369,6 +379,22 @@ def extract_text_from_pdf(pdf_path):
         for page in reader.pages:
             text += page.extract_text()
     return text
+
+
+def get_votes_data(std_id):
+    if not (StudentTable.objects.filter(student_id=std_id).exists()):
+        return JsonResponse({"message": f"No student with {std_id} Found"}, status=400)
+
+    student = StudentTable.objects.filter(student_id=std_id).first()
+    return JsonResponse(
+        {
+            "upvoted_comments": student.upvoted_comments,
+            "downvoted_comments": student.downvoted_comments,
+            "upvoted_doubts": student.upvoted_doubts,
+            "downvoted_doubts": student.downvoted_doubts,
+        },
+        status=200,
+    )
 
 
 # Function to split text into smaller chunks

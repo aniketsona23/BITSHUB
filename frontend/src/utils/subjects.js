@@ -3,7 +3,7 @@ import lcs from "/assets/lcs.jpg";
 import disco from "/assets/disco.webp";
 import dd from "/assets/dd.webp";
 import ie from "/assets/internation_economics.webp";
-const Subjects = [
+const subjects = [
     {
         title: "Object Oriented Programming",
         courseId: 1,
@@ -36,4 +36,4 @@ const Subjects = [
     },
 ];
 
-export { Subjects };
+export { subjects };

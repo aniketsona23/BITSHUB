@@ -3,32 +3,36 @@ import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [users, setUsers] = useState([]);
+    const [userName, setUserName] = useState("");
+    const [passw, setPassw] = useState("");
     const navigate = useNavigate();
+
     useEffect(() => {
         if (localStorage.getItem("currentUser")) {
             navigate("/user/");
             return;
         }
-        async function fetching() {
-            const response = await fetch("/Users.json");
-            const json = await response.json();
-            setUsers(json);
-        }
-        fetching();
     }, []);
 
-    const [userName, setUserName] = useState("");
-    const [passw, setPassw] = useState("");
-    const handleLogin = () => {
-        for (let user of users) {
-            if (user.username == userName && passw == user.passw) {
-                navigate("/user/");
-                localStorage.setItem("currentUser", user.username);
-                return;
-            }
+    const handleLogin = async () => {
+        const response = await fetch("http://127.0.0.1:8000/api/user/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: userName,
+                password: passw,
+            }),
+        });
+        const json = await response.json();
+        console.log(json);
+        if (response.status == 200) {
+            navigate("/user/");
+            localStorage.setItem("currentUser", email);
+        } else {
+            alert("Wrong credentials !");
         }
-        alert("Wrong credentials !");
     };
 
     return (
