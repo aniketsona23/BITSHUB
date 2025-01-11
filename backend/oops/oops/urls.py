@@ -77,5 +77,9 @@ urlpatterns = [
         all_comments_on_doubt_endpoint,
         name="all_comments_on_doubt_endpoint",
     ),
-    path("api/user/", get_user_data_endpoint, name="get_user_data_endpoint"),
+    path(
+        "api/user/",
+        get_user_data_endpoint,
+        name="get_user_data_endpoint",
+    ),
 ]

@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CourseBtn from "./CourseBtn";
 import { useNavigate, useParams } from "react-router-dom";
-import { subjects } from "../utils/subjects";
 
 function CoursesPane() {
     const navigate = useNavigate();
     const { subjectId } = useParams();
-    const handleMyDoubts = () => {};
+    const [Subjects, updateSubjects] = useState();
+    console.log("hi");
+    useEffect(() => {
+        console.log("hi2");
+        async function getSubject() {
+            const response = await fetch(
+                `http://127.0.0.1:8000/api/student/${localStorage.getItem(
+                    "currentUser"
+                )}/courses`
+            );
+            const json = await response.json();
+            console.log(json);
+            updateSubjects(json.courses);
+        }
+        getSubject();
+    }, []);
+    console.log(Subjects);
     return (
         <div className="flex flex-col flex-grow-0 flex-shrink-0 items-center gap-[2%] border-white/25 px-[1%] py-[2%] border-r border-solid min-w-[300px] max-w-[300px] basis-[25%]">
             <div className="flex flex-col items-center gap-3 w-[100%]">
@@ -32,18 +47,21 @@ function CoursesPane() {
             <div className="flex flex-col items-center gap-y-[15px] bg-gray-900 px-[5%] py-[9%] rounded-xl">
                 <h1 className="text-white text-xl">Your Courses</h1>
                 <div className="flex flex-col items-center gap-y-[15px] bg-gray-900">
-                    {subjects.map((sub) => {
-                        return (
-                            <CourseBtn
-                                key={sub.courseId}
-                                id={sub.courseId}
-                                courseName={sub.title}
-                                isCurrentView={
-                                    sub.courseId == subjectId ? true : false
-                                }
-                            />
-                        );
-                    })}
+                    {Subjects &&
+                        Subjects.map((sub) => {
+                            return (
+                                <CourseBtn
+                                    key={sub.course_id}
+                                    id={sub.course_id}
+                                    courseName={sub.course_name}
+                                    isCurrentView={
+                                        sub.course_id == subjectId
+                                            ? true
+                                            : false
+                                    }
+                                />
+                            );
+                        })}
                 </div>
             </div>
         </div>

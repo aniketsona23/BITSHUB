@@ -475,15 +475,14 @@ def get_user_data_endpoint(request):
         try:
             # Call the function
             data = json.loads(request.body)
-            print(data)
 
-            user_data = get_user_data(data.get("user_id"))
+            user_data = get_user_data(data.get("student_id"))
 
             if not user_data:
                 return JsonResponse(
                     {
                         "status": "success",
-                        "message": f"No User found for the id {data.get("user_id")}.",
+                        "message": f"No User found for the id {data.get("student_id")}.",
                         "faculty": [],
                     },
                     status=404,
@@ -492,6 +491,7 @@ def get_user_data_endpoint(request):
             return user_data
 
         except Exception as e:
+            print(e)
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
     return JsonResponse(

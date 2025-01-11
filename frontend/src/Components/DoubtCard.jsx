@@ -16,8 +16,9 @@ function DoubtCard({
     const { subjectId } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
     const navigate = useNavigate();
-
+    console.log(votes);
     useEffect(() => {
+        console.log(isupVoted + " " + isDownVoted);
         setUpVoted(isupVoted);
         setDownVoted(isDownVoted);
     }, [isupVoted, isDownVoted]);

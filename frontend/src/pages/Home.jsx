@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CourseCard from "../Components/CourseCard";
 
-import { subjects } from "../utils/subjects";
-
 function Home() {
     const studId = localStorage.getItem("currentUser");
     const [Subjects, updateSubjects] = useState();

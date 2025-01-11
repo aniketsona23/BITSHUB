@@ -11,6 +11,7 @@ function MyDoubt() {
     useEffect(() => {
         const fetchUserNames = async () => {
             const names = {};
+            console.log(myDoubts);
             for (let doubt of myDoubts) {
                 const name = await getName(doubt.student_id);
                 names[doubt.student_id] = name;
@@ -19,6 +20,7 @@ function MyDoubt() {
         };
 
         if (myDoubts) fetchUserNames();
+        console.log(userNames);
     }, [myDoubts]);
 
     const getName = async (stu_id) => {
@@ -44,7 +46,7 @@ function MyDoubt() {
                     myDoubts.map((doubt) => {
                         let Upvoted = false;
                         let DownVoted = false;
-
+                        console.log(doubt);
                         if (doubtVotes.upvotes.includes(doubt.id)) {
                             Upvoted = true;
                         } else if (doubtVotes.downvotes.includes(doubt.id)) {

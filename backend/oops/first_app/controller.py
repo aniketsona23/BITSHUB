@@ -237,7 +237,19 @@ def fac_of_course(course_id):
 
 def all_doubts_of_course(course_id):
     doubts = DoubtTable.objects.filter(course_id=course_id)
-    doubts_list = [{"Doubt": doubt.query} for doubt in doubts]
+    doubts_list = [
+        {
+            "doubt": doubt.query,
+            "course_ID": doubt.course_id,
+            "doubt_id": doubt.query_id,
+            "topic_id": doubt.topic_id,
+            "ta_id": doubt.ta_id,
+            "upvotes": doubt.upvotes,
+            "downvotes": "doubt.downvotes",
+            "student_id": doubt.student_id,
+        }
+        for doubt in doubts
+    ]
 
     return doubts_list
 
@@ -245,7 +257,17 @@ def all_doubts_of_course(course_id):
 def all_doubts_asked_by_student(student_id):
     doubts = DoubtTable.objects.filter(student_id=student_id)
     doubts_list = [
-        {"Doubt": doubt.query, "course_ID": doubt.course_id} for doubt in doubts
+        {
+            "doubt": doubt.query,
+            "course_ID": doubt.course_id,
+            "doubt_id": doubt.query_id,
+            "topic_id": doubt.topic_id,
+            "ta_id": doubt.ta_id,
+            "upvotes": doubt.upvotes,
+            "downvotes": doubt.downvotes,
+            "student_id": doubt.student_id,
+        }
+        for doubt in doubts
     ]
 
     return doubts_list
@@ -311,7 +333,6 @@ def upvote_doubt(query_id, email):
     except Exception as e:
         print("Error:", str(e))
         return {"status": "error", "message": str(e)}
-
 
 
 def upvote_comment(comment_id, email):
@@ -433,7 +454,10 @@ def downvote_comment(comment_id, email):
         student.downvoted_comments.append(comment_id)
         student.save()
         print("Comment downvoted by the student.")
-        return {"status": "Downvote added", "message": "Comment downvoted by the student."}
+        return {
+            "status": "Downvote added",
+            "message": "Comment downvoted by the student.",
+        }
 
     except Exception as e:
         print("Error:", str(e))
@@ -471,7 +495,6 @@ def get_votes_data(std_id):
 
 
 def get_user_data(user_id):
-    print(user_id)
     if not StudentTable.objects.filter(student_id=user_id).exists():
         return JsonResponse({"message": f"No student with {user_id} Found"}, status=400)
     student = StudentTable.objects.filter(student_id=user_id).first()
