@@ -470,6 +470,19 @@ def get_votes_data(std_id):
     )
 
 
+def get_user_data(user_id):
+    print(user_id)
+    if not StudentTable.objects.filter(student_id=user_id).exists():
+        return JsonResponse({"message": f"No student with {user_id} Found"}, status=400)
+    student = StudentTable.objects.filter(student_id=user_id).first()
+    return JsonResponse(
+        {
+            "user_name": student.student_name,
+        },
+        status=200,
+    )
+
+
 # Function to split text into smaller chunks
 def split_text_into_chunks(text, chunk_size=500, overlap=50):
     words = text.split()

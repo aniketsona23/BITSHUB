@@ -31,9 +31,6 @@ function PostDoubt() {
             username: "Aniket Sonawane",
             img: "avatar.jpg",
             bitsid: "2022B3A70031G",
-            username: "DefaultUser",
-            img: "avatar.jpg",
-            bitsid: "2022B3A60000G",
         };
         adddoubt(doubt, user, subjectId);
         navigate(`/user/forum/${subjectId}`);

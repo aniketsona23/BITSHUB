@@ -25,8 +25,8 @@ function Home() {
                         <CourseCard
                             image={sub.image}
                             key={sub.facId}
-                            courseName={sub.coures_Name}
-                            courseId={sub.course_ID}
+                            courseName={sub.course_name}
+                            courseId={sub.course_id}
                         />
                     );
                 })}

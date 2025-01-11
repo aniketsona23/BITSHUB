@@ -29,7 +29,7 @@ function Login() {
         console.log(json);
         if (response.status == 200) {
             navigate("/user/");
-            localStorage.setItem("currentUser", email);
+            localStorage.setItem("currentUser", json.student_id);
         } else {
             alert("Wrong credentials !");
         }

@@ -5,7 +5,8 @@ function DoubtCard({
     doubt,
     isupVoted,
     isDownVoted,
-    user,
+    user_name,
+    user_id,
     votes,
     id,
     showCommentBtn = true,
@@ -55,7 +56,7 @@ function DoubtCard({
     const openDoubt = () => {
         navigate(`/user/forum/${subjectId}/${id}`);
     };
-    const img_url = new URL("/assets/" + user.img, import.meta.url).href;
+    // const img_url = new URL("/assets/" + user.img, import.meta.url).href;
     return (
         <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
@@ -69,20 +70,20 @@ function DoubtCard({
             <header className="flex justify-between  items-center">
                 <div className="flex  justify-end items-center gap-[15px] max-w-max">
                     <img
-                        src={img_url}
+                        src={undefined}
                         className="rounded-[50%] w-[50px] h-[50px]"
                         alt=""
                     />
-                    <span className="text-lg">{user.username}</span>
+                    <span className="text-lg">{user_name}</span>
                     <span className="border-white/25 px-5 py-3 border border-solid rounded-full font-['Inter'] ">
-                        {user.bitsid}
+                        {user_id}
                     </span>
                 </div>
             </header>
-            <h1 className="text-2xl">{doubt.title}</h1>
+            {/* <h1 className="text-2xl">{doubt}</h1> */}
             <main className="py-[20px]  overflow-hidden overflow-ellipses whitespace-nowrap max-h-[10rem]">
                 <p className="text-lg text-gray-400 text-wrap break-word">
-                    {doubt.doubt}
+                    {doubt}
                 </p>
             </main>
             <footer className="flex items-center gap-[15px]">

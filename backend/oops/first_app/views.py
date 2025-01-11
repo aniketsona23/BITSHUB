@@ -271,6 +271,7 @@ def add_comment_by_student_endpoint(request):
     )
 
 
+@csrf_exempt
 def all_comments_on_doubt_endpoint(request, query_id):
     if request.method == "GET":
         try:
@@ -288,6 +289,7 @@ def all_comments_on_doubt_endpoint(request, query_id):
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
 
+@csrf_exempt
 def get_votes_data_endpoint(request):
     if request.method == "POST":
         try:
@@ -458,6 +460,36 @@ def fac_of_course_endpoint(request, course_id):
                     "faculty": faculty_data,
                 }
             )
+
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+    return JsonResponse(
+        {"status": "error", "message": "Only GET method is allowed."}, status=405
+    )
+
+
+@csrf_exempt
+def get_user_data_endpoint(request):
+    if request.method == "POST":
+        try:
+            # Call the function
+            data = json.loads(request.body)
+            print(data)
+
+            user_data = get_user_data(data.get("user_id"))
+
+            if not user_data:
+                return JsonResponse(
+                    {
+                        "status": "success",
+                        "message": f"No User found for the id {data.get("user_id")}.",
+                        "faculty": [],
+                    },
+                    status=404,
+                )
+
+            return user_data
 
         except Exception as e:
             return JsonResponse({"status": "error", "message": str(e)}, status=500)

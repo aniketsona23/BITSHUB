@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DoubtCard from "../Components/DoubtCard";
 import { useDoubts } from "../contexts/DoubtContext";
+import { useVotes } from "../contexts/VotesContext";
 function Forum() {
     const { doubts } = useDoubts();
     const { doubtVotes } = useVotes();

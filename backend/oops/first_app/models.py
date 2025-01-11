@@ -9,34 +9,35 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 import uuid
 
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
     class Meta:
         managed = False
-        db_table = 'auth_group'
+        db_table = "auth_group"
 
 
 class AuthGroupPermissions(models.Model):
     id = models.BigAutoField(primary_key=True)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+    permission = models.ForeignKey("AuthPermission", models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
+        db_table = "auth_group_permissions"
+        unique_together = (("group", "permission"),)
 
 
 class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    content_type = models.ForeignKey("DjangoContentType", models.DO_NOTHING)
     codename = models.CharField(max_length=100)
 
     class Meta:
         managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
+        db_table = "auth_permission"
+        unique_together = (("content_type", "codename"),)
 
 
 class AuthUser(models.Model):
@@ -53,7 +54,7 @@ class AuthUser(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user'
+        db_table = "auth_user"
 
 
 class AuthUserGroups(models.Model):
@@ -63,8 +64,8 @@ class AuthUserGroups(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
+        db_table = "auth_user_groups"
+        unique_together = (("user", "group"),)
 
 
 class AuthUserUserPermissions(models.Model):
@@ -74,8 +75,8 @@ class AuthUserUserPermissions(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
+        db_table = "auth_user_user_permissions"
+        unique_together = (("user", "permission"),)
 
 
 class CommentTable(models.Model):
@@ -83,13 +84,15 @@ class CommentTable(models.Model):
     comment_id = models.AutoField(primary_key=True)  # Auto-increment primary key
     email = models.CharField(max_length=255)
     comment = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)  # Auto-add timestamp
+    timestamp = models.DateTimeField(
+        auto_now_add=True, blank=True, null=True
+    )  # Auto-add timestamp
     upvotes = models.IntegerField(default=0, blank=True, null=True)  # Default to 0
     downvotes = models.IntegerField(default=0, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'comment_table'
+        db_table = "comment_table"
 
 
 class DjangoAdminLog(models.Model):
@@ -98,12 +101,14 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.SmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey(
+        "DjangoContentType", models.DO_NOTHING, blank=True, null=True
+    )
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'django_admin_log'
+        db_table = "django_admin_log"
 
 
 class DjangoContentType(models.Model):
@@ -112,8 +117,8 @@ class DjangoContentType(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
+        db_table = "django_content_type"
+        unique_together = (("app_label", "model"),)
 
 
 class DjangoMigrations(models.Model):
@@ -124,7 +129,7 @@ class DjangoMigrations(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_migrations'
+        db_table = "django_migrations"
 
 
 class DjangoSession(models.Model):
@@ -134,7 +139,7 @@ class DjangoSession(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_session'
+        db_table = "django_session"
 
 
 class DoubtTable(models.Model):
@@ -146,70 +151,90 @@ class DoubtTable(models.Model):
     query = models.TextField()
     ans = models.TextField(blank=True, null=True)
     status = models.BooleanField(blank=True, null=True)
-    upvotes = models.IntegerField(blank=True, null=True,default=0)
-    downvotes = models.IntegerField(blank=True, null=True,default=0)
+    upvotes = models.IntegerField(blank=True, null=True, default=0)
+    downvotes = models.IntegerField(blank=True, null=True, default=0)
 
     class Meta:
         managed = False
-        db_table = 'doubt_table'
+        db_table = "doubt_table"
 
 
 class CourseTable(models.Model):
-    course_id = models.CharField(primary_key=True,max_length=20)
+    course_id = models.CharField(primary_key=True, max_length=20)
     course_name = models.TextField()
     ic_id = models.CharField(max_length=3)
+
     class Meta:
         managed = False
-        db_table = 'course_table'
+        db_table = "course_table"
 
 
 class FacultyTable(models.Model):
     faculty_id = models.CharField(max_length=3)
     email = models.CharField(max_length=255)
-    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
-    faculty_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
+    course_id = models.ForeignKey(
+        CourseTable, on_delete=models.CASCADE, db_column="course_id"
+    )
+    faculty_uuid = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
 
     class Meta:
         managed = False
-        db_table = 'faculty_table'
+        db_table = "faculty_table"
 
-   
+
 class StudentTable(models.Model):
-    stud_course_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
+    stud_course_uuid = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
     student_id = models.IntegerField()
     email = models.CharField(max_length=255)
-    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
-    upvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
-    downvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
-    upvoted_doubts = ArrayField(models.IntegerField(blank=True, null=True),default=list)
-    downvoted_doubts = ArrayField(models.IntegerField(blank=True, null=True),default=list)
-
+    course_id = models.ForeignKey(
+        CourseTable, on_delete=models.CASCADE, db_column="course_id"
+    )
+    upvoted_comments = ArrayField(
+        models.IntegerField(blank=True, null=True), default=list
+    )
+    downvoted_comments = ArrayField(
+        models.IntegerField(blank=True, null=True), default=list
+    )
+    upvoted_doubts = ArrayField(
+        models.IntegerField(blank=True, null=True), default=list
+    )
+    downvoted_doubts = ArrayField(
+        models.IntegerField(blank=True, null=True), default=list
+    )
 
     class Meta:
         managed = False
-        db_table = 'student_table'
+        db_table = "student_table"
 
 
 class TaTable(models.Model):
     ta_id = models.IntegerField()
     email = models.CharField(max_length=255)
-    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
+    course_id = models.ForeignKey(
+        CourseTable, on_delete=models.CASCADE, db_column="course_id"
+    )
     topic_id = models.IntegerField(blank=True, null=True)
-    ta_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    ta_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     class Meta:
         managed = False
-        db_table = 'ta_table'
+        db_table = "ta_table"
 
 
 class TopicsTable(models.Model):
     course_id = models.CharField(primary_key=True, max_length=20)
-    topics = ArrayField(models.CharField(max_length=255))  # Assuming topics are short text
+    topics = ArrayField(
+        models.CharField(max_length=255)
+    )  # Assuming topics are short text
     topic_ids = ArrayField(models.IntegerField())  # Assuming topic_ids are integers
 
     class Meta:
         managed = False
-        db_table = 'topics_table'
+        db_table = "topics_table"
 
 
 class UserTable(models.Model):
@@ -217,6 +242,7 @@ class UserTable(models.Model):
     name = models.CharField(max_length=255)
     role = models.TextField(blank=True, null=True)
     password = models.TextField()
+
     class Meta:
         managed = False
-        db_table = 'user_table'
+        db_table = "user_table"

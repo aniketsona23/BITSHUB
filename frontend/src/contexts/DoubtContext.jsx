@@ -9,20 +9,23 @@ export const DoubtContext = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const { subjectId } = useParams();
     useEffect(() => {
+        console.log("hello");
         async function fetcher() {
             try {
-                const response = await fetch(
-                    `http://127.0.0.1:8000/api/course/${subjectId}/doubts/`
-                );
+                if (subjectId) {
+                    const response = await fetch(
+                        `http://127.0.0.1:8000/api/course/${subjectId}/doubts/`
+                    );
+                    const data = await response.json();
+                    setDoubts(data.doubts);
+                }
                 const response2 = await fetch(
                     `http://127.0.0.1:8000/api/student/${localStorage.getItem(
                         "currentUser"
                     )}/doubts/`
                 );
-                const data = await response.json();
                 const data2 = await response2.json();
-                setDoubts(data);
-                setmyDoubts(data2);
+                setmyDoubts(data2.doubts);
             } catch (error) {
                 console.log("Error fetching Doubts :", error);
             } finally {

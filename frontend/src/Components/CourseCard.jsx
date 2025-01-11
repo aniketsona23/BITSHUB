@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function CourseCard({ courseId, courseName, image }) {
+    console.log(courseId, courseName);
     const navigate = useNavigate();
     const handleClick = () => {
         navigate("/user/forum/" + courseId);
