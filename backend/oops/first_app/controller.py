@@ -227,5 +227,163 @@ def add_doubt_by_student(student_id, course_id, topic_id, query):
         return {'status': 'error', 'message': str(e)}
 
 
-# def add_comment_by_student(query_id,email,comment):
-#     comment_to_add = CommentTable(query_id = query_id,email = email,comment = comment,)
+def upvote_comment(comment_id,email):
+    if not UserTable.objects.filter(email = email).exists():
+        print("No such user present.")
+        return {'status': 'Upvote not added', 'message': 'No such user present.'}
+    
+    if not CommentTable.objects.filter(comment_id = comment_id).exists():
+        print("No such comment present.")
+        return {'status': 'Upvote not added', 'message': 'No such comment present.'}
+    
+    try:
+        query_id = CommentTable.objects.filter(comment_id=comment_id).values_list('query_id',flat=True).first()
+        course_id = DoubtTable.objects.filter(query_id = query_id).values_list('course_id',flat=True).first()
+
+        if not StudentTable.objects.filter(email = email,course_id = course_id):
+            print("Student not enrolled in this course.")
+            return {'status': 'Upvote not added', 'message': 'Student not enrolled in this course.'}
+        
+        student  = StudentTable.objects.filter(email = email,course_id = course_id).first()
+
+        upvoted_comments_set = set(student.upvoted_comments)
+
+        if int(comment_id) in upvoted_comments_set:
+            print("Comment already upvoted by the student.")
+            return {'status': 'Upvote not added', 'message': 'Comment already upvoted by the student.'}
+
+        if student.upvoted_comments is None:
+            student.upvoted_comments = []
+        
+        comment = CommentTable.objects.filter(comment_id = comment_id).update(upvotes=(models.F('upvotes') or 0) + 1)
+        
+        student.upvoted_comments.append(comment_id)
+        student.save()
+        print("Comment upvoted by the student.")
+        return {'status': 'Upvote added', 'message': 'Comment upvoted by the student.'}
+        
+    except Exception as e:
+            print("Error:", str(e))
+            return {'status': 'error', 'message': str(e)}
+
+
+
+# RAG MODULES
+API_KEY = os.environ.get("OPENAI_API_KEY")
+client = openai
+
+def extract_text_from_pdf(pdf_path):
+    text = ""
+    with open(pdf_path, "rb") as file:
+        reader = PyPDF2.PdfReader(file)
+        for page in reader.pages:
+            text += page.extract_text()
+    return text
+
+# Function to split text into smaller chunks
+def split_text_into_chunks(text, chunk_size=500, overlap=50):
+    words = text.split()
+    chunks = []
+    for i in range(0, len(words), chunk_size - overlap):
+        chunk = " ".join(words[i:i + chunk_size])
+        chunks.append(chunk)
+    return chunks
+
+
+# Generate embeddings for text chunks
+def generate_embeddings(chunks):
+    embeddings = []
+    for chunk in chunks:
+        response = client.embeddings.create(
+            input=chunk,
+            model="text-embedding-ada-002"
+        )
+        embedding = response.data[0].embedding
+        embeddings.append(embedding)
+    return embeddings
+
+# Save embeddings and text chunks into a FAISS index
+def save_embeddings_to_faiss(embeddings, index_path):
+    dimension = len(embeddings[0])  # Embedding vector size
+    if os.path.exists(index_path):
+        faiss_index = faiss.read_index(index_path)
+    else:
+        index = faiss.IndexFlatL2(dimension)
+        faiss_index = faiss.IndexIDMap(index)
+
+    ids = list(range(faiss_index.ntotal, faiss_index.ntotal + len(embeddings)))
+    faiss_index.add_with_ids(np.array(embeddings).astype("float32"), np.array(ids))
+    faiss.write_index(faiss_index, index_path)
+
+# Process a PDF and store embeddings and chunks
+def process_pdf_and_store_embeddings(pdf_path, index_path, text_chunks_path):
+    text = extract_text_from_pdf(pdf_path)
+    chunks = split_text_into_chunks(text)
+
+    # Generate embeddings
+    embeddings = generate_embeddings(chunks)
+
+    # Save embeddings and text chunks
+    save_embeddings_to_faiss(embeddings, index_path)
+    with open(text_chunks_path, "w", encoding="utf-8") as f:  # Specify UTF-8 encoding
+        for chunk in chunks:
+            f.write(chunk + "\n")
+    print(f"Processed and stored embeddings and text chunks for {pdf_path}")
+
+
+# PART B
+
+
+# Load FAISS index
+def load_faiss_index(index_path):
+    return faiss.read_index(index_path)
+
+# Load text chunks from file
+def load_text_chunks(text_chunks_path):
+    with open(text_chunks_path, "r", encoding="utf-8") as f:  # Specify UTF-8 encoding
+        return [line.strip() for line in f.readlines()]
+
+# Generate embeddings for a query
+def generate_query_embedding(query):
+    response = client.embeddings.create(
+        input=query,
+        model="text-embedding-ada-002"
+    )
+    query_embedding = np.array(response.data[0].embedding).astype("float32").reshape(1, -1)
+    return query_embedding
+
+# Search FAISS index for relevant chunks
+def search_faiss_index(faiss_index, query_embedding, k=5):
+    distances, indices = faiss_index.search(query_embedding, k)
+    return indices[0]  # Return indices of top-k results
+
+# Generate a response using relevant text chunks
+def generate_response(query, relevant_chunks):
+    context = " ".join(relevant_chunks)
+    prompt = f"Context: {context}\n\nQuery: {query}\nAnswer:"
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[ {"role": "system", "content": "You are a concise assistant. Provide brief and to-the-point answers."},
+         {"role": "user", "content": prompt}],
+        max_tokens=200
+    )
+    return response.choices[0].message.content
+
+# Handle query with pre-computed embeddings and text chunks
+def answer_query(query, index_path, text_chunks_path, k=5):
+    # Load stored data
+    faiss_index = load_faiss_index(index_path)
+    text_chunks = load_text_chunks(text_chunks_path)
+
+    # Generate query embedding
+    query_embedding = generate_query_embedding(query)
+
+    # Search FAISS index
+    relevant_indices = search_faiss_index(faiss_index, query_embedding, k)
+
+    # Retrieve relevant chunks
+    relevant_chunks = [text_chunks[i] for i in relevant_indices if i < len(text_chunks)]
+
+    # Generate response
+    return generate_response(query, relevant_chunks)
+
