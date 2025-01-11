@@ -33,7 +33,7 @@ urlpatterns = [
         name="all_doubts_of_course_endpoint",
     ),
     path(
-        "api/add-comment/",
+        "api/add-comment",
         add_comment_by_student_endpoint,
         name="add_comment_by_student_endpoint",
     ),
@@ -60,5 +60,10 @@ urlpatterns = [
         "api/course/<str:course_id>/faculty/",
         fac_of_course_endpoint,
         name="fac_of_course_endpoint",
+    ),
+    path(
+        "api/user/login",
+        user_login_endpoint,
+        name="user_login_endpoint",
     ),
 ]

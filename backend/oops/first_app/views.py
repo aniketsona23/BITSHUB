@@ -55,6 +55,37 @@ def add_doubt_by_student(student_id, course_id, topic_id, query):
 
 # ENDPOINTS
 
+@csrf_exempt
+def user_login_endpoint(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            email = data.get("email")
+            password = data.get("password")
+
+            if not (email and password):
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Missing one or more required parameters: email, password.'
+                }, status=400)
+
+            result = user_login(email=email,password=password)
+            if result.get("status") == "error":
+                # Return 401 if wrong credentials or 404 if student not found
+                return JsonResponse(result, status=result.get("code", 400))
+            
+            else:
+                return JsonResponse(result)
+
+
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only POST method is allowed.'}, status=405)
+
+
 def all_courses_of_student_endpoint(request,student_id):
     if request.method == "GET":
         try:

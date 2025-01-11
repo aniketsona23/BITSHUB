@@ -139,7 +139,7 @@ class DjangoSession(models.Model):
 
 class DoubtTable(models.Model):
     student_id = models.IntegerField(blank=True, null=True)
-    course_id = models.CharField(max_length=4)
+    course_id = models.CharField(max_length=20)
     topic_id = models.IntegerField(blank=True, null=True)
     ta_id = models.IntegerField(blank=True, null=True)
     query_id = models.AutoField(primary_key=True)
@@ -154,22 +154,31 @@ class DoubtTable(models.Model):
         db_table = 'doubt_table'
 
 
+class CourseTable(models.Model):
+    course_id = models.CharField(primary_key=True,max_length=20)
+    course_name = models.TextField()
+    ic_id = models.CharField(max_length=3)
+    class Meta:
+        managed = False
+        db_table = 'course_table'
+
+
 class FacultyTable(models.Model):
     faculty_id = models.CharField(max_length=3)
     email = models.CharField(max_length=255)
-    course_id = models.CharField(max_length=4)
+    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
     faculty_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
 
     class Meta:
         managed = False
         db_table = 'faculty_table'
 
-
+   
 class StudentTable(models.Model):
     stud_course_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     student_id = models.IntegerField()
     email = models.CharField(max_length=255)
-    course_id = models.CharField(max_length=4)
+    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
     upvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
 
     class Meta:
@@ -180,7 +189,7 @@ class StudentTable(models.Model):
 class TaTable(models.Model):
     ta_id = models.IntegerField()
     email = models.CharField(max_length=255)
-    course_id = models.CharField(max_length=4)
+    course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
     topic_id = models.IntegerField(blank=True, null=True)
     ta_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
 
@@ -190,7 +199,7 @@ class TaTable(models.Model):
 
 
 class TopicsTable(models.Model):
-    course_id = models.CharField(primary_key=True, max_length=4)
+    course_id = models.CharField(primary_key=True, max_length=20)
     topics = ArrayField(models.CharField(max_length=255))  # Assuming topics are short text
     topic_ids = ArrayField(models.IntegerField())  # Assuming topic_ids are integers
 
@@ -203,7 +212,7 @@ class UserTable(models.Model):
     email = models.CharField(primary_key=True, max_length=255)
     name = models.CharField(max_length=255)
     role = models.TextField(blank=True, null=True)
-
+    password = models.TextField()
     class Meta:
         managed = False
         db_table = 'user_table'

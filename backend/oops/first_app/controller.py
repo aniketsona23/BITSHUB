@@ -45,7 +45,29 @@ def add_user(email, name, role):
         return {"status": "success", "message": "User added successfully."}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+    
 
+def user_login(email,password):
+    if not UserTable.objects.filter(email = email,password = password).exists():
+        print("Either email or password is wrong, please try again.")
+        return {
+            "status": "error",
+            "message": "Either email or password is wrong, please try again.",
+            "code" : 401,
+        }
+    try:
+        student_id = StudentTable.objects.filter(email = email).values_list("student_id",flat=True).first()
+        print(f"Student id is {student_id}")
+        return {
+            "status": "success",
+            "message": "Login Successful.",
+            "student_id" : student_id,
+            "code" : 200,
+        }
+
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+    
 
 def add_student_by_faculty(
     faculty_email, student_id, student_email, course_id, student_name
@@ -184,8 +206,17 @@ def get_TAs_in_course(course_id):
 
 
 def all_courses_of_student(student_id):
-    courses = StudentTable.objects.filter(student_id=student_id)
-    course_list = [{"course_ID": course.course_id} for course in courses]
+    # Assuming StudentTable has a foreign key to the CourseTable via course_id
+    courses = StudentTable.objects.filter(student_id=student_id).select_related('course_id')
+
+    # Create a list of JSON objects with course_id and course_name
+    course_list = [
+        {
+            "course_id": course.course_id.course_id,
+            "course_name": course.course_id.course_name,
+        }
+        for course in courses
+    ]
     return course_list
 
 
