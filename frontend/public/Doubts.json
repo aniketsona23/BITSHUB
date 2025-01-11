@@ -17,7 +17,11 @@
                 "commentId": 101,
                 "votes": 3,
                 "user": {
+<<<<<<< HEAD
                     "username": "Divyam Gupta",
+=======
+                    "username": "Kunal Mishra",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70032G"
                 },
@@ -28,7 +32,11 @@
                 "commentId": 102,
                 "votes": 4,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vineet",
+=======
+                    "username": "Soham",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70036G"
                 },
@@ -42,9 +50,15 @@
         "courseId": 1,
         "votes": 8,
         "user": {
+<<<<<<< HEAD
             "username": "Aniket Sonawane",
             "img": "avatar.jpg",
             "bitsid": "2022B3A70031G"
+=======
+            "username": "Krish Patel",
+            "img": "avatar.jpg",
+            "bitsid": "2022B3A70041G"
+>>>>>>> ae5b008 (hi)
         },
         "doubt": {
             "title": "Getting Started with Python",
@@ -55,7 +69,11 @@
                 "commentId": 201,
                 "votes": 5,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70039G"
                 },
@@ -66,7 +84,11 @@
                 "commentId": 202,
                 "votes": 2,
                 "user": {
+<<<<<<< HEAD
                     "username": "Harsh Deshwal",
+=======
+                    "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70034G"
                 },
@@ -80,7 +102,11 @@
         "courseId": 3,
         "votes": 6,
         "user": {
+<<<<<<< HEAD
             "username": "Amish Singhal",
+=======
+            "username": "Gyan",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70039G"
         },
@@ -93,7 +119,11 @@
                 "commentId": 301,
                 "votes": 4,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vineet",
+=======
+                    "username": "Soham",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70036G"
                 },
@@ -118,7 +148,11 @@
         "courseId": 4,
         "votes": 9,
         "user": {
+<<<<<<< HEAD
             "username": "Vedant Kamath",
+=======
+            "username": "Nachiket Naik",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70045G"
         },
@@ -131,7 +165,11 @@
                 "commentId": 401,
                 "votes": 6,
                 "user": {
+<<<<<<< HEAD
                     "username": "Harsh Deshwal",
+=======
+                    "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70034G"
                 },
@@ -142,7 +180,11 @@
                 "commentId": 402,
                 "votes": 7,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70039G"
                 },
@@ -156,7 +198,11 @@
         "courseId": 5,
         "votes": 10,
         "user": {
+<<<<<<< HEAD
             "username": "Vineet",
+=======
+            "username": "Soham",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70046G"
         },
@@ -180,7 +226,11 @@
                 "commentId": 502,
                 "votes": 8,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vanshaj",
+=======
+                    "username": "Krish Patel",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70041G"
                 },
@@ -194,7 +244,11 @@
         "courseId": 1,
         "votes": 4,
         "user": {
+<<<<<<< HEAD
             "username": "Harsh Deshwal",
+=======
+            "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70034G"
         },
@@ -207,7 +261,11 @@
                 "commentId": 601,
                 "votes": 3,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vineet",
+=======
+                    "username": "Soham",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70036G"
                 },
@@ -218,7 +276,11 @@
                 "commentId": 602,
                 "votes": 5,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70039G"
                 },
@@ -232,7 +294,11 @@
         "courseId": 5,
         "votes": 3,
         "user": {
+<<<<<<< HEAD
             "username": "Vedant Kamath",
+=======
+            "username": "Nachiket Naik",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70045G"
         },
@@ -256,7 +322,11 @@
                 "commentId": 702,
                 "votes": 7,
                 "user": {
+<<<<<<< HEAD
                     "username": "Harsh Deshwal",
+=======
+                    "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70034G"
                 },
@@ -270,7 +340,11 @@
         "courseId": 4,
         "votes": 6,
         "user": {
+<<<<<<< HEAD
             "username": "Amish Singhal",
+=======
+            "username": "Gyan",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70039G"
         },
@@ -283,7 +357,11 @@
                 "commentId": 801,
                 "votes": 8,
                 "user": {
+<<<<<<< HEAD
                     "username": "Divyam Gupta",
+=======
+                    "username": "Kunal Mishra",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70032G"
                 },
@@ -294,7 +372,11 @@
                 "commentId": 802,
                 "votes": 5,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vineet",
+=======
+                    "username": "Soham",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70036G"
                 },
@@ -308,7 +390,11 @@
         "courseId": 4,
         "votes": 7,
         "user": {
+<<<<<<< HEAD
             "username": "Vedant Kamath",
+=======
+            "username": "Nachiket Naik",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70045G"
         },
@@ -321,7 +407,11 @@
                 "commentId": 901,
                 "votes": 4,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70039G"
                 },
@@ -332,7 +422,11 @@
                 "commentId": 902,
                 "votes": 6,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vanshaj",
+=======
+                    "username": "Krish Patel",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70041G"
                 },
@@ -346,7 +440,11 @@
         "courseId": 5,
         "votes": 8,
         "user": {
+<<<<<<< HEAD
             "username": "Vineet",
+=======
+            "username": "Soham",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70046G"
         },
@@ -359,7 +457,11 @@
                 "commentId": 1001,
                 "votes": 9,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70039G"
                 },
@@ -370,7 +472,11 @@
                 "commentId": 1002,
                 "votes": 7,
                 "user": {
+<<<<<<< HEAD
                     "username": "Divyam Gupta",
+=======
+                    "username": "Kunal Mishra",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70032G"
                 },
@@ -384,7 +490,11 @@
         "courseId": 3,
         "votes": 2,
         "user": {
+<<<<<<< HEAD
             "username": "Amish Singhal",
+=======
+            "username": "Gyan",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70025G"
         },
@@ -397,7 +507,11 @@
                 "commentId": 301,
                 "votes": 1,
                 "user": {
+<<<<<<< HEAD
                     "username": "Harsh Deshwal",
+=======
+                    "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70027G"
                 },
@@ -411,7 +525,11 @@
         "courseId": 4,
         "votes": 4,
         "user": {
+<<<<<<< HEAD
             "username": "Vedant Kamath",
+=======
+            "username": "Nachiket Naik",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70034G"
         },
@@ -435,7 +553,11 @@
                 "commentId": 402,
                 "votes": 3,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vanshaj",
+=======
+                    "username": "Krish Patel",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70041G"
                 },
@@ -449,7 +571,11 @@
         "courseId": 2,
         "votes": 6,
         "user": {
+<<<<<<< HEAD
             "username": "Divyam Gupta",
+=======
+            "username": "Kunal Mishra",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70032G"
         },
@@ -462,7 +588,11 @@
                 "commentId": 501,
                 "votes": 2,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vineet",
+=======
+                    "username": "Soham",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70036G"
                 },
@@ -476,7 +606,11 @@
         "courseId": 1,
         "votes": 3,
         "user": {
+<<<<<<< HEAD
             "username": "Harsh Deshwal",
+=======
+            "username": "Pranav M R",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70027G"
         },
@@ -489,7 +623,11 @@
                 "commentId": 601,
                 "votes": 4,
                 "user": {
+<<<<<<< HEAD
                     "username": "Amish Singhal",
+=======
+                    "username": "Gyan",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70025G"
                 },
@@ -503,7 +641,11 @@
         "courseId": 3,
         "votes": 5,
         "user": {
+<<<<<<< HEAD
             "username": "Vineet",
+=======
+            "username": "Soham",
+>>>>>>> ae5b008 (hi)
             "img": "avatar.jpg",
             "bitsid": "2022B3A70036G"
         },
@@ -516,7 +658,11 @@
                 "commentId": 701,
                 "votes": 3,
                 "user": {
+<<<<<<< HEAD
                     "username": "Vedant Kamath",
+=======
+                    "username": "Nachiket Naik",
+>>>>>>> ae5b008 (hi)
                     "img": "avatar.jpg",
                     "bitsid": "2022B3A70034G"
                 },

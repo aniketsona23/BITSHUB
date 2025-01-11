@@ -1,193 +1,12 @@
 from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
+from .controller import *
+import json
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 # first_app/views.py
-def add_user(email, name, role):
-    """
-    Adds a user to the user_table.
-    
-    Parameters:
-    - email: str
-    - name: str
-    - role: str (student, TA, or faculty)
-    
-    Returns:
-    - A dictionary with the status of the operation.
-    """
-    # Check if role is valid
-    if role not in ['student', 'TA', 'faculty']:
-        return {'status': 'error', 'message': 'Invalid role. Use "student", "TA", or "faculty".'}
-
-    # Check if the email already exists
-    if UserTable.objects.filter(email=email).exists():
-        return {'status': 'error', 'message': 'A user with this email already exists.'}
-
-    # Create and save the new user
-    try:
-        user = UserTable(email=email, name=name, role=role)
-        user.save()
-        return {'status': 'success', 'message': 'User added successfully.'}
-    except Exception as e:
-        return {'status': 'error', 'message': str(e)}
-
-
-
-def add_student_by_faculty(faculty_email, student_id, student_email, course_id):
-    """
-    Allows a faculty member to add a student to their course.
-
-    Parameters:
-    - faculty_email: str
-    - student_id: str
-    - student_email: str
-    - course_id: str
-
-    Returns:
-    - A dictionary with the status of the operation.
-    """
-    # Check if the faculty member is associated with the given course_id
-    try:
-        faculty = FacultyTable.objects.get(email=faculty_email, course_id=course_id)
-    except FacultyTable.DoesNotExist:
-        return {'status': 'error', 'message': 'Faculty member is not authorized for this course.'}
-
-    # Check if the student already exists with the given email or ID
-    if StudentTable.objects.filter(email=student_email,course_id = course_id).exists() or StudentTable.objects.filter(student_id=student_id,course_id = course_id).exists():
-        return {'status': 'error', 'message': 'A student with this email or ID already exists.'}
-
-    # Add the student to the course
-    try:
-        student = StudentTable(student_id=student_id, email=student_email, course_id=course_id)
-        student.save()
-        return {'status': 'success', 'message': 'Student added successfully to the course.'}
-    except Exception as e:
-        return {'status': 'error', 'message': str(e)}
-
-
-def add_TA_by_faculty(faculty_email, ta_id, ta_email, course_id, topic_id):
-   
-    # Check if the faculty member is associated with the given course_id
-    try:
-        faculty = FacultyTable.objects.get(email=faculty_email, course_id=course_id)
-    except FacultyTable.DoesNotExist:
-        return {'status': 'error', 'message': 'Faculty member is not authorized for this course.'}
-
-    # Check if the TA already exists with the given email or ID
-    if TaTable.objects.filter(email=ta_email,topic_id=topic_id).exists() or TaTable.objects.filter(ta_id = ta_id,topic_id=topic_id).exists():
-        return {'status': 'error', 'message': 'A TA with this email or ID already exists.'}
-
-    # Add the TA to the course
-    try:
-        TA = TaTable(ta_id=ta_id, email=ta_email, course_id=course_id, topic_id = topic_id)
-        TA.save()
-        return {'status': 'success', 'message': 'TA added successfully to the course.'}
-    except Exception as e:
-        return {'status': 'error', 'message': str(e)}
-    
-
-def get_students_in_course(course_id):
-
-    students = StudentTable.objects.filter(course_id=course_id)
-    student_list = [
-        {
-            'student_ID': student.student_id,
-            'email': student.email
-        }
-        for student in students
-    ]
-    return student_list
-
-
-def get_TAs_in_course(course_id):
-
-    TAs = TaTable.objects.filter(course_id=course_id)
-    TA_list = [
-        {
-            'TA_ID': TA.ta_id,
-            'email': TA.email
-        }
-        for TA in TAs
-    ]
-    return TA_list
-
-
-def all_courses_of_student(student_id):
-    courses = StudentTable.objects.filter(student_id = student_id)
-    course_list = [
-        {
-            'course_ID' : course.course_id 
-        }
-        for course in courses
-    ]
-    return course_list
-
-
-# def fac_of_course(course_id):
-#     faculty = FacultyTable.objects.filter(course_id = course_id)
-#     facs = [
-#         {
-#             'Faculty' : fac.faculty_id
-#         }
-#         for fac in faculty
-#     ]
-
-#     return facs
-
-
-def fac_of_course(course_id):
-    faculty = FacultyTable.objects.filter(course_id = course_id)
-    email = faculty[0].email
-    name = UserTable.objects.filter(email = email)
-
-    names = [
-        {
-            "IC_Name" : n.name,
-            "IC_ID" : n.email
-        }
-        for n in name
-    ]
-    
-    return names
-
-
-def all_doubts_of_course(course_id):
-    doubts = DoubtTable.objects.filter(course_id = course_id)
-    doubts_list = [
-        {
-            "Doubt" : doubt.query
-        }
-        for doubt in doubts
-    ]
-
-    return doubts_list
-
-
-def all_doubts_asked_by_student(student_id):
-    doubts = DoubtTable.objects.filter(student_id = student_id)
-    doubts_list = [
-        {
-            "Doubt" : doubt.query,
-            "course_ID" : doubt.course_id
-        }
-        for doubt in doubts
-    ]
-
-    return doubts_list
-
-
-def all_comments_on_doubt(query_id):
-    comments = CommentTable.objects.filter(query_id = query_id)
-    comments_list = [
-        {
-            "Comment" : comment.comment,
-            "User_email" : comment.email
-        }
-        for comment in comments
-    ]
-
-    return comments_list
 
 
 def add_doubt_by_student(student_id, course_id, topic_id, query):
@@ -195,7 +14,7 @@ def add_doubt_by_student(student_id, course_id, topic_id, query):
     if DoubtTable.objects.filter(course_id=course_id, query=query).exists():
         print("Similar query already exists.")
         return {'status': 'New doubt not added', 'message': 'Similar query already exists. Please refer to that.'}
-
+    
     # Add the query
     try:
         # Retrieve a single TA for the course and topic(Fetches a Row)
@@ -206,26 +25,296 @@ def add_doubt_by_student(student_id, course_id, topic_id, query):
             return {'status': 'error', 'message': 'No TA available for the specified course and topic.'}
 
         # print(f"TA found with ID: {ta.ta_id}")
-        
+
+        pdf_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\CS F213 Handout_1 2024 25 (23 files merged).pdf"
+        index_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\faiss_index"
+        text_chunks_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\text_chunks"
+            
+        # Query the RAG system
+        ai_answer = answer_query(query, index_path, text_chunks_path, k=5)
+        # print(ai_answer)
         # Add the doubt with the retrieved ta_id
         doubt = DoubtTable(
-            student_id=student_id,
-            course_id=course_id,
-            topic_id=topic_id,
-            ta_id=ta.ta_id,  # Use `ta_id` from the single TA object
-            query=query,
-            ans='',
-            status=False  # Assuming `status` is a Boolean field
-        )
+                student_id=student_id,
+                course_id=course_id,
+                topic_id=topic_id,
+                ta_id = ta.ta_id,
+                query=query,
+                ans=ai_answer,
+                status=False  # Status indicates whether TA has reviewed the doubt
+            )
         doubt.save()
         
         print("Doubt saved successfully.")
-        return {'status': 'success', 'message': 'Doubt added successfully to the course.'}
+        return {'status': 'success', 'message': 'Doubt added successfully to the course.','answer': ai_answer}
     
     except Exception as e:
         print("Error:", str(e))
         return {'status': 'error', 'message': str(e)}
+    
+
+# ENDPOINTS
+
+def all_courses_of_student_endpoint(request,student_id):
+    if request.method == "GET":
+        try:
+            course_list = all_courses_of_student(student_id)
+            if not course_list:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': 'No courses found for this student.',
+                    'doubts': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'Courses found for student ID {student_id}.',
+                'doubts': course_list
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)
 
 
-# def add_comment_by_student(query_id,email,comment):
-#     comment_to_add = CommentTable(query_id = query_id,email = email,comment = comment,)
+
+@csrf_exempt
+def add_doubt_endpoint(request):
+    if request.method == "POST":
+        try:
+            # Parse JSON body
+            data = json.loads(request.body)
+            student_id = data.get("student_id")
+            course_id = data.get("course_id")
+            topic_id = data.get("topic_id")
+            query = data.get("query")
+
+            # Validate inputs
+            if not (student_id and course_id and topic_id and query):
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Missing one or more required parameters: student_id, course_id, topic_id, query.'
+                }, status=400)
+
+            # Call the function
+            result = add_doubt_by_student(student_id, course_id, topic_id, query)
+            return JsonResponse(result)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only POST method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def all_doubts_by_student_endpoint(request, student_id):
+    if request.method == "GET":
+        try:
+            # Call the function
+            doubts_list = all_doubts_asked_by_student(student_id)
+            
+            if not doubts_list:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': 'No doubts found for the student.',
+                    'doubts': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'Doubts found for student ID {student_id}.',
+                'doubts': doubts_list
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def all_doubts_of_course_endpoint(request, course_id):
+    if request.method == "GET":
+        try:
+            # Call the function
+            doubts_list = all_doubts_of_course(course_id)
+            
+            if not doubts_list:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': f'No doubts found for the course {course_id}.',
+                    'doubts': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'Doubts found for course ID {course_id}.',
+                'doubts': doubts_list
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def add_comment_by_student_endpoint(request):
+    if request.method == "POST":
+        try:
+            # Parse JSON body
+            data = json.loads(request.body)
+            query_id = data.get("query_id")
+            email = data.get("email")
+            comment = data.get("comment")
+
+            # Validate inputs
+            if not (query_id and email and comment):
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Missing one or more required parameters: query_id, email, comment.'
+                }, status=400)
+
+            # Call the function
+            result = add_comment_by_student(query_id, email, comment)
+            return JsonResponse(result)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only POST method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def upvote_doubt_endpoint(request):
+    if request.method == "POST":
+        try:
+            # Parse JSON body
+            data = json.loads(request.body)
+            query_id = data.get("query_id")
+            email = data.get("email")
+
+            # Validate inputs
+            if not (query_id and email):
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Missing one or more required parameters: query_id, email.'
+                }, status=400)
+
+            # Call the function
+            result = upvote_doubt(query_id, email)
+            return JsonResponse(result)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only POST method is allowed.'}, status=405)
+
+
+def upvote_comment_endpoint(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            comment_id = data.get("comment_id")
+            email = data.get("email")
+
+            if not (comment_id and email):
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Missing one or more required parameters: query_id, email.'
+                }, status=400)
+            
+            result = upvote_comment(comment_id,email)
+            return JsonResponse(result)
+        
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only POST method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def get_students_in_course_endpoint(request, course_id):
+    if request.method == "GET":
+        try:
+            # Call the function
+            student_list = get_students_in_course(course_id)
+
+            if not student_list:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': f'No students found for the course {course_id}.',
+                    'students': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'Students found for course ID {course_id}.',
+                'students': student_list
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def get_TAs_in_course_endpoint(request, course_id):
+    if request.method == "GET":
+        try:
+            # Call the function
+            TA_list = get_TAs_in_course(course_id)
+
+            if not TA_list:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': f'No TAs found for the course {course_id}.',
+                    'TAs': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'TAs found for course ID {course_id}.',
+                'TAs': TA_list
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)
+
+
+@csrf_exempt
+def fac_of_course_endpoint(request, course_id):
+    if request.method == "GET":
+        try:
+            # Call the function
+            faculty_data = fac_of_course(course_id)
+
+            if not faculty_data:
+                return JsonResponse({
+                    'status': 'success',
+                    'message': f'No faculty found for the course {course_id}.',
+                    'faculty': []
+                })
+
+            return JsonResponse({
+                'status': 'success',
+                'message': f'Faculty found for course ID {course_id}.',
+                'faculty': faculty_data
+            })
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed.'}, status=405)

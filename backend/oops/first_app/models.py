@@ -7,7 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-
+import uuid
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -80,10 +80,12 @@ class AuthUserUserPermissions(models.Model):
 
 class CommentTable(models.Model):
     query_id = models.IntegerField(blank=True, null=True)
-    comment_id = models.AutoField(primary_key=True)
+    comment_id = models.AutoField(primary_key=True)  # Auto-increment primary key
     email = models.CharField(max_length=255)
     comment = models.TextField()
-    timestamp = models.DateTimeField(blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)  # Auto-add timestamp
+    upvotes = models.IntegerField(default=0, blank=True, null=True)  # Default to 0
+    downvotes = models.IntegerField(default=0, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -144,7 +146,8 @@ class DoubtTable(models.Model):
     query = models.TextField()
     ans = models.TextField(blank=True, null=True)
     status = models.BooleanField(blank=True, null=True)
-    votes = models.IntegerField(blank=True, null=True)
+    upvotes = models.IntegerField(blank=True, null=True,default=0)
+    downvotes = models.IntegerField(blank=True, null=True,default=0)
 
     class Meta:
         managed = False
@@ -155,7 +158,7 @@ class FacultyTable(models.Model):
     faculty_id = models.CharField(max_length=3)
     email = models.CharField(max_length=255)
     course_id = models.CharField(max_length=4)
-    faculty_uuid = models.UUIDField(primary_key=True)
+    faculty_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
 
     class Meta:
         managed = False
@@ -163,11 +166,11 @@ class FacultyTable(models.Model):
 
 
 class StudentTable(models.Model):
+    stud_course_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     student_id = models.IntegerField()
     email = models.CharField(max_length=255)
     course_id = models.CharField(max_length=4)
-    student_uuid = models.UUIDField(primary_key=True)
-    upvoted_comments = ArrayField(models.IntegerField(blank=True, null=True))
+    upvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
 
     class Meta:
         managed = False
@@ -179,7 +182,7 @@ class TaTable(models.Model):
     email = models.CharField(max_length=255)
     course_id = models.CharField(max_length=4)
     topic_id = models.IntegerField(blank=True, null=True)
-    ta_uuid = models.UUIDField(primary_key=True)
+    ta_uuid = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
 
     class Meta:
         managed = False
