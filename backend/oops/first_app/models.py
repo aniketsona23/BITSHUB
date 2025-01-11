@@ -180,6 +180,10 @@ class StudentTable(models.Model):
     email = models.CharField(max_length=255)
     course_id = models.ForeignKey(CourseTable, on_delete=models.CASCADE, db_column='course_id')
     upvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
+    downvoted_comments = ArrayField(models.IntegerField(blank=True, null=True),default=list)
+    upvoted_doubts = ArrayField(models.IntegerField(blank=True, null=True),default=list)
+    downvoted_doubts = ArrayField(models.IntegerField(blank=True, null=True),default=list)
+
 
     class Meta:
         managed = False

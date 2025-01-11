@@ -66,7 +66,6 @@ def user_login(email, password):
             "status": "success",
             "message": "Login Successful.",
             "student_id": student_id,
-            "code": 200,
         }
 
     except Exception as e:
@@ -314,6 +313,7 @@ def upvote_doubt(query_id, email):
         return {"status": "error", "message": str(e)}
 
 
+
 def upvote_comment(comment_id, email):
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
@@ -343,10 +343,18 @@ def upvote_comment(comment_id, email):
             }
 
         student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+        comment_id = int(comment_id)
+        downvoted_comments_set = set(student.downvoted_comments or [])
+        upvoted_comments_set = set(student.upvoted_comments or [])
 
-        upvoted_comments_set = set(student.upvoted_comments)
+        if comment_id in downvoted_comments_set:
+            student.downvoted_comments.remove(comment_id)
+            CommentTable.objects.filter(comment_id=comment_id).update(
+                downvotes=models.F("downvotes") - 1
+            )
+            print("Comment removed from downvoted_comments.")
 
-        if int(comment_id) in upvoted_comments_set:
+        if comment_id in upvoted_comments_set:
             print("Comment already upvoted by the student.")
             return {
                 "status": "Upvote not added",
@@ -361,6 +369,71 @@ def upvote_comment(comment_id, email):
         student.save()
         print("Comment upvoted by the student.")
         return {"status": "Upvote added", "message": "Comment upvoted by the student."}
+
+    except Exception as e:
+        print("Error:", str(e))
+        return {"status": "error", "message": str(e)}
+
+
+def downvote_comment(comment_id, email):
+    if not UserTable.objects.filter(email=email).exists():
+        print("No such user present.")
+        return {"status": "Downvote not added", "message": "No such user present."}
+
+    if not CommentTable.objects.filter(comment_id=comment_id).exists():
+        print("No such comment present.")
+        return {"status": "Downvote not added", "message": "No such comment present."}
+
+    try:
+        query_id = (
+            CommentTable.objects.filter(comment_id=comment_id)
+            .values_list("query_id", flat=True)
+            .first()
+        )
+        course_id = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("course_id", flat=True)
+            .first()
+        )
+
+        if not StudentTable.objects.filter(email=email, course_id=course_id):
+            print("Student not enrolled in this course.")
+            return {
+                "status": "Downvote not added",
+                "message": "Student not enrolled in this course.",
+            }
+
+        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+
+        # Convert comment_id to integer to ensure consistent type
+        comment_id = int(comment_id)
+        downvoted_comments_set = set(student.downvoted_comments or [])
+        upvoted_comments_set = set(student.upvoted_comments or [])
+
+        # If the comment is in upvoted_comments, remove it and adjust upvotes
+        if comment_id in upvoted_comments_set:
+            student.upvoted_comments.remove(comment_id)
+            CommentTable.objects.filter(comment_id=comment_id).update(
+                upvotes=models.F("upvotes") - 1
+            )
+            print("Comment removed from upvoted_comments.")
+
+        # If the comment is already downvoted, return the appropriate message
+        if comment_id in downvoted_comments_set:
+            print("Comment already downvoted by the student.")
+            return {
+                "status": "Downvote not added",
+                "message": "Comment already downvoted by the student.",
+            }
+
+        # Add the comment to downvoted_comments and adjust downvotes
+        CommentTable.objects.filter(comment_id=comment_id).update(
+            downvotes=models.F("downvotes") + 1
+        )
+        student.downvoted_comments.append(comment_id)
+        student.save()
+        print("Comment downvoted by the student.")
+        return {"status": "Downvote added", "message": "Comment downvoted by the student."}
 
     except Exception as e:
         print("Error:", str(e))
