@@ -8,13 +8,16 @@ import { useVotes } from "../contexts/VotesContext";
 
 function DoubtView() {
     const { doubtId } = useParams();
-    const { commentVotes } = useVotes();
+    const { commentVotes, fetchCommentVotes } = useVotes();
     const textareaRef = useRef(null);
-    const { doubts } = useDoubts();
+    const { doubts, fetchAllDoubts } = useDoubts();
     const [value, setValue] = useState("");
     const [comments, updateComments] = useState([]);
     const [currDoubt, updateCurrDoubt] = useState(null);
-
+    const { subjectId } = useParams();
+    const stud_id = JSON.parse(localStorage.getItem("currentUser")).student_id;
+    console.log(stud_id);
+    console.log(useParams());
     useEffect(() => {
         async function fetcher() {
             const response = await fetch(
@@ -23,7 +26,6 @@ function DoubtView() {
             const json = await response.json();
             updateComments(json.comments);
             const doubt = doubts.find((doubt) => doubt.id == doubtId);
-            console.log(doubts);
             if (doubt) {
                 updateCurrDoubt(doubt);
                 const coms = comments.sort((a, b) =>
@@ -34,6 +36,10 @@ function DoubtView() {
         }
         fetcher();
     }, [doubtId]);
+    useEffect(() => {
+        fetchAllDoubts(subjectId);
+        fetchCommentVotes(stud_id);
+    }, []);
 
     const handleComment = () => {
         const date = new Date();

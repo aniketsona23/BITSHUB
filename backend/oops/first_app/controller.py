@@ -246,8 +246,9 @@ def all_doubts_of_course(course_id):
             "topic_id": doubt.topic_id,
             "ta_id": doubt.ta_id,
             "upvotes": doubt.upvotes,
-            "downvotes": "doubt.downvotes",
+            "downvotes": doubt.downvotes,
             "student_id": doubt.student_id,
+            "student_name": "hello",  # need student name for the student Id
         }
         for doubt in doubts
     ]
