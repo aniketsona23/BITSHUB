@@ -356,7 +356,7 @@ def upvote_doubt(query_id, student_id):
         student = StudentTable.objects.filter(email=email, course_id=course_id).first()
         query_id = int(query_id)
         downvoted_doubts_set = set(student.downvoted_doubts or [])
-        upvoted_doubts_set = set(student.downvoted_doubts or [])
+        upvoted_doubts_set = set(student.upvoted_doubts or [])
         print(upvoted_doubts_set)
 
         if query_id in upvoted_doubts_set:
@@ -440,7 +440,7 @@ def downvote_doubt(query_id, student_id):
         student = StudentTable.objects.filter(email=email, course_id=course_id).first()
         query_id = int(query_id)
         downvoted_doubts_set = set(student.downvoted_doubts or [])
-        upvoted_doubts_set = set(student.downvoted_doubts or [])
+        upvoted_doubts_set = set(student.upvoted_doubts or [])
 
         if query_id in downvoted_doubts_set:
             student.downvoted_doubts.remove(query_id)
@@ -453,7 +453,7 @@ def downvote_doubt(query_id, student_id):
             if query_id in upvoted_doubts_set:
                 student.upvoted_doubts.remove(query_id)
                 DoubtTable.objects.filter(query_id=query_id).update(
-                    upvotes=models.F("upvoted") - 1
+                    upvotes=models.F("upvotes") - 1
                 )
                 print("Doubt removed from Upvoted Doubts.")
 
