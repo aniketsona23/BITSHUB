@@ -282,7 +282,7 @@ def all_comments_on_doubt(query_id):
             "comment_id": comment.comment_id,
             "time": comment.timestamp,
             "comment": comment.comment,
-            "user_id": comment.student_id,
+            "user_id": StudentTable.objects.filter(email = CommentTable.objects.filter(comment_id = comment.comment_id).values_list("email",flat=True).first()).values_list("student_id",flat = True).first(),
             "upvotes": comment.upvotes,
             "downvotes": comment.downvotes,
         }
