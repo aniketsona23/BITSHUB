@@ -163,6 +163,7 @@ class CourseTable(models.Model):
     course_id = models.CharField(primary_key=True, max_length=20)
     course_name = models.TextField()
     ic_id = models.CharField(max_length=3)
+    course_image = models.URLField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False

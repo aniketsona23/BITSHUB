@@ -482,7 +482,7 @@ def get_user_data_endpoint(request):
                 return JsonResponse(
                     {
                         "status": "success",
-                        "message": f"No User found for the id {data.get("student_id")}.",
+                        "message": f"No User found for the id {data.get('student_id')}.",
                         "faculty": [],
                     },
                     status=404,
