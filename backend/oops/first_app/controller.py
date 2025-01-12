@@ -332,101 +332,6 @@ def upvote_doubt(query_id, student_id, course_id):
     try:
         student = student.first()
 
-<<<<<<< HEAD
-        if not StudentTable.objects.filter(email=email, course_id=course_id):
-            print("Student not enrolled in this course.")
-            return {
-                "status": "Upvote not added",
-                "message": "Student not enrolled in this course.",
-            }
-
-        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
-        query_id = int(query_id)
-        downvoted_doubts_set = set(student.downvoted_doubts or [])
-        upvoted_doubts_set = set(student.upvoted_doubts or [])
-        print(upvoted_doubts_set)
-
-        if query_id in upvoted_doubts_set:
-            student.upvoted_doubts.remove(query_id)
-            DoubtTable.objects.filter(query_id=query_id).update(
-                upvotes=models.F("upvotes") - 1
-            )
-            msg = "Doubt removed from Upvoted Doubts."
-
-        else:
-            if query_id in downvoted_doubts_set:
-                student.downvoted_doubts.remove(query_id)
-                DoubtTable.objects.filter(query_id=query_id).update(
-                    downvotes=models.F("downvotes") - 1
-                )
-                print("Doubt removed from Downvoted Doubts")
-
-            student.upvoted_doubts.append(query_id)
-            DoubtTable.objects.filter(query_id=query_id).update(
-                upvotes=models.F("upvotes") + 1
-            )
-            msg = "Doubt upvoted by the student."
-            # print("Doubt upvoted by the student.")
-
-        student.save()
-        net_votes = (
-            DoubtTable.objects.filter(query_id=query_id)
-            .values_list("upvotes", flat=True)
-            .first()
-            - DoubtTable.objects.filter(query_id=query_id)
-            .values_list("downvotes", flat=True)
-            .first()
-        )
-        print(net_votes)
-        print(msg)
-        return {"status": 200, "message": msg, "netVotes": net_votes}
-
-    except Exception as e:
-        print("Error:", str(e))
-        return {"status": "error", "message": str(e)}
-
-
-def downvote_doubt(query_id, student_id):
-    if not StudentTable.objects.filter(student_id=student_id).exists():
-        print("No such student present.")
-        return {"status": "Upvote not added", "message": "No such student present."}
-
-    email = (
-        StudentTable.objects.filter(student_id=student_id)
-        .values_list("email", flat=True)
-        .first()
-    )
-
-    if not UserTable.objects.filter(email=email).exists():
-        print("No such user present.")
-        return {"status": "Upvote not added", "message": "No such user present."}
-
-    if not DoubtTable.objects.filter(query_id=query_id).exists():
-        print("No such doubt present.")
-        return {"status": "Upvote not added", "message": "No such doubt present."}
-
-    try:
-        query_id = (
-            DoubtTable.objects.filter(query_id=query_id)
-            .values_list("query_id", flat=True)
-            .first()
-        )
-        course_id = (
-            DoubtTable.objects.filter(query_id=query_id)
-            .values_list("course_id", flat=True)
-            .first()
-        )
-
-        if not StudentTable.objects.filter(email=email, course_id=course_id):
-            print("Student not enrolled in this course.")
-            return {
-                "status": "Upvote not added",
-                "message": "Student not enrolled in this course.",
-            }
-
-        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
-=======
->>>>>>> 18e47d4 (tried fixing frontend Context error)
         query_id = int(query_id)
         downvoted_doubts_set = set(student.downvoted_doubts or [])
         upvoted_doubts_set = set(student.upvoted_doubts or [])
@@ -436,18 +341,8 @@ def downvote_doubt(query_id, student_id):
             query.update(downvotes=models.F("downvotes") - 1)
             print("Doubt removed from downvoted_doubts.")
 
-<<<<<<< HEAD
-        else:
-            if query_id in upvoted_doubts_set:
-                student.upvoted_doubts.remove(query_id)
-                DoubtTable.objects.filter(query_id=query_id).update(
-                    upvotes=models.F("upvotes") - 1
-                )
-                print("Doubt removed from Upvoted Doubts.")
-=======
         elif query_id in upvoted_doubts_set:
             student.upvoted_doubts.remove(query_id)
->>>>>>> 18e47d4 (tried fixing frontend Context error)
 
             query.update(upvotes=models.F("upvotes") - 1)
 
@@ -518,7 +413,7 @@ def downvote_doubt(query_id, student_id, course_id):
             query.update(upvotes=models.F("upvotes") - 1)
             print("Doubt removed from upvoted_doubts.")
 
-        if query_id in downvoted_doubts_set:
+        elif query_id in downvoted_doubts_set:
             student.downvoted_doubts.remove(query_id)
             query.update(downvotes=models.F("downvotes") - 1)
             net_votes = (
@@ -539,12 +434,8 @@ def downvote_doubt(query_id, student_id, course_id):
             downvotes=(models.F("downvotes") or 0) + 1
         )
         net_votes = (
-            DoubtTable.objects.filter(query_id=query_id)
-            .values_list("upvotes", flat=True)
-            .first()
-            - DoubtTable.objects.filter(query_id=query_id)
-            .values_list("downvotes", flat=True)
-            .first()
+            query.values_list("upvotes", flat=True).first()
+            - query.values_list("downvotes", flat=True).first()
         )
 
         student.downvoted_doubts.append(query_id)
