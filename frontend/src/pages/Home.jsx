@@ -10,7 +10,6 @@ function Home() {
                 `http://127.0.0.1:8000/api/student/${studId}/courses`
             );
             const json = await response.json();
-            console.log(json);
             updateSubjects(json.courses);
         }
         getSubject();

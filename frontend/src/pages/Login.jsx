@@ -26,7 +26,6 @@ function Login() {
             }),
         });
         const json = await response.json();
-        console.log(json);
         if (response.status == 200) {
             navigate("/user/");
             localStorage.setItem("currentUser", json.student_id);

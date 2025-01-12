@@ -20,7 +20,6 @@ export const VoteContext = ({ children }) => {
                     }
                 );
                 const data = await response.json();
-                console.log(data);
                 setCommentVotes({
                     upvotes: data.upvoted_comments,
                     downvotes: data.downvoted_comments,
@@ -38,7 +37,6 @@ export const VoteContext = ({ children }) => {
         fetcher();
     }, []);
     useEffect(() => {
-        console.log("Updated doubtVotes:", doubtVotes);
     }, [doubtVotes]);
 
     return (

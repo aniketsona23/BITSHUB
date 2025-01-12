@@ -308,26 +308,31 @@ def get_votes_data_endpoint(request):
 
 
 @csrf_exempt
-def upvote_doubt_endpoint(request):
+def vote_doubt_endpoint(request):
     if request.method == "POST":
         try:
             # Parse JSON body
             data = json.loads(request.body)
             query_id = data.get("query_id")
             email = data.get("email")
+            vote = data.get("vote")
 
             # Validate inputs
-            if not (query_id and email):
+            if not (query_id and email and vote):
                 return JsonResponse(
                     {
                         "status": "error",
-                        "message": "Missing one or more required parameters: query_id, email.",
+                        "message": "Missing one or more required parameters: query_id, email or vote.",
                     },
                     status=400,
                 )
 
             # Call the function
-            result = upvote_doubt(query_id, email)
+            if vote == 1:
+                result = upvote_doubt(query_id, email, vote)
+            else:
+                result = downvote_doubt(query_id, email, vote)
+
             return JsonResponse(result)
 
         except json.JSONDecodeError:
@@ -342,23 +347,27 @@ def upvote_doubt_endpoint(request):
     )
 
 
-def upvote_comment_endpoint(request):
+@csrf_exempt
+def vote_comment_endpoint(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
             comment_id = data.get("comment_id")
             email = data.get("email")
+            vote = data.get("vote")
 
             if not (comment_id and email):
                 return JsonResponse(
                     {
                         "status": "error",
-                        "message": "Missing one or more required parameters: query_id, email.",
+                        "message": "Missing one or more required parameters: query_id, email or vote.",
                     },
                     status=400,
                 )
-
-            result = upvote_comment(comment_id, email)
+            if vote == 1:
+                result = upvote_comment(comment_id, email)
+            else:
+                result = downvote_comment(comment_id, email)
             return JsonResponse(result)
 
         except json.JSONDecodeError:

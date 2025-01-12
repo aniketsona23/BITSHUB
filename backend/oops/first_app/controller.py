@@ -317,18 +317,125 @@ def add_comment_by_student(query_id, email, comment):
 def upvote_doubt(query_id, email):
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
-        return {"status": "Upvote not added", "message": "No such user present."}
+        return {"status": "Upvote not added", "message": "No such doubt present."}
 
     if not DoubtTable.objects.filter(query_id=query_id).exists():
-        print("No such query present.")
-        return {"status": "Upvote not added", "message": "No such query present."}
+        print("No such doubt present.")
+        return {"status": "Upvote not added", "message": "No such doubt present."}
 
     try:
-        rows_updated = DoubtTable.objects.filter(query_id=query_id).update(
-            upvotes=(models.F("upvotes") or 0) + 1
+        query_id = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("query_id", flat=True)
+            .first()
         )
-        print("Upvote added successfully.")
-        return {"status": "success", "message": "Upvote added successfully."}
+        course_id = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("course_id", flat=True)
+            .first()
+        )
+
+        if not StudentTable.objects.filter(email=email, course_id=course_id):
+            print("Student not enrolled in this course.")
+            return {
+                "status": "Upvote not added",
+                "message": "Student not enrolled in this course.",
+            }
+
+        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+        query_id = int(query_id)
+        downvoted_doubts_set = set(student.downvoted_doubts or [])
+        upvoted_doubts_set = set(student.downvoted_doubts or [])
+
+        if query_id in downvoted_doubts_set:
+            student.downvoted_doubts.remove(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                downvotes=models.F("downvotes") - 1
+            )
+            msg = "Doubt removed from Downvoted Doubts."
+
+        elif query_id in upvoted_doubts_set:
+            student.upvoted_doubts.remove(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                upvotes=models.F("upvoted") - 1
+            )
+            msg = "Doubt removed from Upvoted Doubts."
+
+        if query_id not in upvoted_doubts_set:
+            student.upvoted_doubts.append(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                upvotes=models.F("upvoted") + 1
+            )
+            msg = "Comment upvoted by the student."
+            print("Comment upvoted by the student.")
+
+        student.save()
+        print(msg)
+        return {"status": 200, "message": msg}
+
+    except Exception as e:
+        print("Error:", str(e))
+        return {"status": "error", "message": str(e)}
+
+
+def downvote_doubt(query_id, email):
+    if not UserTable.objects.filter(email=email).exists():
+        print("No such user present.")
+        return {"status": "Upvote not added", "message": "No such doubt present."}
+
+    if not DoubtTable.objects.filter(query_id=query_id).exists():
+        print("No such doubt present.")
+        return {"status": "Upvote not added", "message": "No such doubt present."}
+
+    try:
+        query_id = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("query_id", flat=True)
+            .first()
+        )
+        course_id = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("course_id", flat=True)
+            .first()
+        )
+
+        if not StudentTable.objects.filter(email=email, course_id=course_id):
+            print("Student not enrolled in this course.")
+            return {
+                "status": "Upvote not added",
+                "message": "Student not enrolled in this course.",
+            }
+
+        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+        query_id = int(query_id)
+        downvoted_doubts_set = set(student.downvoted_doubts or [])
+        upvoted_doubts_set = set(student.downvoted_doubts or [])
+
+        if query_id in downvoted_doubts_set:
+            student.downvoted_doubts.remove(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                downvotes=models.F("downvotes") - 1
+            )
+            msg = "Doubt removed from Downvoted Doubts."
+
+        elif query_id in upvoted_doubts_set:
+            student.upvoted_doubts.remove(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                upvotes=models.F("upvoted") - 1
+            )
+            msg = "Doubt removed from Upvoted Doubts."
+
+        if query_id not in downvoted_doubts_set:
+            student.downvoted_doubts.append(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                upvotes=models.F("downvoted") + 1
+            )
+            msg = "Comment downvoted by the student."
+            print("Comment downvoted by the student.")
+
+        student.save()
+        print(msg)
+        return {"status": 200, "message": msg}
 
     except Exception as e:
         print("Error:", str(e))

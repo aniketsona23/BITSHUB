@@ -9,7 +9,6 @@ export const DoubtContext = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const { subjectId } = useParams();
     useEffect(() => {
-        console.log("hello");
         async function fetcher() {
             try {
                 if (subjectId) {

@@ -6,9 +6,7 @@ function CoursesPane() {
     const navigate = useNavigate();
     const { subjectId } = useParams();
     const [Subjects, updateSubjects] = useState();
-    console.log("hi");
     useEffect(() => {
-        console.log("hi2");
         async function getSubject() {
             const response = await fetch(
                 `http://127.0.0.1:8000/api/student/${localStorage.getItem(
@@ -16,12 +14,10 @@ function CoursesPane() {
                 )}/courses`
             );
             const json = await response.json();
-            console.log(json);
             updateSubjects(json.courses);
         }
         getSubject();
     }, []);
-    console.log(Subjects);
     return (
         <div className="flex flex-col flex-grow-0 flex-shrink-0 items-center gap-[2%] border-white/25 px-[1%] py-[2%] border-r border-solid min-w-[300px] max-w-[300px] basis-[25%]">
             <div className="flex flex-col items-center gap-3 w-[100%]">

@@ -48,10 +48,8 @@ urlpatterns = [
         get_votes_data_endpoint,
         name="get_votes_data_endpoint",
     ),
-    path("api/upvote-doubt/", upvote_doubt_endpoint, name="upvote_doubt_endpoint"),
-    path(
-        "api/upvote-comment/", upvote_comment_endpoint, name="upvote_comment_endpoint"
-    ),
+    path("api/vote-doubt/", vote_doubt_endpoint, name="vote_doubt_endpoint"),
+    path("api/vote-comment/", vote_comment_endpoint, name="vote_comment_endpoint"),
     path(
         "api/course/<str:course_id>/students/",
         get_students_in_course_endpoint,
