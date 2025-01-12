@@ -22,7 +22,6 @@ function Forum() {
                     doubts.map((doubt, key) => {
                         let Upvoted = false;
                         let DownVoted = false;
-                        console.log(doubts);
                         if (doubtVotes.upvotes.includes(doubt.id)) {
                             Upvoted = true;
                         } else if (doubtVotes.downvotes.includes(doubt.id)) {
@@ -30,10 +29,11 @@ function Forum() {
                         }
                         return (
                             <DoubtCard
+                                course_id={doubt.course_id}
                                 key={key}
                                 user_id={doubt.student_id}
                                 user_name={doubt.student_name}
-                                doubt={doubt.doubt}
+                                doubt={doubt.query}
                                 votes={doubt.upvotes - doubt.downvotes}
                                 id={doubt.query_id}
                                 showCommentBtn={true}

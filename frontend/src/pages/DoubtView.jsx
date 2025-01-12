@@ -9,39 +9,45 @@ import { useVotes } from "../contexts/VotesContext";
 function DoubtView() {
     const { doubtId } = useParams();
     const { commentVotes, fetchCommentVotes } = useVotes();
-    const textareaRef = useRef(null);
     const { doubts, fetchAllDoubts } = useDoubts();
+
+    const textareaRef = useRef(null);
     const [value, setValue] = useState("");
     const [comments, updateComments] = useState([]);
     const [currDoubt, updateCurrDoubt] = useState(null);
     const { subjectId } = useParams();
     const stud_id = JSON.parse(localStorage.getItem("currentUser")).student_id;
-    console.log(stud_id);
-    console.log(useParams());
+
     useEffect(() => {
         async function fetcher() {
             const response = await fetch(
                 `http://127.0.0.1:8000/api/doubt/${doubtId}/comments`
             );
             const json = await response.json();
+            console.log(json);
+            console.log(doubtId);
             updateComments(json.comments);
-            const doubt = doubts.find((doubt) => doubt.id == doubtId);
-            if (doubt) {
-                updateCurrDoubt(doubt);
-                const coms = comments.sort((a, b) =>
-                    a.upvotes - a.downvotes > b.upvotes - b.downvotes ? 1 : -1
-                );
-                updateComments(coms);
-            }
         }
         fetcher();
-    }, [doubtId]);
+    }, [doubtId, currDoubt]);
+
+    useEffect(() => {
+        const doubt = doubts.find((doubt) => doubt.query_id == doubtId);
+
+        if (doubt) {
+            updateCurrDoubt(doubt);
+            const coms = comments.sort((a, b) =>
+                a.upvotes - a.downvotes > b.upvotes - b.downvotes ? 1 : -1
+            );
+            updateComments(coms);
+        }
+    }, [comments, doubts]);
     useEffect(() => {
         fetchAllDoubts(subjectId);
         fetchCommentVotes(stud_id);
     }, []);
 
-    const handleComment = () => {
+    const handleComment = async () => {
         const date = new Date();
 
         const day = date.getDate().toString().padStart(2, "0"); // "10"
@@ -49,7 +55,7 @@ function DoubtView() {
         const year = date.getFullYear(); // "2024"
         const hours = date.getHours().toString().padStart(2, "0"); // "11"
         const minutes = date.getMinutes().toString().padStart(2, "0"); // "00"
-        const img_url = new URL("/assets/" + user.img, import.meta.url).href;
+        // const img_url = new URL("/assets/" + user.img, import.meta.url).href;
         const formattedDate = `${day} ${month}, ${year} ${hours}:${minutes}`;
 
         // addcomment(doubtId, {
@@ -61,15 +67,20 @@ function DoubtView() {
         //     comment: value,
         //     time: formattedDate,
         // });
+        const response = await fetch("http://127.0.0.1:8000/api/add-comment", {
+            method: "POST",
+            body: JSON.stringify({
+                query_id: doubtId,
+                student_id: stud_id,
+                comment: value,
+            }),
+        });
+        const json = response.json();
         updateComments([
             ...comments,
             {
-                comment_id: currDoubt.id + "0" + comments.length + 1,
-                user: {
-                    username: "Aniket Sonawane",
-                    img: avatar,
-                    bitsid: "2022B3A70031G",
-                },
+                comment_id: currDoubt.query_id + "0" + comments.length + 1,
+                user_id: stud_id,
                 votes: 0,
                 comment: value,
                 time: formattedDate,
@@ -91,9 +102,9 @@ function DoubtView() {
                 <div className="flex flex-col items-center gap-10 py-8 max-h-screen">
                     <DoubtCard
                         id={doubtId}
-                        user={currDoubt.user}
-                        doubt={currDoubt.doubt}
-                        votes={currDoubt.votes}
+                        user_id={currDoubt.student_id}
+                        doubt={currDoubt.query}
+                        votes={currDoubt.upvotes - currDoubt.downvotes}
                         showCommentBtn={false}
                     />
                     <div className="flex justify-center items-start gap-5 w-[80%] resize-none">
@@ -112,35 +123,39 @@ function DoubtView() {
                         </button>
                     </div>
                     <div className="flex flex-col items-center gap-5 pb-20 w-[80%]">
-                        {comments.map((comment, key) => {
-                            let UpVoted = false;
-                            let DownVoted = false;
-                            if (
-                                commentVotes.upvotes.includes(
-                                    comment.comment_id
-                                )
-                            ) {
-                                UpVoted = true;
-                            } else if (
-                                commentVotes.downvotes.includes(
-                                    comment.comment_id
-                                )
-                            ) {
-                                DownVoted = true;
-                            }
-                            return (
-                                <Comment
-                                    isUpvoted={UpVoted}
-                                    isDownvoted={DownVoted}
-                                    user={comment.user}
-                                    time={comment.time}
-                                    comment={comment.comment}
-                                    id={comment.comment_id}
-                                    key={key}
-                                    votes={comment.votes}
-                                />
-                            );
-                        })}
+                        {Array.isArray(commentVotes.upvotes) &&
+                            comments.map((comment, key) => {
+                                let UpVoted = false;
+                                let DownVoted = false;
+                                if (
+                                    commentVotes.upvotes.includes(
+                                        comment.comment_id
+                                    )
+                                ) {
+                                    UpVoted = true;
+                                } else if (
+                                    commentVotes.downvotes.includes(
+                                        comment.comment_id
+                                    )
+                                ) {
+                                    DownVoted = true;
+                                }
+                                return (
+                                    <Comment
+                                        isUpvoted={UpVoted}
+                                        isDownvoted={DownVoted}
+                                        user_id={comment.user_id}
+                                        user_name={comment.user_name}
+                                        time={comment.time}
+                                        comment={comment.comment}
+                                        id={comment.comment_id}
+                                        key={key}
+                                        votes={
+                                            comment.upvotes - comment.downvotes
+                                        }
+                                    />
+                                );
+                            })}
                     </div>
                 </div>
             </div>

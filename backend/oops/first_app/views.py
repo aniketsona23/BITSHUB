@@ -242,11 +242,11 @@ def add_comment_by_student_endpoint(request):
             # Parse JSON body
             data = json.loads(request.body)
             query_id = data.get("query_id")
-            email = data.get("email")
+            student_id = data.get("student_id")
             comment = data.get("comment")
 
             # Validate inputs
-            if not (query_id and email and comment):
+            if not (query_id and student_id and comment):
                 return JsonResponse(
                     {
                         "status": "error",
@@ -256,7 +256,7 @@ def add_comment_by_student_endpoint(request):
                 )
 
             # Call the function
-            result = add_comment_by_student(query_id, email, comment)
+            result = add_comment_by_student(query_id, student_id, comment)
             return JsonResponse(result)
 
         except json.JSONDecodeError:

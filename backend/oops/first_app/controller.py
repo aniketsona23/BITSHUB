@@ -240,9 +240,9 @@ def all_doubts_of_course(course_id):
     doubts = DoubtTable.objects.filter(course_id=course_id)
     doubts_list = [
         {
-            "doubt": doubt.query,
-            "course_ID": doubt.course_id,
-            "doubt_id": doubt.query_id,
+            "query": doubt.query,
+            "course_id": doubt.course_id,
+            "query_id": doubt.query_id,
             "topic_id": doubt.topic_id,
             "ta_id": doubt.ta_id,
             "upvotes": doubt.upvotes,
@@ -292,12 +292,13 @@ def all_comments_on_doubt(query_id):
     return comments_list
 
 
-def add_comment_by_student(query_id, email, comment):
+def add_comment_by_student(query_id, student_id, comment):
+
     if not DoubtTable.objects.filter(query_id=query_id).exists():
         print("No such query exists.")
         return {"status": "New comment not added", "message": "No such query exists."}
 
-    if not StudentTable.objects.filter(email=email).exists():
+    if not StudentTable.objects.filter(student_id=student_id).exists():
         print("No such student present.")
         return {
             "status": "New comment not added",
@@ -305,7 +306,9 @@ def add_comment_by_student(query_id, email, comment):
         }
 
     try:
-        comment_to_add = CommentTable(query_id=query_id, email=email, comment=comment)
+        comment_to_add = CommentTable(
+            query_id=query_id, student_id=student_id, comment=comment
+        )
         comment_to_add.save()
 
         print("Comment added successfully.")

@@ -12,7 +12,6 @@ function MyDoubt() {
     const student_name = JSON.parse(
         localStorage.getItem("currentUser")
     ).student_name;
-    console.log(student_id);
     useEffect(() => {
         fetchMyDoubts();
         fetchDoubtVotes(student_id);
@@ -25,7 +24,6 @@ function MyDoubt() {
                     Array.isArray(doubtVotes.upvotes) &&
                     Array.isArray(doubtVotes.downvotes) &&
                     myDoubts.map((doubt, key) => {
-                        console.log(doubtVotes);
                         let Upvoted = false;
                         let DownVoted = false;
                         if (doubtVotes.upvotes.includes(doubt.query_id)) {

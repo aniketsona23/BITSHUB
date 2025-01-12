@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function Comment({ user, id, votes, comment, time, isUpvoted, isDownvoted }) {
+function Comment({
+    user_name,
+    user_id,
+    id,
+    votes,
+    comment,
+    time,
+    isUpvoted,
+    isDownvoted,
+}) {
     const [commentVotes, setCommentVotes] = useState(votes);
     const [upVoted, setUpVoted] = useState();
     const [downVoted, setDownVoted] = useState();
 
-    const img_url = new URL("" + user.img, import.meta.url).href;
+    // const img_url = new URL("" + user.img, import.meta.url).href;
 
     useEffect(() => {
         setUpVoted(isUpvoted);
@@ -28,23 +37,23 @@ function Comment({ user, id, votes, comment, time, isUpvoted, isDownvoted }) {
         if (response.status == 200) {
             if (num == 1) {
                 setDownVoted(false);
-                setUpVoted(true);
+                setUpVoted(upVoted ? false : true);
             } else {
-                setDownVoted(true);
+                setDownVoted(downVoted ? false : true);
                 setUpVoted(false);
             }
-            setDoubtVotes(json.votes);
+            setDoubtVotes(json.netVotes);
         }
     };
     return (
         <div className="flex flex-col gap-5 bg-slate-800 p-8 rounded-xl w-[100%]">
             <header className="flex justify-start items-center gap-5">
                 <img
-                    src={img_url}
+                    src={undefined}
                     alt=""
                     className="rounded-[50%] w-[50px] h-[50px]"
                 />
-                <span className="font-[12px] text-white">{user.username}</span>
+                <span className="font-[12px] text-white">{user_name}</span>
                 <span className="font-[12px text-zinc-400">{time} </span>
             </header>
             <p className="font-[12px] text-white">{comment}</p>
