@@ -17,11 +17,11 @@ function Home() {
     return (
         <main className="flex flex-wrap justify-center items-center gap-[50px] px-[5%] py-[5%]">
             {Subjects &&
-                Subjects.map((sub) => {
+                Subjects.map((sub, key) => {
                     return (
                         <CourseCard
                             image={sub.image}
-                            key={sub.facId}
+                            key={key}
                             courseName={sub.course_name}
                             courseId={sub.course_id}
                         />

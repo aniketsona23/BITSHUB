@@ -11,7 +11,7 @@ export const VoteContext = ({ children }) => {
         async function fetcher() {
             try {
                 const response = await fetch(
-                    `http://127.0.0.1:8000/api/student/votes-data`,
+                    `http://127.0.0.1:8000/api/student/votes-data/`,
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -36,8 +36,7 @@ export const VoteContext = ({ children }) => {
         }
         fetcher();
     }, []);
-    useEffect(() => {
-    }, [doubtVotes]);
+    useEffect(() => {}, [doubtVotes]);
 
     return (
         <VotesContext.Provider value={{ commentVotes, doubtVotes, loading }}>

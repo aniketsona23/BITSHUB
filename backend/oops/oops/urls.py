@@ -44,7 +44,7 @@ urlpatterns = [
         name="all_courses_of_student_endpoint",
     ),
     path(
-        "api/student/votes-data",
+        "api/student/votes-data/",
         get_votes_data_endpoint,
         name="get_votes_data_endpoint",
     ),

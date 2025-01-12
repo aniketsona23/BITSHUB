@@ -7,6 +7,7 @@ function DoubtCard({
     isDownVoted,
     user_name,
     user_id,
+    img_url,
     votes,
     id,
     showCommentBtn = true,
@@ -16,46 +17,38 @@ function DoubtCard({
     const { subjectId } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
     const navigate = useNavigate();
+
     useEffect(() => {
         setUpVoted(isupVoted);
         setDownVoted(isDownVoted);
     }, [isupVoted, isDownVoted]);
 
-    const handleUpVote = () => {
-        if (downVoted) {
-            setDownVoted(false);
-            setUpVoted(true);
-            setDoubtVotes(doubtVotes + 2);
+    const handleVote = async (num) => {
+        const response = await fetch("http://127.0.0.1:8000/api/vote-doubt/", {
+            method: "POST",
+            body: JSON.stringify({
+                query_id: id,
+                user_id: user_id,
+                vote: num,
+            }),
+        });
+        const json = await response.json();
+        if (response.status == 200) {
+            if (num == 1) {
+                setDownVoted(false);
+                setUpVoted(true);
+            } else {
+                setDownVoted(true);
+                setUpVoted(false);
+            }
+            setDoubtVotes(json.votes);
+        }
+    };
 
-            return;
-        }
-        if (upVoted) {
-            setUpVoted(false);
-            setDoubtVotes(doubtVotes - 1);
-            return;
-        }
-        setUpVoted(true);
-        setDoubtVotes(doubtVotes + 1);
-    };
-    const handleDownVote = () => {
-        if (upVoted) {
-            setDownVoted(true);
-            setUpVoted(false);
-            setDoubtVotes(doubtVotes - 2);
-            return;
-        }
-        if (downVoted) {
-            setDownVoted(false);
-            setDoubtVotes(doubtVotes + 1);
-            return;
-        }
-        setDownVoted(true);
-        setDoubtVotes(doubtVotes - 1);
-    };
     const openDoubt = () => {
         navigate(`/user/forum/${subjectId}/${id}`);
     };
-    // const img_url = new URL("/assets/" + user.img, import.meta.url).href;
+
     return (
         <div className="flex flex-col gap-4 border-white/25 bg-slate-900 p-[40px] border border-solid rounded-xl w-[80%] max-h-hmax font-['Poppins'] text-white">
             {!showCommentBtn && (
@@ -96,7 +89,9 @@ function DoubtCard({
                 )}
                 <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 rounded-[10px] justify-between">
                     <button
-                        onClick={handleUpVote}
+                        onClick={() => {
+                            handleVote(-1);
+                        }}
                         className={`px-2 py-2 flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
                             !upVoted ? "bg-gray-500 " : "bg-orange-600"
                         }`}
@@ -109,7 +104,9 @@ function DoubtCard({
                     </button>
                     <span className="text-lg">{doubtVotes}</span>
                     <button
-                        onClick={handleDownVote}
+                        onClick={() => {
+                            handleVote(1);
+                        }}
                         className={` px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
                             !downVoted ? "bg-gray-500 " : "bg-orange-600"
                         }`}

@@ -316,6 +316,7 @@ def vote_doubt_endpoint(request):
             query_id = data.get("query_id")
             email = data.get("email")
             vote = data.get("vote")
+            print(data)
 
             # Validate inputs
             if not (query_id and email and vote):

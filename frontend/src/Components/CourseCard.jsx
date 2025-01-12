@@ -12,7 +12,11 @@ function CourseCard({ courseId, courseName, image }) {
             className="bg-slate-700 rounded-xl w-[400px] h-[300px] font-['Poppins'] font-medium text-white cursor-pointer overflow-hidden"
         >
             <section className="w-[100%] h-[80%]">
-                <img className="w-full h-full" src={image} alt="" />
+                <img
+                    className="w-full h-full"
+                    src={image}
+                    alt={`Image of ${courseName}`}
+                />
             </section>
             <footer className="flex justify-center items-center h-[20%]">
                 <p className="text-xl"> {courseName}</p>

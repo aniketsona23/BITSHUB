@@ -10,7 +10,7 @@ function Forum() {
         <div className="w-[100%] max-h-screen overflow-y-scroll">
             <div className="flex flex-col justify-start items-center gap-8 pt-[2%] pb-[6%]">
                 {doubts &&
-                    doubts.map((doubt) => {
+                    doubts.map((doubt, key) => {
                         let Upvoted = false;
                         let DownVoted = false;
                         if (doubtVotes.upvotes.includes(doubt.id)) {
@@ -20,7 +20,7 @@ function Forum() {
                         }
                         return (
                             <DoubtCard
-                                key={doubt.id}
+                                key={key}
                                 user={doubt.user}
                                 doubt={doubt.doubt}
                                 votes={doubt.votes}

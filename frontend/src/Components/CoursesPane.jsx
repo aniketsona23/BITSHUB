@@ -44,10 +44,10 @@ function CoursesPane() {
                 <h1 className="text-white text-xl">Your Courses</h1>
                 <div className="flex flex-col items-center gap-y-[15px] bg-gray-900">
                     {Subjects &&
-                        Subjects.map((sub) => {
+                        Subjects.map((sub, key) => {
                             return (
                                 <CourseBtn
-                                    key={sub.course_id}
+                                    key={key}
                                     id={sub.course_id}
                                     courseName={sub.course_name}
                                     isCurrentView={

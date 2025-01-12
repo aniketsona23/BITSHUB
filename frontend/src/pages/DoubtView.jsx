@@ -4,9 +4,12 @@ import Comment from "../Components/Comment";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useDoubts } from "../contexts/DoubtContext";
+import { useVotes } from "../contexts/VotesContext";
 
 function DoubtView() {
     const { doubtId } = useParams();
+    const { commentVotes } = useVotes();
+
     const textareaRef = useRef(null);
     const { doubts } = useDoubts();
     const [value, setValue] = useState("");
@@ -102,13 +105,31 @@ function DoubtView() {
                         </button>
                     </div>
                     <div className="flex flex-col items-center gap-5 pb-20 w-[80%]">
-                        {comments.map((comment) => {
+                        {comments.map((comment, key) => {
+                            let UpVoted = false;
+                            let DownVoted = false;
+                            if (
+                                commentVotes.upvotes.includes(
+                                    comment.comment_id
+                                )
+                            ) {
+                                UpVoted = true;
+                            } else if (
+                                commentVotes.downvotes.includes(
+                                    comment.comment_id
+                                )
+                            ) {
+                                DownVoted = true;
+                            }
                             return (
                                 <Comment
+                                    isUpvoted={UpVoted}
+                                    isDownvoted={DownVoted}
                                     user={comment.user}
                                     time={comment.time}
                                     comment={comment.comment}
-                                    key={comment.commentId}
+                                    id={comment.comment_id}
+                                    key={key}
                                     votes={comment.votes}
                                 />
                             );

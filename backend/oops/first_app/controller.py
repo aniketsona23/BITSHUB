@@ -219,6 +219,7 @@ def all_courses_of_student(student_id):
         {
             "course_id": course.course_id.course_id,
             "course_name": course.course_id.course_name,
+            "image": course.course_id.course_image,
         }
         for course in courses
     ]
@@ -315,12 +316,16 @@ def add_comment_by_student(query_id, email, comment):
 
 
 def upvote_doubt(query_id, student_id):
-    if not StudentTable.objects.filter(student_id = student_id).exists():
+    if not StudentTable.objects.filter(student_id=student_id).exists():
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
-    
-    email = StudentTable.objects.filter(student_id = student_id).values_list("email",flat=True).first()
-    
+
+    email = (
+        StudentTable.objects.filter(student_id=student_id)
+        .values_list("email", flat=True)
+        .first()
+    )
+
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
         return {"status": "Upvote not added", "message": "No such user present."}
@@ -376,10 +381,17 @@ def upvote_doubt(query_id, student_id):
             print("Doubt upvoted by the student.")
 
         student.save()
-        net_votes = DoubtTable.objects.filter(query_id = query_id).values_list("upvotes",flat = True).first() - DoubtTable.objects.filter(query_id = query_id).values_list("downvotes",flat = True).first()
+        net_votes = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("upvotes", flat=True)
+            .first()
+            - DoubtTable.objects.filter(query_id=query_id)
+            .values_list("downvotes", flat=True)
+            .first()
+        )
         print(net_votes)
         print(msg)
-        return {"status": 200, "message": msg, "netVotes":net_votes}
+        return {"status": 200, "message": msg, "netVotes": net_votes}
 
     except Exception as e:
         print("Error:", str(e))
@@ -387,11 +399,15 @@ def upvote_doubt(query_id, student_id):
 
 
 def downvote_doubt(query_id, student_id):
-    if not StudentTable.objects.filter(student_id = student_id).exists():
+    if not StudentTable.objects.filter(student_id=student_id).exists():
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
-    
-    email = StudentTable.objects.filter(student_id = student_id).values_list("email",flat=True).first()
+
+    email = (
+        StudentTable.objects.filter(student_id=student_id)
+        .values_list("email", flat=True)
+        .first()
+    )
 
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
@@ -449,9 +465,16 @@ def downvote_doubt(query_id, student_id):
 
         student.save()
         print(msg)
-        net_votes = DoubtTable.objects.filter(query_id = query_id).values_list("upvotes",flat = True).first() - DoubtTable.objects.filter(query_id = query_id).values_list("downvotes",flat = True).first()
+        net_votes = (
+            DoubtTable.objects.filter(query_id=query_id)
+            .values_list("upvotes", flat=True)
+            .first()
+            - DoubtTable.objects.filter(query_id=query_id)
+            .values_list("downvotes", flat=True)
+            .first()
+        )
         print(net_votes)
-        return {"status": 200, "message": msg, "netVotes" : net_votes}
+        return {"status": 200, "message": msg, "netVotes": net_votes}
 
     except Exception as e:
         print("Error:", str(e))
@@ -459,11 +482,15 @@ def downvote_doubt(query_id, student_id):
 
 
 def upvote_comment(comment_id, student_id):
-    if not StudentTable.objects.filter(student_id = student_id).exists():
+    if not StudentTable.objects.filter(student_id=student_id).exists():
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
-    
-    email = StudentTable.objects.filter(student_id = student_id).values_list("email",flat=True).first()
+
+    email = (
+        StudentTable.objects.filter(student_id=student_id)
+        .values_list("email", flat=True)
+        .first()
+    )
 
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
@@ -489,7 +516,7 @@ def upvote_comment(comment_id, student_id):
             print("Student not enrolled in this course.")
             return {
                 "status": "Upvote not added",
-                "message": "Student not enrolled in this course."
+                "message": "Student not enrolled in this course.",
             }
 
         student = StudentTable.objects.filter(email=email, course_id=course_id).first()
@@ -506,8 +533,17 @@ def upvote_comment(comment_id, student_id):
 
         if comment_id in upvoted_comments_set:
             student.upvoted_comments.remove(comment_id)
-            CommentTable.objects.filter(comment_id = comment_id).update(upvotes = models.F("upvotes") - 1)
-            net_votes = CommentTable.objects.filter(comment_id = comment_id).values_list("upvotes",flat = True).first() - CommentTable.objects.filter(comment_id = comment_id).values_list("downvotes",flat = True).first()
+            CommentTable.objects.filter(comment_id=comment_id).update(
+                upvotes=models.F("upvotes") - 1
+            )
+            net_votes = (
+                CommentTable.objects.filter(comment_id=comment_id)
+                .values_list("upvotes", flat=True)
+                .first()
+                - CommentTable.objects.filter(comment_id=comment_id)
+                .values_list("downvotes", flat=True)
+                .first()
+            )
 
             print(f"Upvote Removed.Net votes {net_votes}")
             student.save()
@@ -515,13 +551,20 @@ def upvote_comment(comment_id, student_id):
             return {
                 "status": "Upvote Removed",
                 "message": "Upvote Removed.",
-                "netVotes": net_votes
+                "netVotes": net_votes,
             }
 
         comment = CommentTable.objects.filter(comment_id=comment_id).update(
             upvotes=(models.F("upvotes") or 0) + 1
         )
-        net_votes = CommentTable.objects.filter(comment_id = comment_id).values_list("upvotes",flat = True).first() - CommentTable.objects.filter(comment_id = comment_id).values_list("downvotes",flat = True).first()
+        net_votes = (
+            CommentTable.objects.filter(comment_id=comment_id)
+            .values_list("upvotes", flat=True)
+            .first()
+            - CommentTable.objects.filter(comment_id=comment_id)
+            .values_list("downvotes", flat=True)
+            .first()
+        )
 
         student.upvoted_comments.append(comment_id)
         student.save()
@@ -529,8 +572,8 @@ def upvote_comment(comment_id, student_id):
         return {
             "status": "Upvote added",
             "message": "Comment upvoted by the student.",
-            "netVotes": net_votes
-            }
+            "netVotes": net_votes,
+        }
 
     except Exception as e:
         print("Error:", str(e))
@@ -538,11 +581,15 @@ def upvote_comment(comment_id, student_id):
 
 
 def downvote_comment(comment_id, student_id):
-    if not StudentTable.objects.filter(student_id = student_id).exists():
+    if not StudentTable.objects.filter(student_id=student_id).exists():
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
-    
-    email = StudentTable.objects.filter(student_id = student_id).values_list("email",flat=True).first()
+
+    email = (
+        StudentTable.objects.filter(student_id=student_id)
+        .values_list("email", flat=True)
+        .first()
+    )
 
     if not UserTable.objects.filter(email=email).exists():
         print("No such user present.")
@@ -568,7 +615,7 @@ def downvote_comment(comment_id, student_id):
             print("Student not enrolled in this course.")
             return {
                 "status": "Downvote not added",
-                "message": "Student not enrolled in this course."
+                "message": "Student not enrolled in this course.",
             }
 
         student = StudentTable.objects.filter(email=email, course_id=course_id).first()
@@ -589,16 +636,25 @@ def downvote_comment(comment_id, student_id):
         # If the comment is already downvoted, return the appropriate message
         if comment_id in downvoted_comments_set:
             student.downvoted_comments.remove(comment_id)
-            CommentTable.objects.filter(comment_id = comment_id).update(downvotes = models.F("downvotes")-1)
-            net_votes = CommentTable.objects.filter(comment_id = comment_id).values_list("upvotes",flat = True).first() - CommentTable.objects.filter(comment_id = comment_id).values_list("downvotes",flat = True).first()
-                    
+            CommentTable.objects.filter(comment_id=comment_id).update(
+                downvotes=models.F("downvotes") - 1
+            )
+            net_votes = (
+                CommentTable.objects.filter(comment_id=comment_id)
+                .values_list("upvotes", flat=True)
+                .first()
+                - CommentTable.objects.filter(comment_id=comment_id)
+                .values_list("downvotes", flat=True)
+                .first()
+            )
+
             print(f"Downvote Removed. Net upvotes {net_votes}.")
             student.save()
 
             return {
                 "status": "Downvote Removed.",
                 "message": "Downvote Removed.",
-                "netVotes" : net_votes
+                "netVotes": net_votes,
             }
 
         # Add the comment to downvoted_comments and adjust downvotes
@@ -607,13 +663,20 @@ def downvote_comment(comment_id, student_id):
         )
         student.downvoted_comments.append(comment_id)
         student.save()
-        net_votes = CommentTable.objects.filter(comment_id = comment_id).values_list("upvotes",flat = True).first() - CommentTable.objects.filter(comment_id = comment_id).values_list("downvotes",flat = True).first()
+        net_votes = (
+            CommentTable.objects.filter(comment_id=comment_id)
+            .values_list("upvotes", flat=True)
+            .first()
+            - CommentTable.objects.filter(comment_id=comment_id)
+            .values_list("downvotes", flat=True)
+            .first()
+        )
 
         print(f"Comment downvoted by the student.Net votes {net_votes}")
         return {
             "status": "Downvote added",
             "message": "Comment downvoted by the student.",
-            "netVotes" : net_votes
+            "netVotes": net_votes,
         }
 
     except Exception as e:

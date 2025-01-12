@@ -41,7 +41,7 @@ function MyDoubt() {
                     doubtVotes &&
                     Array.isArray(doubtVotes.upvotes) &&
                     Array.isArray(doubtVotes.downvotes) &&
-                    myDoubts.map((doubt) => {
+                    myDoubts.map((doubt, key) => {
                         let Upvoted = false;
                         let DownVoted = false;
                         if (doubtVotes.upvotes.includes(doubt.id)) {
@@ -51,7 +51,7 @@ function MyDoubt() {
                         }
                         return (
                             <DoubtCard
-                                key={doubt.query_id}
+                                key={key}
                                 user_name={userNames[doubt.student_id]}
                                 user_id={doubt.student_id}
                                 doubt={doubt.query}
