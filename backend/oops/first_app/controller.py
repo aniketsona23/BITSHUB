@@ -357,7 +357,6 @@ def upvote_doubt(query_id, student_id):
         query_id = int(query_id)
         downvoted_doubts_set = set(student.downvoted_doubts or [])
         upvoted_doubts_set = set(student.downvoted_doubts or [])
-        print(upvoted_doubts_set)
 
         if query_id in upvoted_doubts_set:
             student.upvoted_doubts.remove(query_id)
@@ -449,13 +448,12 @@ def downvote_doubt(query_id, student_id):
             )
             msg = "Doubt removed from Downvoted Doubts."
 
-        else:
-            if query_id in upvoted_doubts_set:
-                student.upvoted_doubts.remove(query_id)
-                DoubtTable.objects.filter(query_id=query_id).update(
-                    upvotes=models.F("upvoted") - 1
-                )
-                print("Doubt removed from Upvoted Doubts.")
+        elif query_id in upvoted_doubts_set:
+            student.upvoted_doubts.remove(query_id)
+            DoubtTable.objects.filter(query_id=query_id).update(
+                upvotes=models.F("upvotes") - 1
+            )
+            msg = "Doubt removed from Upvoted Doubts."
 
             student.downvoted_doubts.append(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
@@ -718,10 +716,11 @@ def get_votes_data(std_id):
 def get_user_data(user_id):
     if not StudentTable.objects.filter(student_id=user_id).exists():
         return JsonResponse({"message": f"No student with {user_id} Found"}, status=400)
-    student = StudentTable.objects.filter(student_id=user_id).first()
+    email = StudentTable.objects.filter(student_id=user_id).first().email
+    name = UserTable.objects.filter(email=email)
     return JsonResponse(
         {
-            "user_name": student.student_name,
+            "user_name": name,
         },
         status=200,
     )
