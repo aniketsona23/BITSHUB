@@ -206,7 +206,6 @@ class StudentTable(models.Model):
     downvoted_doubts = ArrayField(
         models.IntegerField(blank=True, null=True), default=list
     )
-    student_name = models.CharField(max_length=255)
 
     class Meta:
         managed = False

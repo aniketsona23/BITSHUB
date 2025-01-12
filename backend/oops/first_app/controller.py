@@ -358,6 +358,7 @@ def upvote_doubt(query_id, student_id):
         downvoted_doubts_set = set(student.downvoted_doubts or [])
         upvoted_doubts_set = set(student.downvoted_doubts or [])
         print(upvoted_doubts_set)
+
         if query_id in upvoted_doubts_set:
             student.upvoted_doubts.remove(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
@@ -378,7 +379,7 @@ def upvote_doubt(query_id, student_id):
                 upvotes=models.F("upvotes") + 1
             )
             msg = "Doubt upvoted by the student."
-            print("Doubt upvoted by the student.")
+            # print("Doubt upvoted by the student.")
 
         student.save()
         net_votes = (
@@ -448,14 +449,6 @@ def downvote_doubt(query_id, student_id):
             )
             msg = "Doubt removed from Downvoted Doubts."
 
-<<<<<<< HEAD
-        elif query_id in upvoted_doubts_set:
-            student.upvoted_doubts.remove(query_id)
-            DoubtTable.objects.filter(query_id=query_id).update(
-                upvotes=models.F("upvotes") - 1
-            )
-            msg = "Doubt removed from Upvoted Doubts."
-=======
         else:
             if query_id in upvoted_doubts_set:
                 student.upvoted_doubts.remove(query_id)
@@ -463,7 +456,6 @@ def downvote_doubt(query_id, student_id):
                     upvotes=models.F("upvoted") - 1
                 )
                 print("Doubt removed from Upvoted Doubts.")
->>>>>>> ca09c22 (doubt vote changes)
 
             student.downvoted_doubts.append(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
