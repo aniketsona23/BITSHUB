@@ -357,22 +357,22 @@ def upvote_doubt(query_id, student_id):
         query_id = int(query_id)
         downvoted_doubts_set = set(student.downvoted_doubts or [])
         upvoted_doubts_set = set(student.downvoted_doubts or [])
-
-        if query_id in downvoted_doubts_set:
-            student.downvoted_doubts.remove(query_id)
-            DoubtTable.objects.filter(query_id=query_id).update(
-                downvotes=models.F("downvotes") - 1
-            )
-            msg = "Doubt removed from Downvoted Doubts."
-
-        elif query_id in upvoted_doubts_set:
+        print(upvoted_doubts_set)
+        if query_id in upvoted_doubts_set:
             student.upvoted_doubts.remove(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
                 upvotes=models.F("upvotes") - 1
             )
             msg = "Doubt removed from Upvoted Doubts."
 
-        if query_id not in upvoted_doubts_set:
+        else:
+            if query_id in downvoted_doubts_set:
+                student.downvoted_doubts.remove(query_id)
+                DoubtTable.objects.filter(query_id=query_id).update(
+                    downvotes=models.F("downvotes") - 1
+                )
+                print("Doubt removed from Downvoted Doubts")
+
             student.upvoted_doubts.append(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
                 upvotes=models.F("upvotes") + 1
@@ -448,14 +448,23 @@ def downvote_doubt(query_id, student_id):
             )
             msg = "Doubt removed from Downvoted Doubts."
 
+<<<<<<< HEAD
         elif query_id in upvoted_doubts_set:
             student.upvoted_doubts.remove(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
                 upvotes=models.F("upvotes") - 1
             )
             msg = "Doubt removed from Upvoted Doubts."
+=======
+        else:
+            if query_id in upvoted_doubts_set:
+                student.upvoted_doubts.remove(query_id)
+                DoubtTable.objects.filter(query_id=query_id).update(
+                    upvotes=models.F("upvoted") - 1
+                )
+                print("Doubt removed from Upvoted Doubts.")
+>>>>>>> ca09c22 (doubt vote changes)
 
-        if query_id not in downvoted_doubts_set:
             student.downvoted_doubts.append(query_id)
             DoubtTable.objects.filter(query_id=query_id).update(
                 downvotes=models.F("downvotes") + 1

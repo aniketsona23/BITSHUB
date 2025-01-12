@@ -330,9 +330,9 @@ def vote_doubt_endpoint(request):
 
             # Call the function
             if vote == 1:
-                result = upvote_doubt(query_id, email, vote)
+                result = upvote_doubt(query_id, email)
             else:
-                result = downvote_doubt(query_id, email, vote)
+                result = downvote_doubt(query_id, email)
 
             return JsonResponse(result)
 
