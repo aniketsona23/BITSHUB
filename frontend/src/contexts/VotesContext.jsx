@@ -6,6 +6,7 @@ export const VoteContext = ({ children }) => {
     const [commentVotes, setCommentVotes] = useState({});
     const [doubtVotes, setDoubtVotes] = useState({});
     const [loading, setLoading] = useState(true);
+    const studId = JSON.parse(localStorage.getItem("currentUser")).student_id;
 
     useEffect(() => {
         async function fetcher() {
@@ -15,7 +16,7 @@ export const VoteContext = ({ children }) => {
                     {
                         method: "POST",
                         body: JSON.stringify({
-                            stud_id: localStorage.getItem("currentUser"),
+                            stud_id: studId,
                         }),
                     }
                 );
@@ -28,6 +29,7 @@ export const VoteContext = ({ children }) => {
                     upvotes: data.upvoted_doubts,
                     downvotes: data.downvoted_doubts,
                 });
+                console.log(doubtVotes);
             } catch (error) {
                 console.log("Error fetching Doubts :", error);
             } finally {

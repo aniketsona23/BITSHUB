@@ -8,6 +8,7 @@ function DoubtCard({
     user_name,
     user_id,
     img_url,
+    course_id,
     votes,
     id,
     showCommentBtn = true,
@@ -24,25 +25,25 @@ function DoubtCard({
     }, [isupVoted, isDownVoted]);
 
     const handleVote = async (num) => {
+        console.log("hello");
         const response = await fetch("http://127.0.0.1:8000/api/vote-doubt/", {
             method: "POST",
             body: JSON.stringify({
                 query_id: id,
                 user_id: user_id,
+                course_id: course_id,
                 vote: num,
             }),
         });
         const json = await response.json();
-        if (response.status == 200) {
-            if (num == 1) {
-                setDownVoted(false);
-                setUpVoted(true);
-            } else {
-                setDownVoted(true);
-                setUpVoted(false);
-            }
-            setDoubtVotes(json.votes);
+        if (num == 1) {
+            setDownVoted(false);
+            setUpVoted(upVoted ? false : true);
+        } else {
+            setDownVoted(downVoted ? false : true);
+            setUpVoted(false);
         }
+        setDoubtVotes(json.netVotes);
     };
 
     const openDoubt = () => {
@@ -90,7 +91,7 @@ function DoubtCard({
                 <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 rounded-[10px] justify-between">
                     <button
                         onClick={() => {
-                            handleVote(-1);
+                            handleVote(1);
                         }}
                         className={`px-2 py-2 flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
                             !upVoted ? "bg-gray-500 " : "bg-orange-600"
@@ -105,7 +106,7 @@ function DoubtCard({
                     <span className="text-lg">{doubtVotes}</span>
                     <button
                         onClick={() => {
-                            handleVote(1);
+                            handleVote(-1);
                         }}
                         className={` px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
                             !downVoted ? "bg-gray-500 " : "bg-orange-600"

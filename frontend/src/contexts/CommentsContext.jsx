@@ -13,9 +13,9 @@ export const CommentContext = ({ children }) => {
                     `http://127.0.0.1:8000/api/course/${subjectId}/doubts/`
                 );
                 const response2 = await fetch(
-                    `http://127.0.0.1:8000/api/student/${localStorage.getItem(
-                        "currentUser"
-                    )}/doubts/`
+                    `http://127.0.0.1:8000/api/student/${
+                        localStorage.getItem("currentUser").student_id
+                    }/doubts/`
                 );
                 const data = await response.json();
                 const data2 = await response2.json();

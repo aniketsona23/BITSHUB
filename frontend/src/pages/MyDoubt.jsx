@@ -6,22 +6,7 @@ import DoubtCard from "../Components/DoubtCard";
 function MyDoubt() {
     const { myDoubts } = useDoubts();
     const { doubtVotes } = useVotes();
-    const [userNames, setUserNames] = useState({});
-
-    const getName = async (stu_id) => {
-        const response = await fetch("http://127.0.0.1:8000/api/user/", {
-            method: "POST",
-            body: JSON.stringify({
-                student_id: stu_id,
-            }),
-            headers: {
-                "Content-Type": "application/json", // Specify the content type
-            },
-        });
-        const json = await response.json();
-        return json.user_name;
-    };
-    const name = getName(localStorage.getItem("currentUser"));
+    const name = JSON.parse(localStorage.getItem("currentUser")).student_name;
     return (
         <div className="w-[100%] max-h-screen overflow-y-scroll">
             <div className="flex flex-col justify-start items-center gap-8 pt-[2%] pb-[6%]">
@@ -32,13 +17,16 @@ function MyDoubt() {
                     myDoubts.map((doubt, key) => {
                         let Upvoted = false;
                         let DownVoted = false;
-                        if (doubtVotes.upvotes.includes(doubt.id)) {
+                        if (doubtVotes.upvotes.includes(doubt.query_id)) {
                             Upvoted = true;
-                        } else if (doubtVotes.downvotes.includes(doubt.id)) {
+                        } else if (
+                            doubtVotes.downvotes.includes(doubt.query_id)
+                        ) {
                             DownVoted = true;
                         }
                         return (
                             <DoubtCard
+                                course_id={doubt.course_id}
                                 key={key}
                                 user_name={name}
                                 user_id={doubt.student_id}

@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 
 const DoubtsContext = createContext();
 
-export const DoubtContext = ({ children }) => {
+export const DoubtContext = ({ children, subjectId }) => {
     const [doubts, setDoubts] = useState([]);
     const [myDoubts, setmyDoubts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { subjectId } = useParams();
     useEffect(() => {
         async function fetcher() {
             try {
@@ -18,10 +17,12 @@ export const DoubtContext = ({ children }) => {
                     const data = await response.json();
                     setDoubts(data.doubts);
                 }
+                const studId = JSON.parse(
+                    localStorage.getItem("currentUser")
+                ).student_id;
+
                 const response2 = await fetch(
-                    `http://127.0.0.1:8000/api/student/${localStorage.getItem(
-                        "currentUser"
-                    )}/doubts/`
+                    `http://127.0.0.1:8000/api/student/${studId}/doubts/`
                 );
                 const data2 = await response2.json();
                 setmyDoubts(data2.doubts);
@@ -32,7 +33,8 @@ export const DoubtContext = ({ children }) => {
             }
         }
         fetcher();
-    }, []);
+    }, [subjectId]);
+
     return (
         <DoubtsContext.Provider value={{ doubts, myDoubts, loading }}>
             {children}

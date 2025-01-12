@@ -6,12 +6,12 @@ function CoursesPane() {
     const navigate = useNavigate();
     const { subjectId } = useParams();
     const [Subjects, updateSubjects] = useState();
+    const studId = JSON.parse(localStorage.getItem("currentUser")).student_id;
+
     useEffect(() => {
         async function getSubject() {
             const response = await fetch(
-                `http://127.0.0.1:8000/api/student/${localStorage.getItem(
-                    "currentUser"
-                )}/courses`
+                `http://127.0.0.1:8000/api/student/${studId}/courses`
             );
             const json = await response.json();
             updateSubjects(json.courses);

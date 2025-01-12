@@ -28,7 +28,13 @@ function Login() {
         const json = await response.json();
         if (response.status == 200) {
             navigate("/user/");
-            localStorage.setItem("currentUser", json.student_id);
+            localStorage.setItem(
+                "currentUser",
+                JSON.stringify({
+                    student_id: json.student_id,
+                    student_name: json.name,
+                })
+            );
         } else {
             alert("Wrong credentials !");
         }

@@ -314,12 +314,13 @@ def vote_doubt_endpoint(request):
             # Parse JSON body
             data = json.loads(request.body)
             query_id = data.get("query_id")
-            email = data.get("email")
+            student_id = data.get("user_id")
+            course_id = data.get("course_id")
             vote = data.get("vote")
             print(data)
 
             # Validate inputs
-            if not (query_id and email and vote):
+            if not (query_id and student_id and vote):
                 return JsonResponse(
                     {
                         "status": "error",
@@ -330,11 +331,13 @@ def vote_doubt_endpoint(request):
 
             # Call the function
             if vote == 1:
-                result = upvote_doubt(query_id, email)
+                print(1)
+                result = upvote_doubt(query_id, student_id, course_id)
             else:
-                result = downvote_doubt(query_id, email)
+                print(2)
+                result = downvote_doubt(query_id, student_id)
 
-            return JsonResponse({"message": result.message}, status=result.status)
+            return JsonResponse(result)
 
         except json.JSONDecodeError:
             return JsonResponse(

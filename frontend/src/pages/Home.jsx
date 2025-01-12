@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CourseCard from "../Components/CourseCard";
 
 function Home() {
-    const studId = localStorage.getItem("currentUser");
+    const studId = JSON.parse(localStorage.getItem("currentUser")).student_id;
     const [Subjects, updateSubjects] = useState();
     useEffect(() => {
         async function getSubject() {
