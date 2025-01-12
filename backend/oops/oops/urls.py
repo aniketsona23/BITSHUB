@@ -71,7 +71,7 @@ urlpatterns = [
         name="user_login_endpoint",
     ),
     path(
-        "api/doubt/<str:doubt_id>/comments/",
+        "api/doubt/<str:query_id>/comments/",
         all_comments_on_doubt_endpoint,
         name="all_comments_on_doubt_endpoint",
     ),

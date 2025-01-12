@@ -259,7 +259,7 @@ def all_doubts_asked_by_student(student_id):
     doubts = DoubtTable.objects.filter(student_id=student_id)
     doubts_list = [
         {
-            "doubt": doubt.query,
+            "query": doubt.query,
             "course_id": doubt.course_id,
             "query_id": doubt.query_id,
             "topic_id": doubt.topic_id,

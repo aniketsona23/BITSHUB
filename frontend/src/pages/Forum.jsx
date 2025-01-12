@@ -7,9 +7,6 @@ function Forum() {
     const { doubts, loading } = useDoubts();
     const { doubtVotes } = useVotes();
     const { subjectId } = useParams();
-    useEffect(() => {
-        console.log("doubts:", doubts); // Verify if doubts is still empty
-    }, [doubts]); // Run effect whenever doubts is updated
 
     if (loading) {
         return <div>Loading...</div>;

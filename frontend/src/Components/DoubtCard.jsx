@@ -25,7 +25,6 @@ function DoubtCard({
     }, [isupVoted, isDownVoted]);
 
     const handleVote = async (num) => {
-        console.log("hello");
         const response = await fetch("http://127.0.0.1:8000/api/vote-doubt/", {
             method: "POST",
             body: JSON.stringify({
@@ -47,7 +46,7 @@ function DoubtCard({
     };
 
     const openDoubt = () => {
-        navigate(`/user/forum/${subjectId}/${id}`);
+        navigate(`/user/forum/${course_id}/${id}`);
     };
 
     return (

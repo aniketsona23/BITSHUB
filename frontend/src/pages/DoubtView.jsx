@@ -9,7 +9,6 @@ import { useVotes } from "../contexts/VotesContext";
 function DoubtView() {
     const { doubtId } = useParams();
     const { commentVotes } = useVotes();
-
     const textareaRef = useRef(null);
     const { doubts } = useDoubts();
     const [value, setValue] = useState("");
@@ -23,15 +22,17 @@ function DoubtView() {
             );
             const json = await response.json();
             updateComments(json.comments);
+            const doubt = doubts.find((doubt) => doubt.id == doubtId);
+            console.log(doubts);
+            if (doubt) {
+                updateCurrDoubt(doubt);
+                const coms = comments.sort((a, b) =>
+                    a.upvotes - a.downvotes > b.upvotes - b.downvotes ? 1 : -1
+                );
+                updateComments(coms);
+            }
         }
-        const doubt = doubts.find((doubt) => doubt.id == doubtId);
-        if (doubt) {
-            updateCurrDoubt(doubt);
-            const coms = comments.sort((a, b) =>
-                a.upvotes - a.downvotes > b.upvotes - b.downvotes ? 1 : -1
-            );
-            updateComments(coms);
-        }
+        fetcher();
     }, [doubtId]);
 
     const handleComment = () => {
