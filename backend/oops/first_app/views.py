@@ -334,7 +334,7 @@ def vote_doubt_endpoint(request):
             else:
                 result = downvote_doubt(query_id, email)
 
-            return JsonResponse(result)
+            return JsonResponse({"message": result.message}, status=result.status)
 
         except json.JSONDecodeError:
             return JsonResponse(

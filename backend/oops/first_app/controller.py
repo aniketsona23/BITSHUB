@@ -718,10 +718,11 @@ def get_votes_data(std_id):
 def get_user_data(user_id):
     if not StudentTable.objects.filter(student_id=user_id).exists():
         return JsonResponse({"message": f"No student with {user_id} Found"}, status=400)
-    student = StudentTable.objects.filter(student_id=user_id).first()
+    email = StudentTable.objects.filter(student_id=user_id).first().email
+    name = UserTable.objects.filter(email=email)
     return JsonResponse(
         {
-            "user_name": student.student_name,
+            "user_name": name,
         },
         status=200,
     )
