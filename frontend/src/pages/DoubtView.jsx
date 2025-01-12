@@ -25,7 +25,6 @@ function DoubtView() {
             );
             const json = await response.json();
             console.log(json);
-            console.log(doubtId);
             updateComments(json.comments);
         }
         fetcher();

@@ -282,7 +282,7 @@ def all_comments_on_doubt(query_id):
             "comment_id": comment.comment_id,
             "time": comment.timestamp,
             "comment": comment.comment,
-            "user_id": comment.email,
+            "user_id": comment.student_id,
             "upvotes": comment.upvotes,
             "downvotes": comment.downvotes,
         }
