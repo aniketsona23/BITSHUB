@@ -42,7 +42,7 @@ function Comment({
                 setDownVoted(downVoted ? false : true);
                 setUpVoted(false);
             }
-            setDoubtVotes(json.netVotes);
+            setCommentVotes(json.netVotes);
         }
     };
     return (
@@ -53,14 +53,16 @@ function Comment({
                     alt=""
                     className="rounded-[50%] w-[50px] h-[50px]"
                 />
-                <span className="font-[12px] text-white">{user_name}</span>
+                <span className="font-[12px] text-white">{user_id}</span>
                 <span className="font-[12px text-zinc-400">{time} </span>
             </header>
             <p className="font-[12px] text-white">{comment}</p>
             <div className="flex min-w-[150px] bg-slate-700 items-center gap-5 p-2 max-w-max text-white rounded-[10px] justify-between">
                 <button
                     onClick={() => handleVote(1)}
-                    className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                    className={`px-2 py-2 flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
+                        !upVoted ? "bg-gray-500 " : "bg-orange-600"
+                    }`}
                 >
                     <span className="material-symbols-outlined text-[18px]  ">
                         shift
@@ -69,7 +71,9 @@ function Comment({
                 <span className="text-lg">{commentVotes}</span>
                 <button
                     onClick={() => handleVote(-1)}
-                    className="bg-orange-600 px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white"
+                    className={` px-2 py-2  flex items-center rounded-lg min-w-fit font-['Poppins'] font-semibold text-lg text-white ${
+                        !downVoted ? "bg-gray-500 " : "bg-orange-600"
+                    }`}
                 >
                     <span className="material-symbols-outlined text-[18px]  rotate-180">
                         shift

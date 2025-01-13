@@ -70,17 +70,19 @@ function DoubtView() {
             method: "POST",
             body: JSON.stringify({
                 query_id: doubtId,
-                student_id: stud_id,
+                user_id: stud_id,
                 comment: value,
             }),
         });
         const json = response.json();
+        console.log(currDoubt);
         updateComments([
             ...comments,
             {
                 comment_id: currDoubt.query_id + "0" + comments.length + 1,
                 user_id: stud_id,
-                votes: 0,
+                upvotes: 0,
+                downvotes: 0,
                 comment: value,
                 time: formattedDate,
             },
@@ -139,6 +141,8 @@ function DoubtView() {
                                 ) {
                                     DownVoted = true;
                                 }
+                                console.log(comment);
+
                                 return (
                                     <Comment
                                         isUpvoted={UpVoted}

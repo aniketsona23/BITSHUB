@@ -242,11 +242,11 @@ def add_comment_by_student_endpoint(request):
             # Parse JSON body
             data = json.loads(request.body)
             query_id = data.get("query_id")
-            student_id = data.get("student_id")
+            user_id = data.get("user_id")
             comment = data.get("comment")
 
             # Validate inputs
-            if not (query_id and student_id and comment):
+            if not (query_id and user_id and comment):
                 return JsonResponse(
                     {
                         "status": "error",
@@ -256,7 +256,7 @@ def add_comment_by_student_endpoint(request):
                 )
 
             # Call the function
-            result = add_comment_by_student(query_id, student_id, comment)
+            result = add_comment_by_student(query_id, user_id, comment)
             return JsonResponse(result)
 
         except json.JSONDecodeError:
@@ -357,21 +357,21 @@ def vote_comment_endpoint(request):
         try:
             data = json.loads(request.body)
             comment_id = data.get("comment_id")
-            email = data.get("email")
+            user_id = data.get("user_id")
             vote = data.get("vote")
 
-            if not (comment_id and email):
+            if not (comment_id and user_id and vote):
                 return JsonResponse(
                     {
                         "status": "error",
-                        "message": "Missing one or more required parameters: query_id, email or vote.",
+                        "message": "Missing one or more required parameters: query_id, user_id or vote.",
                     },
                     status=400,
                 )
             if vote == 1:
-                result = upvote_comment(comment_id, email)
+                result = upvote_comment(comment_id, user_id)
             else:
-                result = downvote_comment(comment_id, email)
+                result = downvote_comment(comment_id, user_id)
             return JsonResponse(result)
 
         except json.JSONDecodeError:

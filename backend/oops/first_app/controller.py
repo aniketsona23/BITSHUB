@@ -282,7 +282,13 @@ def all_comments_on_doubt(query_id):
             "comment_id": comment.comment_id,
             "time": comment.timestamp,
             "comment": comment.comment,
-            "user_id": StudentTable.objects.filter(email = CommentTable.objects.filter(comment_id = comment.comment_id).values_list("email",flat=True).first()).values_list("student_id",flat = True).first(),
+            "user_id": StudentTable.objects.filter(
+                email=CommentTable.objects.filter(comment_id=comment.comment_id)
+                .values_list("email", flat=True)
+                .first()
+            )
+            .values_list("student_id", flat=True)
+            .first(),
             "upvotes": comment.upvotes,
             "downvotes": comment.downvotes,
         }
@@ -461,16 +467,6 @@ def upvote_comment(comment_id, student_id):
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
 
-    email = (
-        StudentTable.objects.filter(student_id=student_id)
-        .values_list("email", flat=True)
-        .first()
-    )
-
-    if not UserTable.objects.filter(email=email).exists():
-        print("No such user present.")
-        return {"status": "Upvote not added", "message": "No such user present."}
-
     if not CommentTable.objects.filter(comment_id=comment_id).exists():
         print("No such comment present.")
         return {"status": "Upvote not added", "message": "No such comment present."}
@@ -487,14 +483,16 @@ def upvote_comment(comment_id, student_id):
             .first()
         )
 
-        if not StudentTable.objects.filter(email=email, course_id=course_id):
+        if not StudentTable.objects.filter(student_id=student_id, course_id=course_id):
             print("Student not enrolled in this course.")
             return {
                 "status": "Upvote not added",
                 "message": "Student not enrolled in this course.",
             }
 
-        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+        student = StudentTable.objects.filter(
+            student_id=student_id, course_id=course_id
+        ).first()
         comment_id = int(comment_id)
         downvoted_comments_set = set(student.downvoted_comments or [])
         upvoted_comments_set = set(student.upvoted_comments or [])
@@ -560,16 +558,6 @@ def downvote_comment(comment_id, student_id):
         print("No such student present.")
         return {"status": "Upvote not added", "message": "No such student present."}
 
-    email = (
-        StudentTable.objects.filter(student_id=student_id)
-        .values_list("email", flat=True)
-        .first()
-    )
-
-    if not UserTable.objects.filter(email=email).exists():
-        print("No such user present.")
-        return {"status": "Downvote not added", "message": "No such user present."}
-
     if not CommentTable.objects.filter(comment_id=comment_id).exists():
         print("No such comment present.")
         return {"status": "Downvote not added", "message": "No such comment present."}
@@ -586,14 +574,16 @@ def downvote_comment(comment_id, student_id):
             .first()
         )
 
-        if not StudentTable.objects.filter(email=email, course_id=course_id):
+        if not StudentTable.objects.filter(student_id=student_id, course_id=course_id):
             print("Student not enrolled in this course.")
             return {
                 "status": "Downvote not added",
                 "message": "Student not enrolled in this course.",
             }
 
-        student = StudentTable.objects.filter(email=email, course_id=course_id).first()
+        student = StudentTable.objects.filter(
+            student_id=student_id, course_id=course_id
+        ).first()
 
         # Convert comment_id to integer to ensure consistent type
         comment_id = int(comment_id)
