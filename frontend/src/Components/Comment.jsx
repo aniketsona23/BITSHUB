@@ -13,7 +13,9 @@ function Comment({
     const [commentVotes, setCommentVotes] = useState(votes);
     const [upVoted, setUpVoted] = useState();
     const [downVoted, setDownVoted] = useState();
-
+    const currentUserId = JSON.parse(
+        localStorage.getItem("currentUser")
+    ).student_id;
     // const img_url = new URL("" + user.img, import.meta.url).href;
 
     useEffect(() => {
@@ -28,7 +30,7 @@ function Comment({
                 method: "POST",
                 body: JSON.stringify({
                     comment_id: id,
-                    user_id: user_id,
+                    user_id: currentUserId,
                     vote: num,
                 }),
             }

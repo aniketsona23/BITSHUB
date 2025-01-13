@@ -666,14 +666,24 @@ def extract_text_from_pdf(pdf_path):
 def get_votes_data(std_id):
     if not (StudentTable.objects.filter(student_id=std_id).exists()):
         return JsonResponse({"message": f"No student with {std_id} Found"}, status=400)
+    student = StudentTable.objects.filter(student_id=std_id)
+    upvoted_comments = []
+    downvoted_comments = []
+    upvoted_doubts = []
+    downvoted_doubts = []
 
-    student = StudentTable.objects.filter(student_id=std_id).first()
+    for std in student:
+        upvoted_comments.extend(std.upvoted_comments)
+        downvoted_comments.extend(std.downvoted_comments)
+        upvoted_doubts.extend(std.upvoted_doubts)
+        downvoted_doubts.extend(std.downvoted_doubts)
+
     return JsonResponse(
         {
-            "upvoted_comments": student.upvoted_comments,
-            "downvoted_comments": student.downvoted_comments,
-            "upvoted_doubts": student.upvoted_doubts,
-            "downvoted_doubts": student.downvoted_doubts,
+            "upvoted_comments": upvoted_comments,
+            "downvoted_comments": downvoted_comments,
+            "upvoted_doubts": upvoted_doubts,
+            "downvoted_doubts": downvoted_doubts,
         },
         status=200,
     )
