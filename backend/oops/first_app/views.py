@@ -33,9 +33,8 @@ def add_doubt_by_student(student_id, course_id, topic_id, query):
 
         # print(f"TA found with ID: {ta.ta_id}")
 
-        pdf_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\CS F213 Handout_1 2024 25 (23 files merged).pdf"
-        index_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\faiss_index"
-        text_chunks_path = "C:\\Users\\Divyam Gupta\\Desktop\\AI\\text_chunks"
+        index_path = "./AI/faiss_index"
+        text_chunks_path = "./AI/text_chunks"
 
         # Query the RAG system
         ai_answer = answer_query(query, index_path, text_chunks_path, k=5)
