@@ -300,20 +300,23 @@ def all_comments_on_doubt(query_id):
 
 def add_comment_by_student(query_id, student_id, comment):
 
-    if not DoubtTable.objects.filter(query_id=query_id).exists():
-        print("No such query exists.")
-        return {"status": "New comment not added", "message": "No such query exists."}
-
-    if not StudentTable.objects.filter(student_id=student_id).exists():
-        print("No such student present.")
-        return {
-            "status": "New comment not added",
-            "message": "No such student present.",
-        }
-
     try:
+        if not DoubtTable.objects.filter(query_id=query_id).exists():
+            print("No such query exists.")
+            return {
+                "status": "New comment not added",
+                "message": "No such query exists.",
+            }
+
+        if not StudentTable.objects.filter(student_id=student_id).exists():
+            print("No such student present.")
+            return {
+                "status": "New comment not added",
+                "message": "No such student present.",
+            }
+        student = StudentTable.objects.filter(student_id=student_id).first()
         comment_to_add = CommentTable(
-            query_id=query_id, student_id=student_id, comment=comment
+            query_id=query_id, email=student.email, comment=comment
         )
         comment_to_add.save()
 
@@ -690,10 +693,12 @@ def get_votes_data(std_id):
 
 
 def get_user_data(user_id):
-    if not StudentTable.objects.filter(student_id=user_id).exists():
+    student = StudentTable.objects.filter(student_id=user_id)
+    if not student.exists():
         return JsonResponse({"message": f"No student with {user_id} Found"}, status=400)
-    student = StudentTable.objects.filter(student_id=user_id).first()
+    student = student.first()
     name = UserTable.objects.filter(email=student.email).first()
+
     print(name.name)
     return JsonResponse(
         {

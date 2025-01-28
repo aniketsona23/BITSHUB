@@ -68,6 +68,15 @@ CORS_ALLOW_METHODS = [
     "OPTIONS",
 ]
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DJANGO_WATCHER_EXCLUDE = [
+    os.path.join(BASE_DIR, "node_modules"),
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "logs"),
+    os.path.join(BASE_DIR, "env"),  # Exclude virtual environment
+]
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

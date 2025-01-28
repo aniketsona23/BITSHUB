@@ -18,12 +18,17 @@ function CoursesPane() {
         }
         getSubject();
     }, []);
+    console.log(window.location.href);
     return (
         <div className="flex flex-col flex-grow-0 flex-shrink-0 items-center gap-[2%] border-white/25 px-[1%] py-[2%] border-r border-solid min-w-[300px] max-w-[300px] basis-[25%]">
             <div className="flex flex-col items-center gap-3 w-[100%]">
                 <button
                     onClick={() => navigate(`/user/my`)}
-                    className="bg-slate-800 border-2 hover:border-orange-500 duration-200 border-zinc-600 px-4 py-3 rounded-lg w-[100%] font-['Poppins']  text-m text-white"
+                    className={`bg-slate-800 border-2 hover:border-orange-500 duration-200 ${
+                        window.location.href.split("/")[4] == "my"
+                            ? "border-orange-500"
+                            : "border-zinc-600"
+                    } px-4 py-3 rounded-lg w-[100%] font-['Poppins']  text-m text-white`}
                 >
                     My Doubts
                 </button>

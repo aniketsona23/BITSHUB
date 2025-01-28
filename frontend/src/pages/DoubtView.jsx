@@ -24,7 +24,6 @@ function DoubtView() {
                 `http://127.0.0.1:8000/api/doubt/${doubtId}/comments`
             );
             const json = await response.json();
-            console.log(json);
             updateComments(json.comments);
         }
         fetcher();
@@ -40,7 +39,7 @@ function DoubtView() {
             );
             updateComments(coms);
         }
-    }, [comments, doubts]);
+    }, [doubts]);
     useEffect(() => {
         fetchAllDoubts(subjectId);
         fetchCommentVotes(stud_id);
@@ -141,7 +140,6 @@ function DoubtView() {
                                 ) {
                                     DownVoted = true;
                                 }
-                                console.log(comment);
 
                                 return (
                                     <Comment

@@ -18,7 +18,8 @@ function DoubtCard({
     const { subjectId } = useParams();
     const [doubtVotes, setDoubtVotes] = useState(votes);
     const navigate = useNavigate();
-
+    const image = new URL("" + img_url, import.meta.url).href;
+    console.log(image);
     useEffect(() => {
         setUpVoted(isupVoted);
         setDownVoted(isDownVoted);
@@ -62,7 +63,7 @@ function DoubtCard({
             <header className="flex justify-between  items-center">
                 <div className="flex  justify-end items-center gap-[15px] max-w-max">
                     <img
-                        src={undefined}
+                        src={image}
                         className="rounded-[50%] w-[50px] h-[50px]"
                         alt=""
                     />
