@@ -25,14 +25,20 @@ function PostDoubt() {
         fetcher();
     }, []);
 
-    const handlePostDoubt = (event) => {
-        const doubt = { title: doubtTitle, doubt: doubtValue };
-        const user = {
-            username: "Aniket Sonawane",
-            img: "avatar.jpg",
-            bitsid: "2022B3A70031G",
-        };
-        adddoubt(doubt, user, subjectId);
+    const handlePostDoubt = async (event) => {
+        console.log(subjectId);
+        request = await fetch("http://127.0.0.1:8000/api/post-doubt/", {
+            method: "POST",
+            body: JSON.stringify({
+                student_id: JSON.parse(localStorage.getItem("currentUser"))
+                    .student_id,
+                course_id: subjectId,
+                topic_id: 1,
+                query: doubtValue,
+            }),
+        });
+        json = await request.json();
+        console.log(json);
         navigate(`/user/forum/${subjectId}`);
     };
     const handleInput = (event) => {
